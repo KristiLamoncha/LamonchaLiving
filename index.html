@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Lamoncha Living"/>
+<meta name="theme-color" content="#2DD4BF"/>
+<title>Lamoncha Living</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Outfit:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:#EAF5FA;font-family:'Outfit',sans-serif;overflow:hidden;}
+#app{height:100%;display:flex;flex-direction:column;max-width:430px;margin:0 auto;position:relative;background:#EAF5FA;}
+.screen{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.hidden{display:none!important;}
+.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scroll::-webkit-scrollbar{display:none;}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(45,212,191,0.15);}
+a{touch-action:manipulation;cursor:pointer;}
+[onclick]{cursor:pointer;touch-action:manipulation;}
+div[onclick]{cursor:pointer;}
+/* ── Typography ── */
+.serif{font-family:'Playfair Display',serif;}
+.mono{font-family:'DM Mono',monospace;}
+/* ── Cards ── */
+.card{background:#fff;border:1px solid rgba(15,100,140,0.1);border-radius:16px;padding:16px;}
+/* ── Buttons ── */
+.btn-primary{width:100%;padding:14px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.5px;}
+.btn-outline{width:100%;padding:13px;border-radius:16px;border:1.5px solid #2DD4BF;background:transparent;color:#1E7A8C;font-weight:700;font-size:13px;cursor:pointer;font-family:'Outfit',sans-serif;}
+/* ── Bottom nav ── */
+#bottom-nav{height:72px;flex-shrink:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(20px);border-top:1px solid rgba(15,100,140,0.1);display:flex;align-items:center;justify-content:space-around;padding:0 4px 8px;}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;border-radius:14px;border:none;background:transparent;cursor:pointer;}
+.nav-btn.active{background:rgba(45,212,191,0.12);}
+.nav-icon{font-size:20px;opacity:.45;transition:opacity .2s;}
+.nav-btn.active .nav-icon{opacity:1;}
+.nav-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:rgba(15,100,140,0.35);font-family:'Outfit',sans-serif;}
+.nav-btn.active .nav-label{color:#2DD4BF;}
+/* ── Top bar ── */
+#top-bar{padding:14px 18px 10px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;}
+.top-sub{font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:2px;}
+.top-title{font-size:22px;font-weight:900;color:#0F3D52;font-style:italic;font-family:'Playfair Display',serif;line-height:1;}
+.coach-btn{width:44px;height:44px;border-radius:50%;border:2px solid rgba(45,212,191,.4);overflow:hidden;padding:0;cursor:pointer;background:none;}
+.coach-btn img{width:100%;height:100%;object-fit:cover;}
+/* ── Splash ── */
+#splash{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:28px 24px 36px;overflow:hidden;background:linear-gradient(160deg,#EAF5FA,#F0F8FC);}
+.splash-photo{width:88px;height:88px;border-radius:28px;overflow:hidden;border:2.5px solid rgba(45,212,191,.5);box-shadow:0 0 32px rgba(45,212,191,.25);margin-bottom:12px;}
+.splash-photo img{width:100%;height:100%;object-fit:cover;}
+.splash-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;font-style:italic;color:#0F3D52;text-align:center;line-height:.95;}
+.splash-title span{color:#2DD4BF;}
+.feature-pill{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid rgba(15,100,140,0.1);border-radius:14px;padding:10px 14px;margin-bottom:8px;}
+.feature-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.feature-text{font-size:12px;font-weight:600;color:#1E5C7A;line-height:1.3;}
+.tag-pill{background:rgba(15,100,140,0.07);border:1px solid rgba(15,100,140,0.15);border-radius:20px;padding:3px 8px;font-size:8px;font-weight:700;color:rgba(15,60,82,.55);font-family:'Outfit',sans-serif;letter-spacing:.5px;}
+/* ── Section scroll area ── */
+.screen-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 18px 28px;}
+.screen-content::-webkit-scrollbar{display:none;}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(45,212,191,0.15);}
+a{touch-action:manipulation;cursor:pointer;}
+[onclick]{cursor:pointer;touch-action:manipulation;}
+div[onclick]{cursor:pointer;}
+/* ── Inner tabs ── */
+.inner-tabs{display:flex;gap:6px;padding:0 18px 12px;flex-shrink:0;}
+.inner-tab{flex:1;padding:7px 0;border-radius:20px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(15,100,140,0.07);color:#4A8FA8;transition:all .2s;}
+.inner-tab.active{color:#fff;}
+/* ── Home cards ── */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.stat-card{background:#fff;border:1px solid rgba(15,100,140,0.1);border-radius:12px;padding:10px 8px;text-align:center;}
+.stat-val{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:#0F3D52;line-height:1.1;}
+.stat-sub{font-size:9px;color:#5B9BB5;font-family:'Outfit',sans-serif;}
+/* ── Progress bars ── */
+.prog-track{height:8px;background:rgba(15,100,140,0.08);border-radius:4px;overflow:hidden;margin-top:6px;}
+.prog-fill{height:100%;border-radius:4px;transition:width 1s ease;}
+/* ── Week dots ── */
+.week-row{display:flex;gap:5px;}
+.week-dot{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.week-letter{font-size:9px;color:#5B9BB5;font-family:'Outfit',sans-serif;}
+.week-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;border:2px solid;}
+/* ── Recipes ── */
+.recipe-card{background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;gap:12px;align-items:center;border:1px solid rgba(15,100,140,0.09);}
+.recipe-emoji{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.recipe-cal{font-family:'DM Mono',monospace;font-size:14px;font-weight:800;color:#0F3D52;}
+/* ── Supplement items ── */
+.supp-item{border-radius:12px;padding:10px 13px;margin-bottom:6px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .2s;background:#fff;border:1px solid rgba(15,100,140,0.09);}
+.supp-icon-wrap{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.check-circle{width:24px;height:24px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;transition:all .2s;}
+/* ── About coach ── */
+#coach-screen{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.coach-hero{background:linear-gradient(160deg,#0E2A3A,#0B1A28);padding:18px 20px 0;flex-shrink:0;}
+.coach-photo{width:84px;height:84px;border-radius:22px;overflow:hidden;border:2px solid rgba(45,212,191,.45);}
+.coach-photo img{width:100%;height:100%;object-fit:cover;}
+.cred-chip{flex-shrink:0;display:flex;gap:6px;align-items:center;border-radius:20px;padding:5px 10px;}
+.coach-tabs{display:flex;gap:4px;border-bottom:1px solid rgba(255,255,255,.06);}
+.coach-tab{flex:1;padding:10px 0;border:none;background:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;transition:all .2s;}
+/* ── Sign up ── */
+#signup-screen{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#EAF5FA;}
+.su-input-wrap{background:#fff;border:1.5px solid rgba(15,100,140,.15);border-radius:14px;padding:6px 14px;margin-bottom:12px;}
+.su-label{font-size:9px;color:#5B9BB5;font-family:'Outfit',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding-top:8px;display:block;}
+.su-input{width:100%;background:none;border:none;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:6px 0 10px;}
+/* ── Calc ── */
+.calc-input{width:100%;background:#fff;border:1.5px solid rgba(15,100,140,.15);border-radius:12px;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:11px 14px;margin-bottom:14px;}
+/* ── Grocery ── */
+.groc-item{display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid rgba(15,100,140,.09);background:#fff;margin-bottom:7px;cursor:pointer;}
+.groc-check{width:22px;height:22px;border-radius:7px;border:2px solid rgba(15,100,140,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;}
+/* ── Progress rings ── */
+.rings-row{display:flex;justify-content:space-around;padding:8px 0 16px;}
+/* ── Utility ── */
+.flex{display:flex;}
+.flex-col{flex-direction:column;}
+.gap-6{gap:6px;}
+.gap-8{gap:8px;}
+.gap-10{gap:10px;}
+.gap-12{gap:12px;}
+.mb-8{margin-bottom:8px;}
+.mb-12{margin-bottom:12px;}
+.mb-14{margin-bottom:14px;}
+.f10{font-size:10px;}
+.f11{font-size:11px;}
+.f12{font-size:12px;}
+.f13{font-size:13px;}
+.fw7{font-weight:700;}
+.fw8{font-weight:800;}
+.teal{color:#2DD4BF;}
+.navy{color:#0F3D52;}
+.muted{color:#5B9BB5;}
+.lh15{line-height:1.5;}
+.lh16{line-height:1.6;}
+.lh17{line-height:1.7;}
+.text-center{text-align:center;}
+.italic{font-style:italic;}
+.upper{text-transform:uppercase;}
+.ls1{letter-spacing:1px;}
+.ls08{letter-spacing:.8px;}
+</style>
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCNJLBZ-Rf0lT4PbfzKwkB1wFLL06yhkQU",
+  authDomain: "lamonchaliving-1809c.firebaseapp.com",
+  projectId: "lamonchaliving-1809c",
+  storageBucket: "lamonchaliving-1809c.firebasestorage.app",
+  messagingSenderId: "646546923092",
+  appId: "1:646546923092:web:87349a72c9737f0d0057c1"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function saveClient(data) {
+return db.collection(‘clients’).add({
+…data,
+signupDate: new Date().toISOString(),
+source: ‘LamonchaLiving App’
+})
+.then(() => { console.log(‘Client saved!’); return true; })
+.catch(err => { console.error(‘Save error:’, err); return false; });
+}
+</script>
+
+</head>
+<body onclick="void(0)" ontouchend="event.preventDefault();void(0)">
+<div id="app" onclick="">
+
+<!-- ═══════════ SPLASH ═══════════ -->
+
+<div id="splash-screen" class="screen">
+  <div id="splash">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;">
+      <div style="position:relative;margin-bottom:14px;">
+        <div class="splash-photo"><img src="data:image/jpeg;base64,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" alt="Kristi"/></div>
+        <div style="position:absolute;bottom:-5px;right:-5px;width:26px;height:26px;border-radius:9px;background:linear-gradient(135deg,#2DD4BF,#0891B2);display:flex;align-items:center;justify-content:center;font-size:13px;">🌊</div>
+      </div>
+      <div style="font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">Welcome to</div>
+      <div class="splash-title">Lamoncha<br/><span>Living</span></div>
+      <div style="font-size:11px;color:#4A8FA8;font-family:'Outfit',sans-serif;margin:4px 0 8px;">with Coach Kristi Lamoncha</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center;">
+        <span class="tag-pill">PharmD</span><span class="tag-pill">CPT</span><span class="tag-pill">Nutrition Coach</span><span class="tag-pill">Realtor</span>
+      </div>
+    </div>
+    <div style="width:100%;">
+      <div style="font-size:10px;color:#5B9BB5;text-align:center;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Your journey starts here</div>
+      <div class="feature-pill"><div class="feature-icon" style="background:rgba(139,92,246,.12);">💊</div><div class="feature-text">Holistic PharmD Care — Natural First</div></div>
+      <div class="feature-pill"><div class="feature-icon" style="background:rgba(217,119,6,.12);">🥩</div><div class="feature-text">Animal-Based & Whole Food Nutrition</div></div>
+      <div class="feature-pill"><div class="feature-icon" style="background:rgba(249,115,22,.12);">🏋️</div><div class="feature-text">Strength Training & Beach Volleyball</div></div>
+      <div class="feature-pill" style="margin-bottom:0;"><div class="feature-icon" style="background:rgba(45,212,191,.12);">🌊</div><div class="feature-text">Southwest Florida Coastal Living</div></div>
+    </div>
+    <div style="width:100%;display:flex;flex-direction:column;gap:9px;">
+      <button class="btn-primary" onclick="showSignup()" ontouchend="event.preventDefault();showSignup()">Start My Wellness Journey 🌊</button>
+      <button class="btn-outline" onclick="showSignup()" ontouchend="event.preventDefault();showSignup()">Sign In</button>
+      <a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:10px;align-items:center;justify-content:center;background:linear-gradient(135deg,#8B5CF620,#6D28D912);border:1.5px solid #8B5CF640;border-radius:16px;padding:13px 16px;text-decoration:none;">
+        <span style="font-size:20px;">💊</span>
+        <div><div style="font-size:13px;font-weight:800;color:#0F3D52;">Shop My Supplement Store</div><div style="font-size:10px;color:#5B9BB5;margin-top:1px;">Practitioner-grade · Fullscript</div></div>
+        <span style="margin-left:auto;font-size:11px;font-weight:700;color:#8B5CF6;">Shop →</span>
+      </a>
+      <button onclick="showCoach()" ontouchend="event.preventDefault();showCoach()" style="background:none;border:none;color:#5B9BB5;font-size:11px;cursor:pointer;font-family:'Outfit',sans-serif;text-align:center;padding:4px;">Meet Coach Kristi →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SIGNUP SCREEN ═══════════ -->
+
+<div id="signup-screen" class="screen hidden" style="background:linear-gradient(160deg,#EAF5FA,#F0F8FC);overflow-y:auto;">
+  <div style="padding:28px 24px 40px;min-height:100%;display:flex;flex-direction:column;">
+
+```
+<!-- Header -->
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+  <button onclick="showSplash()" ontouchend="event.preventDefault();showSplash()" style="width:32px;height:32px;border-radius:10px;background:rgba(15,100,140,.08);border:none;color:#5B9BB5;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">‹</button>
+  <div>
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#0F3D52;font-style:italic;" id="su-title">Create Your Account</div>
+    <div style="font-size:10px;color:#5B9BB5;font-family:'Outfit',sans-serif;" id="su-subtitle">Step 1 of 3 — Your Details</div>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div style="height:4px;background:rgba(15,100,140,.1);border-radius:2px;margin-bottom:24px;">
+  <div id="su-progress" style="height:100%;width:33%;background:linear-gradient(90deg,#2DD4BF,#0891B2);border-radius:2px;transition:width .4s ease;"></div>
+</div>
+
+<!-- Step 1: Personal Info -->
+<div id="su-step1">
+  <div style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:14px;padding:6px 14px;margin-bottom:12px;">
+    <div style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding-top:8px;">Full Name</div>
+    <input id="su-name" type="text" placeholder="Your full name" style="width:100%;background:none;border:none;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:6px 0 10px;"/>
+  </div>
+  <div style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:14px;padding:6px 14px;margin-bottom:12px;">
+    <div style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding-top:8px;">Email Address</div>
+    <input id="su-email" type="email" placeholder="you@email.com" style="width:100%;background:none;border:none;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:6px 0 10px;"/>
+  </div>
+  <div style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:14px;padding:6px 14px;margin-bottom:12px;">
+    <div style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding-top:8px;">Phone Number</div>
+    <input id="su-phone" type="tel" placeholder="(555) 000-0000" style="width:100%;background:none;border:none;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:6px 0 10px;"/>
+  </div>
+  <div style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:14px;padding:6px 14px;margin-bottom:20px;">
+    <div style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding-top:8px;">Date of Birth</div>
+    <input id="su-dob" type="date" style="width:100%;background:none;border:none;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;padding:6px 0 10px;"/>
+  </div>
+  <button onclick="suStep2()" ontouchend="event.preventDefault();suStep2()" style="width:100%;padding:15px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;">Continue →</button>
+</div>
+
+<!-- Step 2: Goals -->
+<div id="su-step2" style="display:none;">
+  <div style="font-size:13px;color:#5B9BB5;font-family:'Outfit',sans-serif;margin-bottom:12px;">What is your primary goal?</div>
+  <div id="su-goals-list">
+    <div class="su-goal-card" data-goal="Fat Loss" onclick="selectGoal(this)" ontouchend="event.preventDefault();selectGoal(this)" style="display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(15,100,140,.12);background:#fff;cursor:pointer;margin-bottom:8px;transition:all .2s;">
+      <span style="font-size:24px;">🔥</span><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">Fat Loss</div><div style="font-size:11px;color:#5B9BB5;">Lose body fat, preserve muscle</div></div>
+    </div>
+    <div class="su-goal-card" data-goal="Build Muscle" onclick="selectGoal(this)" ontouchend="event.preventDefault();selectGoal(this)" style="display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(15,100,140,.12);background:#fff;cursor:pointer;margin-bottom:8px;transition:all .2s;">
+      <span style="font-size:24px;">💪</span><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">Build Muscle</div><div style="font-size:11px;color:#5B9BB5;">Gain strength & lean mass</div></div>
+    </div>
+    <div class="su-goal-card" data-goal="Performance" onclick="selectGoal(this)" ontouchend="event.preventDefault();selectGoal(this)" style="display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(15,100,140,.12);background:#fff;cursor:pointer;margin-bottom:8px;transition:all .2s;">
+      <span style="font-size:24px;">⚡</span><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">Performance</div><div style="font-size:11px;color:#5B9BB5;">Athletic conditioning & endurance</div></div>
+    </div>
+    <div class="su-goal-card" data-goal="Longevity" onclick="selectGoal(this)" ontouchend="event.preventDefault();selectGoal(this)" style="display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(15,100,140,.12);background:#fff;cursor:pointer;margin-bottom:8px;transition:all .2s;">
+      <span style="font-size:24px;">🌿</span><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">Longevity & Wellness</div><div style="font-size:11px;color:#5B9BB5;">Optimize health & biomarkers</div></div>
+    </div>
+    <div class="su-goal-card" data-goal="Holistic Health" onclick="selectGoal(this)" ontouchend="event.preventDefault();selectGoal(this)" style="display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(15,100,140,.12);background:#fff;cursor:pointer;margin-bottom:8px;transition:all .2s;">
+      <span style="font-size:24px;">🌊</span><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">Holistic Health</div><div style="font-size:11px;color:#5B9BB5;">Natural & whole-body approach</div></div>
+    </div>
+  </div>
+  <button onclick="suStep3()" ontouchend="event.preventDefault();suStep3()" style="width:100%;padding:15px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;margin-top:8px;">Continue →</button>
+</div>
+
+<!-- Step 3: Plan + Submit -->
+<div id="su-step3" style="display:none;">
+  <div style="font-size:13px;color:#5B9BB5;font-family:'Outfit',sans-serif;margin-bottom:12px;">Choose your coaching level:</div>
+  <div id="su-plans-list">
+    <div class="su-plan-card" data-plan="Essential (Free)" onclick="selectPlan(this)" ontouchend="event.preventDefault();selectPlan(this)" style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:16px;padding:15px;cursor:pointer;margin-bottom:10px;transition:all .25s;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:#0F3D52;font-style:italic;">Essential</div><div style="font-family:'DM Mono',monospace;font-size:17px;font-weight:800;color:#2DD4BF;margin-top:2px;">Free</div></div>
+        <div class="plan-check" style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(15,100,140,.2);"></div>
+      </div>
+      ${['Nutrition logging','Workout library','Supplement guide','Progress tracking'].map(p=>`<div style="display:flex;gap:7px;align-items:center;margin-bottom:5px;"><div style="width:13px;height:13px;border-radius:4px;background:rgba(45,212,191,.2);display:flex;align-items:center;justify-content:center;font-size:8px;color:#2DD4BF;">✓</div><span style="font-size:11px;color:#2A5F78;">${p}</span></div>`).join('')}
+    </div>
+    <div class="su-plan-card" data-plan="Coaching+ ($49/mo)" onclick="selectPlan(this)" ontouchend="event.preventDefault();selectPlan(this)" style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:16px;padding:15px;cursor:pointer;margin-bottom:10px;transition:all .25s;position:relative;">
+      <div style="position:absolute;top:-8px;right:12px;background:#F97316;color:#fff;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;">Most Popular</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:#0F3D52;font-style:italic;">Coaching+</div><div style="font-family:'DM Mono',monospace;font-size:17px;font-weight:800;color:#F97316;margin-top:2px;">$49/mo</div></div>
+        <div class="plan-check" style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(15,100,140,.2);"></div>
+      </div>
+      ${['Everything in Essential','Weekly check-in calls','Custom meal plans','PharmD bloodwork review','Priority messaging'].map(p=>`<div style="display:flex;gap:7px;align-items:center;margin-bottom:5px;"><div style="width:13px;height:13px;border-radius:4px;background:rgba(249,115,22,.2);display:flex;align-items:center;justify-content:center;font-size:8px;color:#F97316;">✓</div><span style="font-size:11px;color:#2A5F78;">${p}</span></div>`).join('')}
+    </div>
+    <div class="su-plan-card" data-plan="Elite 1:1 ($149/mo)" onclick="selectPlan(this)" ontouchend="event.preventDefault();selectPlan(this)" style="background:#fff;border:1.5px solid rgba(15,100,140,.12);border-radius:16px;padding:15px;cursor:pointer;margin-bottom:16px;transition:all .25s;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:#0F3D52;font-style:italic;">Elite 1:1</div><div style="font-family:'DM Mono',monospace;font-size:17px;font-weight:800;color:#8B5CF6;margin-top:2px;">$149/mo</div></div>
+        <div class="plan-check" style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(15,100,140,.2);"></div>
+      </div>
+      ${['Everything in Coaching+','Daily coaching access','Custom supplement protocols','Lab panel included','In-person option (SW Florida)'].map(p=>`<div style="display:flex;gap:7px;align-items:center;margin-bottom:5px;"><div style="width:13px;height:13px;border-radius:4px;background:rgba(139,92,246,.2);display:flex;align-items:center;justify-content:center;font-size:8px;color:#8B5CF6;">✓</div><span style="font-size:11px;color:#2A5F78;">${p}</span></div>`).join('')}
+    </div>
+  </div>
+  <button onclick="submitSignup()" ontouchend="event.preventDefault();submitSignup()" id="su-submit-btn" style="width:100%;padding:15px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;">Start My Journey 🌊</button>
+  <div id="su-error" style="display:none;background:#FEF2F2;border:1px solid #FCA5A5;border-radius:12px;padding:10px 14px;margin-top:10px;font-size:12px;color:#DC2626;font-family:'Outfit',sans-serif;"></div>
+</div>
+
+<!-- Success screen -->
+<div id="su-success" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1;padding:20px 0;">
+  <div style="font-size:60px;margin-bottom:16px;">🌊</div>
+  <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#0F3D52;font-style:italic;margin-bottom:8px;">Welcome to<br/><span style="color:#2DD4BF;">Lamoncha Living!</span></div>
+  <div style="font-size:13px;color:#5B9BB5;line-height:1.6;margin-bottom:24px;">Your account has been created.<br/>Coach Kristi will be in touch soon! 💊</div>
+  <button onclick="showMain()" ontouchend="event.preventDefault();showMain()" style="width:100%;padding:15px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;">Enter the App →</button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════ MAIN APP ═══════════ -->
+
+<div id="main-screen" class="screen hidden">
+  <div id="top-bar">
+    <div>
+      <div class="top-sub">Lamoncha Living</div>
+      <div class="top-title" id="screen-title">Home <span id="title-dot" style="color:#2DD4BF;">✦</span></div>
+    </div>
+    <button class="coach-btn" onclick="showCoach()" ontouchend="event.preventDefault();showCoach()"><img src="data:image/jpeg;base64,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" alt="Kristi"/></button>
+  </div>
+  <div id="screen-host" style="flex:1;display:flex;flex-direction:column;overflow:hidden;"></div>
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-screen="home" onclick="switchTab(this,'home','#2DD4BF')" ontouchend="event.preventDefault();switchTab(this,'home','#2DD4BF')">
+      <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+    </button>
+    <button class="nav-btn" data-screen="move" onclick="switchTab(this,'move','#F97316')" ontouchend="event.preventDefault();switchTab(this,'move','#F97316')">
+      <span class="nav-icon">🏄</span><span class="nav-label">Move</span>
+    </button>
+    <button class="nav-btn" data-screen="nourish" onclick="switchTab(this,'nourish','#10B981')" ontouchend="event.preventDefault();switchTab(this,'nourish','#10B981')">
+      <span class="nav-icon">🥗</span><span class="nav-label">Nourish</span>
+    </button>
+    <button class="nav-btn" data-screen="rx" onclick="switchTab(this,'rx','#8B5CF6')" ontouchend="event.preventDefault();switchTab(this,'rx','#8B5CF6')">
+      <span class="nav-icon">💊</span><span class="nav-label">Rx</span>
+    </button>
+    <button class="nav-btn" data-screen="calc" onclick="switchTab(this,'calc','#0EA5E9')" ontouchend="event.preventDefault();switchTab(this,'calc','#0EA5E9')">
+      <span class="nav-icon">🧮</span><span class="nav-label">Calc</span>
+    </button>
+    <button class="nav-btn" data-screen="shop" onclick="switchTab(this,'shop','#10B981')" ontouchend="event.preventDefault();switchTab(this,'shop','#10B981')">
+      <span class="nav-icon">🛒</span><span class="nav-label">Shop</span>
+    </button>
+    <button class="nav-btn" data-screen="progress" onclick="switchTab(this,'progress','#2DD4BF')" ontouchend="event.preventDefault();switchTab(this,'progress','#2DD4BF')">
+      <span class="nav-icon">📈</span><span class="nav-label">Progress</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ═══════════ COACH SCREEN ═══════════ -->
+
+<div id="coach-view" class="screen hidden">
+  <div class="coach-hero">
+    <button onclick="backToApp()" ontouchend="event.preventDefault();backToApp()" style="width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:18px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;">‹</button>
+    <div style="display:flex;gap:16px;align-items:flex-end;margin-bottom:14px;">
+      <div style="position:relative;flex-shrink:0;">
+        <div class="coach-photo"><img src="data:image/jpeg;base64,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" alt="Kristi"/></div>
+        <div style="position:absolute;bottom:-4px;right:-4px;width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,#2DD4BF,#0891B2);display:flex;align-items:center;justify-content:center;font-size:12px;">🌊</div>
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;color:#2DD4BF;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">Meet Your Coach</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;font-style:italic;">Kristi Lamoncha</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);font-family:'Outfit',sans-serif;margin-top:3px;">PharmD · CPT · Nutrition Coach · Realtor</div>
+        <div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;">
+          <span style="background:rgba(255,255,255,.07);border-radius:20px;padding:3px 9px;font-size:9px;color:rgba(255,255,255,.45);font-family:'Outfit',sans-serif;font-weight:600;">⭐ 4.9</span>
+          <span style="background:rgba(255,255,255,.07);border-radius:20px;padding:3px 9px;font-size:9px;color:rgba(255,255,255,.45);font-family:'Outfit',sans-serif;font-weight:600;">👥 200+ clients</span>
+          <span style="background:rgba(255,255,255,.07);border-radius:20px;padding:3px 9px;font-size:9px;color:rgba(255,255,255,.45);font-family:'Outfit',sans-serif;font-weight:600;">📍 SW Florida</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;padding-bottom:14px;overflow-x:auto;scrollbar-width:none;">
+      <div class="cred-chip" style="background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.28);">
+        <span style="font-size:12px;">🎓</span>
+        <div><div style="font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#8B5CF6;line-height:1;">PharmD</div><div style="font-size:8px;color:rgba(255,255,255,.3);font-family:'Outfit',sans-serif;margin-top:1px;">Doctor of Pharmacy</div></div>
+      </div>
+      <div class="cred-chip" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);">
+        <span style="font-size:12px;">💪</span>
+        <div><div style="font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#F97316;line-height:1;">NASM-CPT</div><div style="font-size:8px;color:rgba(255,255,255,.3);font-family:'Outfit',sans-serif;margin-top:1px;">Certified Trainer</div></div>
+      </div>
+      <div class="cred-chip" style="background:rgba(16,185,129,.14);border:1px solid rgba(16,185,129,.28);">
+        <span style="font-size:12px;">🥗</span>
+        <div><div style="font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#10B981;line-height:1;">Nutrition</div><div style="font-size:8px;color:rgba(255,255,255,.3);font-family:'Outfit',sans-serif;margin-top:1px;">Precision Nutrition L1</div></div>
+      </div>
+      <div class="cred-chip" style="background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.28);">
+        <span style="font-size:12px;">🏠</span>
+        <div><div style="font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#2DD4BF;line-height:1;">Realtor</div><div style="font-size:8px;color:rgba(255,255,255,.3);font-family:'Outfit',sans-serif;margin-top:1px;">eXp Realty · Coastal</div></div>
+      </div>
+    </div>
+    <div class="coach-tabs">
+      <button class="coach-tab active" id="ctab-0" onclick="switchCoachTab(0)" ontouchend="event.preventDefault();switchCoachTab(0)" style="color:#2DD4BF;border-bottom:2px solid #2DD4BF;">About</button>
+      <button class="coach-tab" id="ctab-1" onclick="switchCoachTab(1)" ontouchend="event.preventDefault();switchCoachTab(1)" style="color:rgba(255,255,255,.3);border-bottom:2px solid transparent;">Services</button>
+      <button class="coach-tab" id="ctab-2" onclick="switchCoachTab(2)" ontouchend="event.preventDefault();switchCoachTab(2)" style="color:rgba(255,255,255,.3);border-bottom:2px solid transparent;">Reviews</button>
+    </div>
+  </div>
+  <div id="coach-content" class="scroll" style="flex:1;padding:16px 20px 24px;background:#0B1A28;"></div>
+  <div style="padding:12px 20px 18px;flex-shrink:0;border-top:1px solid rgba(255,255,255,.06);background:#0B1A28;">
+    <button onclick="showMain()" ontouchend="event.preventDefault();showMain()" style="width:100%;padding:14px;border-radius:16px;border:none;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#000;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;">Coach Kristi — Let's Get Started 🌊</button>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<script>
+document.addEventListener('touchstart', function(){}, {passive:true});
+const HEADSHOT = 'data:image/jpeg;base64,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';
+const ACCENT = {
+  home:'#2DD4BF', move:'#F97316', nourish:'#10B981',
+  rx:'#8B5CF6', calc:'#0EA5E9', shop:'#10B981', progress:'#2DD4BF'
+};
+const BG = {
+  home:'#EAF5FA', move:'#FEF6EE', nourish:'#EDF7F2',
+  rx:'#F2EEFF', calc:'#EAF4FD', shop:'#EDF7F2', progress:'#EAF5FA'
+};
+const LABELS = {
+  home:'Home', move:'Move', nourish:'Nourish',
+  rx:'Rx', calc:'Calc', shop:'Shop', progress:'Progress'
+};
+
+let currentScreen = 'home';
+let suppTaken = {1:true,2:true,5:true,8:true};
+let loggedMeals = [];
+let checkedGrocery = {};
+let coachTab = 0;
+
+// ── Navigation ─────────────────────────────────────────────────
+function showMain() {
+  document.getElementById('splash-screen').classList.add('hidden');
+  document.getElementById('coach-view').classList.add('hidden');
+  document.getElementById('main-screen').classList.remove('hidden');
+  renderScreen(currentScreen);
+}
+function showCoach() {
+  document.getElementById('splash-screen').classList.add('hidden');
+  document.getElementById('main-screen').classList.add('hidden');
+  document.getElementById('coach-view').classList.remove('hidden');
+  renderCoachTab(0);
+}
+function backToApp() {
+  document.getElementById('coach-view').classList.add('hidden');
+  document.getElementById('main-screen').classList.remove('hidden');
+}
+function switchTab(btn, name, accent) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  btn.querySelector('.nav-label').style.color = accent;
+  currentScreen = name;
+  document.getElementById('screen-title').innerHTML = LABELS[name] + ' <span style="color:'+accent+'">✦</span>';
+  document.getElementById('screen-host').style.background = BG[name];
+  renderScreen(name);
+}
+function renderScreen(name) {
+  const host = document.getElementById('screen-host');
+  host.style.background = BG[name];
+  if(name==='home') host.innerHTML = renderHome();
+  else if(name==='move') host.innerHTML = renderMove();
+  else if(name==='nourish') { host.innerHTML = renderNourish(); bindNourishEvents(); }
+  else if(name==='rx') { host.innerHTML = renderRx(); bindRxEvents(); }
+  else if(name==='calc') { host.innerHTML = renderCalc(); }
+  else if(name==='shop') { host.innerHTML = renderShop(); bindShopEvents(); }
+  else if(name==='progress') host.innerHTML = renderProgress();
+  // animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.prog-fill[data-w]').forEach(el => {
+      el.style.width = el.dataset.w;
+    });
+  }, 100);
+}
+
+// ── HOME ────────────────────────────────────────────────────────
+function renderHome() {
+  const days = ['M','T','W','T','F','S','S'];
+  const done = [true,true,true,false,true,true,false];
+  const dots = days.map((d,i) => `
+    <div class="week-dot">
+      <span class="week-letter">${d}</span>
+      <div class="week-circle" style="background:${done[i]?'#2DD4BF':'rgba(15,100,140,0.06)'};border-color:${done[i]?'#2DD4BF':'rgba(15,100,140,0.12)'};color:#fff;">${done[i]?'✓':''}</div>
+    </div>`).join('');
+  return `<div class="screen-content">
+    <div class="card mb-14" style="background:linear-gradient(135deg,rgba(45,212,191,.12),rgba(45,212,191,.04));border-color:rgba(45,212,191,.25);display:flex;align-items:center;gap:14px;">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(45,212,191,.15);border:2px solid rgba(45,212,191,.3);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🌊</div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#0F3D52;line-height:1.2;">Good morning,</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#2DD4BF;font-style:italic;">Lamoncha Living</div>
+        <div style="font-size:10px;color:#5B9BB5;margin-top:3px;font-family:'Outfit',sans-serif;">Day 57 of 84 · 7-day streak 🔥</div>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div style="font-size:18px;">🔥</div><div class="stat-val">1,842</div><div class="stat-sub">/ 2,200 Cal</div></div>
+      <div class="stat-card"><div style="font-size:18px;">💧</div><div class="stat-val">56</div><div class="stat-sub">/ 80oz Water</div></div>
+      <div class="stat-card"><div style="font-size:18px;">👟</div><div class="stat-val">8,430</div><div class="stat-sub">/ 10k Steps</div></div>
+    </div>
+    <div class="card mb-14">
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+        <span style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">Today's Macros</span>
+      </div>
+      ${[{l:'Protein',v:148,m:180,c:'#10B981'},{l:'Carbs',v:82,m:150,c:'#F59E0B'},{l:'Fat',v:96,m:120,c:'#F97316'}].map(x=>`
+      <div style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;font-weight:600;color:#2A5F78;">${x.l}</span>
+          <span style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${x.v}g / ${x.m}g</span>
+        </div>
+        <div class="prog-track"><div class="prog-fill" data-w="${Math.round(x.v/x.m*100)}%" style="width:0%;background:${x.c};"></div></div>
+      </div>`).join('')}
+    </div>
+    <div class="card mb-14">
+      <div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">This Week</div>
+      <div class="week-row">${dots}</div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,rgba(45,212,191,.1),rgba(45,212,191,.03));border-color:rgba(45,212,191,.2);">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <span style="font-size:22px;">💊</span>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#2DD4BF;margin-bottom:4px;font-style:italic;">Pharmacist's Daily Tip</div>
+          <div style="font-size:11px;color:#2A5F78;line-height:1.55;">Take your D3 with your fattiest meal — fat-soluble vitamins absorb up to 32% better with dietary fat. Never skip the K2 co-factor.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(139,92,246,.03));border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:14px 16px;text-decoration:none;margin-top:14px;">
+    <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💊</div>
+    <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#0F3D52;">Shop My Supplement Store</div><div style="font-size:10px;color:#5B9BB5;margin-top:1px;">Practitioner-grade via Fullscript</div></div>
+    <span style="font-size:11px;font-weight:700;color:#8B5CF6;">Shop →</span>
+  </a>`;
+}
+
+// ── MOVE ────────────────────────────────────────────────────────
+function renderMove() {
+  const workouts = [
+    {name:'Coastal Strength',tag:'Upper Push · Pull',emoji:'🏋️',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',
+     ex:[{n:'Barbell Bench Press',s:'4×6'},{n:'Bent-Over Barbell Row',s:'4×6'},{n:'Overhead Press',s:'3×8'},{n:'Face Pulls',s:'3×15'},{n:'Tricep Dips',s:'3×10'}]},
+    {name:'Ocean HIIT',tag:'Metabolic Conditioning',emoji:'🌊',dur:'35 min',level:'High Intensity',color:'#0891B2',
+     ex:[{n:'Kettlebell Swings',s:'5×20'},{n:'Box Jumps',s:'5×8'},{n:'Battle Ropes',s:'5×30s'},{n:'Burpees',s:'4×10'}]},
+    {name:'Surf Mobility Flow',tag:'Flexibility · Balance',emoji:'🏄',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',
+     ex:[{n:'Hip Circles',s:'2×20 each'},{n:'Thoracic Rotations',s:'3×10 each'},{n:'Single-Leg RDL',s:'3×12'},{n:'Turkish Get-Up',s:'3×3 each'}]},
+  ];
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div class="inner-tabs">
+      <button class="inner-tab active" id="mtab-0" onclick="moveSwitchTab(0)" ontouchend="event.preventDefault();moveSwitchTab(0)" style="background:#F97316;color:#fff;">Plans</button>
+      <button class="inner-tab" id="mtab-1" onclick="moveSwitchTab(1)" ontouchend="event.preventDefault();moveSwitchTab(1)">Detail</button>
+      <button class="inner-tab" id="mtab-2" onclick="moveSwitchTab(2)" ontouchend="event.preventDefault();moveSwitchTab(2)">Coaching</button>
+    </div>
+    <div id="move-content" class="screen-content">
+      ${workouts.map((w,i)=>`
+      <div onclick="selectWorkout(${i})" ontouchend="event.preventDefault();selectWorkout(${i})" style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="width:40px;height:40px;border-radius:10px;background:${w.color}20;display:flex;align-items:center;justify-content:center;font-size:20px;">${w.emoji}</div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#0F3D52;">${w.name}</div>
+              <div style="font-size:10px;color:#5B9BB5;">${w.tag}</div>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:${w.color};font-family:'DM Mono',monospace;font-weight:700;">${w.dur}</div>
+            <div style="font-size:9px;color:#5B9BB5;">${w.level}</div>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+const WORKOUTS = [
+  {name:'Coastal Strength',emoji:'🏋️',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',ex:[{n:'Barbell Bench Press',s:'4×6'},{n:'Bent-Over Barbell Row',s:'4×6'},{n:'Overhead Press',s:'3×8'},{n:'Face Pulls',s:'3×15'},{n:'Tricep Dips',s:'3×10'}]},
+  {name:'Ocean HIIT',emoji:'🌊',dur:'35 min',level:'High Intensity',color:'#0891B2',ex:[{n:'Kettlebell Swings',s:'5×20'},{n:'Box Jumps',s:'5×8'},{n:'Battle Ropes',s:'5×30s'},{n:'Burpees',s:'4×10'}]},
+  {name:'Surf Mobility Flow',emoji:'🏄',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',ex:[{n:'Hip Circles',s:'2×20 each'},{n:'Thoracic Rotations',s:'3×10 each'},{n:'Single-Leg RDL',s:'3×12'},{n:'Turkish Get-Up',s:'3×3 each'}]},
+];
+let workoutDone = {};
+let selectedWorkout = null;
+function moveSwitchTab(n) {
+  [0,1,2].forEach(i=>{
+    const t=document.getElementById('mtab-'+i);
+    if(t){t.className='inner-tab'+(i===n?' active':'');t.style.background=i===n?'#F97316':'';t.style.color=i===n?'#fff':'#4A8FA8';}
+  });
+  const c=document.getElementById('move-content');
+  if(!c)return;
+  if(n===0){c.innerHTML=WORKOUTS.map((w,i)=>`<div onclick="selectWorkout(${i})" ontouchend="event.preventDefault();selectWorkout(${i})" style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;gap:10px;align-items:center;"><div style="width:40px;height:40px;border-radius:10px;background:${w.color}20;display:flex;align-items:center;justify-content:center;font-size:20px;">${w.emoji}</div><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">${w.name}</div><div style="font-size:10px;color:#5B9BB5;">${w.tag}</div></div></div><div style="text-align:right;"><div style="font-size:11px;color:${w.color};font-family:'DM Mono',monospace;font-weight:700;">${w.dur}</div><div style="font-size:9px;color:#5B9BB5;">${w.level}</div></div></div></div>`).join('');}
+  else if(n===1){
+    if(!selectedWorkout){c.innerHTML='<div style="text-align:center;padding:40px 20px;color:#4A8FA8;font-size:13px;">← Select a plan from Plans tab</div>';return;}
+    const w=selectedWorkout;
+    c.innerHTML=`<div style="background:${w.color}14;border:1px solid ${w.color}30;border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center;"><span style="font-size:28px;">${w.emoji}</span><div><div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#0F3D52;font-style:italic;">${w.name}</div><div style="font-size:10px;color:#5B9BB5;">${w.dur} · ${w.level}</div></div></div>`+w.ex.map((e,i)=>`<div onclick="toggleExercise(${WORKOUTS.indexOf(w)},${i})" ontouchend="event.preventDefault();toggleExercise(${WORKOUTS.indexOf(w)},${i})" id="ex-${WORKOUTS.indexOf(w)}-${i}" style="border-radius:12px;padding:12px 14px;margin-bottom:7px;cursor:pointer;display:flex;align-items:center;gap:12px;background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'14':'#fff'};border:1px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'40':'rgba(15,100,140,.09)'};"><div style="width:22px;height:22px;border-radius:50%;border:2px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'rgba(15,100,140,.2)'};background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:11px;">${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?'✓':''}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${e.n}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${e.s}</div></div></div>`).join('');
+  }
+  else{c.innerHTML=[{icon:'📈',t:'Progressive Overload',b:'Add 2.5–5 lbs or 1 rep each week. Track every set.'},{icon:'😴',t:'Sleep = Gains',b:'Growth hormone peaks during deep sleep. 7–9 hours is your most anabolic window.'},{icon:'🥩',t:'Protein Timing',b:'Hit 0.8–1g per lb of bodyweight. Pre & post-workout windows matter.'},{icon:'🌊',t:'Coastal Recovery',b:'Cold water exposure post-training reduces inflammation and speeds recovery.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');}
+}
+function selectWorkout(i){selectedWorkout=WORKOUTS[i];moveSwitchTab(1);}
+function toggleExercise(wi,ei){const k=wi+'-'+ei;workoutDone[k]=!workoutDone[k];moveSwitchTab(1);}
+
+// ── RECIPES DATA ─────────────────────────────────────────────────
+const RECIPES = [
+  {id:1,name:'Grass-Fed Ribeye & Eggs',cat:'Breakfast',emoji:'🥩',time:'20 min',cal:680,pro:58,fat:48,carbs:2,color:'#D97706',steps:['Let steak rest 30 min at room temp','Season generously with salt & pepper','Sear in butter 3–4 min each side','Rest 5 min, cook eggs in drippings']},
+  {id:2,name:'Protein Banana Pancakes',cat:'Breakfast',emoji:'🥞',time:'15 min',cal:420,pro:38,fat:14,carbs:32,color:'#F59E0B',steps:['Mash 1 ripe banana with 3 eggs until smooth','Add 2 scoops vanilla protein powder & cinnamon','Cook small rounds in butter, 2–3 min per side','Top with raw honey, sliced banana & butter']},
+  {id:3,name:'Bone Broth Hot Chocolate',cat:'Breakfast',emoji:'🍫',time:'8 min',cal:210,pro:18,fat:10,carbs:14,color:'#92400E',steps:['Heat 12oz bone broth over medium heat','Whisk in 1 tbsp raw cacao & 1 tbsp honey','Add 1 tbsp grass-fed butter for richness','Froth & finish with sea salt & cinnamon']},
+  {id:4,name:'Hot Honey Cottage Cheese Beef Bowl',cat:'Lunch',emoji:'🍯',time:'20 min',cal:580,pro:52,fat:24,carbs:28,color:'#EF4444',steps:['Brown 5oz ground beef with garlic & paprika','Roast sweet potato at 425°F for 20 min','Plate beef over sweet potato with cottage cheese','Drizzle with hot honey & top with microgreens']},
+  {id:5,name:'Salmon Arugula Salad',cat:'Lunch',emoji:'🐟',time:'20 min',cal:490,pro:42,fat:30,carbs:8,color:'#0891B2',steps:['Season wild salmon with salt, lemon zest & dill','Pan-sear in avocado oil 4 min skin-side, flip 2 min','Toss arugula with olive oil, lemon & sea salt','Plate salad, top with flaked salmon & avocado']},
+  {id:6,name:'Beef Liver & Bacon',cat:'Lunch',emoji:'🫀',time:'15 min',cal:390,pro:42,fat:22,carbs:6,color:'#7C3AED',steps:['Cook bacon until crispy, reserve fat','Sauté sliced onion in bacon fat until golden','Add liver slices, cook 2–3 min per side','Top with crispy bacon & fresh thyme']},
+  {id:7,name:'Sweet Potato Burger Bowl',cat:'Dinner',emoji:'🍔',time:'30 min',cal:620,pro:48,fat:28,carbs:36,color:'#F97316',steps:['Roast diced sweet potato in tallow at 425°F, 25 min','Cook 6oz grass-fed ground beef until crispy','Bowl: sweet potato base, beef, avocado, arugula','Finish with hot honey drizzle']},
+  {id:8,name:'Meat & Honey Skillet',cat:'Dinner',emoji:'🍖',time:'25 min',cal:640,pro:50,fat:36,carbs:20,color:'#B45309',steps:['Sear 6oz skirt steak in cast iron with butter','Deglaze with 2 tbsp raw honey & chili flakes','Add sliced sweet potato, cook in honey glaze','Slice steak thin, plate over potatoes']},
+  {id:9,name:'Lamb Chops & Tallow',cat:'Dinner',emoji:'🥩',time:'35 min',cal:760,pro:52,fat:58,carbs:8,color:'#059669',steps:['Render beef tallow in cast iron over high heat','Season lamb with salt, rosemary & garlic','Sear 4 min per side for medium-rare','Rest 5 min before serving']},
+  {id:10,name:'Oysters & Beef Tartare',cat:'Dinner',emoji:'🦪',time:'20 min',cal:340,pro:35,fat:18,carbs:8,color:'#0E7490',steps:['Shuck oysters on crushed ice with lemon','Finely hand-chop chilled beef tenderloin','Mix with egg yolk, mustard, capers & salt','Plate alongside oysters — serve immediately']},
+  {id:11,name:'Carnivore Pizza',cat:'Dinner',emoji:'🍕',time:'35 min',cal:820,pro:72,fat:58,carbs:2,color:'#DC2626',steps:['Mix 1 lb ground beef 80/20 with 1 egg & salt','Press thin onto parchment, bake at 400°F 15 min','Top with mozzarella, pepperoni & bacon','Bake 10–12 more min until cheese is golden']},
+  {id:12,name:'Cottage Cheese Crust Pizza',cat:'Dinner',emoji:'🧀',time:'40 min',cal:560,pro:58,fat:26,carbs:18,color:'#F59E0B',steps:['Blend 1.5 cups cottage cheese + mozzarella + 2 eggs','Spread thin on parchment, bake at 375°F 25–28 min','Let cool 5 min, add marinara & toppings','Broil 3–4 min until melted & bubbling']},
+  {id:13,name:'Raw Honey & Colostrum Shake',cat:'Snack',emoji:'🥛',time:'5 min',cal:280,pro:22,fat:8,carbs:28,color:'#6D28D9',steps:['Add colostrum powder to 8oz whole milk','Add 1 tbsp raw honey, 1 egg yolk & sea salt','Blend 20 seconds until frothy','Serve over ice — add vanilla if desired']},
+  {id:14,name:'Honey Butter Banana Bites',cat:'Snack',emoji:'🍌',time:'5 min',cal:220,pro:4,fat:12,carbs:28,color:'#D97706',steps:['Slice banana into rounds','Melt 1 tbsp grass-fed butter in pan','Pan-fry banana slices 1–2 min per side','Drizzle with raw honey & flaky sea salt']},
+];
+let selectedRecipe = null;
+let recipeCatFilter = 'All';
+function renderNourish() {
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div class="inner-tabs">
+      <button class="inner-tab active" id="ntab-0" onclick="nourishTab(0)" ontouchend="event.preventDefault();nourishTab(0)" style="background:#10B981;color:#fff;">Log</button>
+      <button class="inner-tab" id="ntab-1" onclick="nourishTab(1)" ontouchend="event.preventDefault();nourishTab(1)">Recipes</button>
+      <button class="inner-tab" id="ntab-2" onclick="nourishTab(2)" ontouchend="event.preventDefault();nourishTab(2)">Rx Coach</button>
+    </div>
+    <div id="nourish-content" class="screen-content">${renderNourishLog()}</div>
+  </div>`;
+}
+function bindNourishEvents(){}
+function nourishTab(n){
+  [0,1,2].forEach(i=>{const t=document.getElementById('ntab-'+i);if(t){t.className='inner-tab'+(i===n?' active':'');t.style.background=i===n?'#10B981':'';t.style.color=i===n?'#fff':'#4A8FA8';}});
+  const c=document.getElementById('nourish-content');
+  if(!c)return;
+  if(n===0)c.innerHTML=renderNourishLog();
+  else if(n===1)c.innerHTML=renderNourishRecipes();
+  else c.innerHTML=renderNourishRx();
+}
+function renderNourishLog(){
+  if(!loggedMeals.length) return '<div style="text-align:center;padding:40px 20px;"><div style="font-size:36px;margin-bottom:10px;">🥗</div><div style="font-size:13px;color:#4A8FA8;">No meals logged yet</div><div style="font-size:11px;color:#5B9BB5;margin-top:4px;">Add meals from the Recipes tab</div></div>';
+  const totCal=loggedMeals.reduce((s,r)=>s+r.cal,0);
+  const totPro=loggedMeals.reduce((s,r)=>s+r.pro,0);
+  const totFat=loggedMeals.reduce((s,r)=>s+r.fat,0);
+  return `<div style="background:#fff;border:1px solid rgba(15,100,140,.1);border-radius:14px;padding:13px 15px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;">Today's Totals</div>
+    <div style="display:flex;gap:16px;">
+      <div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:800;color:#2DD4BF;">${totCal}</div><div style="font-size:9px;color:#5B9BB5;">Cal</div></div>
+      <div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:800;color:#10B981;">${totPro}g</div><div style="font-size:9px;color:#5B9BB5;">Pro</div></div>
+      <div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:800;color:#F97316;">${totFat}g</div><div style="font-size:9px;color:#5B9BB5;">Fat</div></div>
+    </div>
+  </div>`+loggedMeals.map((r,i)=>`<div style="background:${r.color}10;border:1px solid ${r.color}22;border-radius:12px;padding:11px 14px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:20px;">${r.emoji}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${r.cal} kcal</div></div></div><button onclick="removeLoggedMeal(${i})" ontouchend="event.preventDefault();removeLoggedMeal(${i})" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:4px 8px;color:#5B9BB5;cursor:pointer;font-size:12px;">✕</button></div>`).join('');
+}
+function renderNourishRecipes(){
+  const cats=['All','Breakfast','Lunch','Dinner','Snack'];
+  const filtered=recipeCatFilter==='All'?RECIPES:RECIPES.filter(r=>r.cat===recipeCatFilter);
+  return `<div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:8px;margin-bottom:4px;">`+
+    cats.map(c=>`<button onclick="setRecipeCat('${c}')" ontouchend="event.preventDefault();setRecipeCat('${c}')" style="flex-shrink:0;padding:5px 12px;border-radius:20px;border:1.5px solid ${recipeCatFilter===c?'#10B981':'rgba(15,100,140,.12)'};background:${recipeCatFilter===c?'rgba(16,185,129,.15)':'#fff'};color:${recipeCatFilter===c?'#10B981':'#4A8FA8'};font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;cursor:pointer;">${c}</button>`).join('')+
+    '</div>'+
+    filtered.map(r=>`<div onclick="openRecipe(${r.id})" ontouchend="event.preventDefault();openRecipe(${r.id})" class="recipe-card"><div class="recipe-emoji" style="background:${r.color}20;">${r.emoji}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;">${r.cat} · ${r.time}</div></div><div class="recipe-cal">${r.cal}<span style="font-size:8px;color:#5B9BB5;">kcal</span></div></div>`).join('');
+}
+function renderNourishRecipeDetail(r){
+  return `<button onclick="closeRecipe()" ontouchend="event.preventDefault();closeRecipe()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;">← Back</button>
+  <div style="background:${r.color}14;border:1px solid ${r.color}28;border-radius:14px;padding:16px;margin-bottom:12px;">
+    <div style="font-size:32px;margin-bottom:8px;">${r.emoji}</div>
+    <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#0F3D52;font-style:italic;margin-bottom:8px;">${r.name}</div>
+    <div style="display:flex;gap:14px;margin-bottom:14px;">
+      ${[{l:'Cal',v:r.cal},{l:'Pro',v:r.pro+'g'},{l:'Fat',v:r.fat+'g'},{l:'Carbs',v:r.carbs+'g'}].map(m=>`<div style="text-align:center;"><div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:800;color:${r.color};">${m.v}</div><div style="font-size:9px;color:#5B9BB5;">${m.l}</div></div>`).join('')}
+    </div>
+    ${r.steps.map((s,i)=>`<div style="display:flex;gap:8px;margin-bottom:7px;align-items:flex-start;"><div style="width:18px;height:18px;border-radius:50%;background:${r.color};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0;margin-top:1px;">${i+1}</div><div style="font-size:11px;color:#2A5F78;line-height:1.45;">${s}</div></div>`).join('')}
+  </div>
+  <button onclick="logMeal(${r.id})" ontouchend="event.preventDefault();logMeal(${r.id})" style="width:100%;padding:13px;border-radius:13px;border:none;background:${r.color};color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;">+ Log This Meal</button>`;
+}
+function renderNourishRx(){
+  return [{icon:'🥩',t:'Animal Protein Priority',b:'Animal proteins have a complete amino acid profile and 94% bioavailability vs plant proteins at 60–80%. Prioritize red meat, fish, eggs, and organs.'},{icon:'🫀',t:"Organ Meats = Nature's Multivitamin",b:'3oz of beef liver provides 700% RDI of B12, 50% copper, and complete CoQ10. The most nutrient-dense food on earth.'},{icon:'🐟',t:'Omega-3 to Omega-6 Ratio',b:'Aim for 1:4. Modern diets skew 1:20 causing inflammation. Wild salmon, sardines, and pastured eggs shift this favorably.'},{icon:'🍯',t:'Raw Honey & Metabolic Health',b:'Raw honey contains enzymes, propolis, and antioxidants. Consumed post-workout it replenishes liver glycogen preferentially.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+}
+function setRecipeCat(c){recipeCatFilter=c;const el=document.getElementById('nourish-content');if(el)el.innerHTML=renderNourishRecipes();}
+function openRecipe(id){const r=RECIPES.find(x=>x.id===id);selectedRecipe=r;const c=document.getElementById('nourish-content');if(c)c.innerHTML=renderNourishRecipeDetail(r);}
+function closeRecipe(){selectedRecipe=null;const c=document.getElementById('nourish-content');if(c)c.innerHTML=renderNourishRecipes();}
+function logMeal(id){const r=RECIPES.find(x=>x.id===id);loggedMeals.push(r);selectedRecipe=null;nourishTab(0);}
+function removeLoggedMeal(i){loggedMeals.splice(i,1);const c=document.getElementById('nourish-content');if(c)c.innerHTML=renderNourishLog();}
+
+// ── SUPPLEMENTS ──────────────────────────────────────────────────
+const SUPPS = [
+  {id:1,name:'Vitamin D3 + K2',dose:'5,000 IU D3 · 100mcg K2',time:'Morning',icon:'☀️',color:'#F59E0B',note:'Take with fat. K2 (MK-7) directs calcium to bones not arteries.'},
+  {id:2,name:'Omega-3 Fish Oil',dose:'2–3g EPA+DHA',time:'Morning',icon:'🐟',color:'#0EA5E9',note:'Triglyceride form absorbs 70% better. Choose wild sardine-based.'},
+  {id:3,name:'Magnesium Glycinate',dose:'400mg elemental',time:'Evening',icon:'🌙',color:'#8B5CF6',note:'Glycinate crosses blood-brain barrier. Avoid oxide form.'},
+  {id:4,name:'Essential Amino Acids',dose:'10–15g EAAs',time:'Pre-Workout',icon:'💪',color:'#10B981',note:'Superior to BCAAs. Leucine-forward ratio triggers mTOR.'},
+  {id:5,name:'Collagen Peptides',dose:'15–20g',time:'Morning',icon:'💧',color:'#06B6D4',note:'Always pair with Vitamin C for proper collagen synthesis.'},
+  {id:6,name:'Creatine Monohydrate',dose:'5g daily',time:'Post-Workout',icon:'⚡',color:'#F97316',note:'Most studied supplement. No loading needed. Stay hydrated.'},
+  {id:7,name:'Zinc + Copper',dose:'30mg Zn · 2mg Cu',time:'Evening',icon:'🦪',color:'#EC4899',note:'Always pair — zinc depletes copper. Oysters provide perfect ratio.'},
+  {id:8,name:'Methylated B-Complex',dose:'Active forms',time:'Morning',icon:'🧬',color:'#84CC16',note:'40% cannot convert folic acid. Methylated forms bypass MTHFR.'},
+];
+const SUPP_BLOCKS=[{time:'Morning',icon:'🌅',ids:[1,2,5,8]},{time:'Pre-Workout',icon:'💪',ids:[4]},{time:'Post-Workout',icon:'⚡',ids:[6]},{time:'Evening',icon:'🌙',ids:[3,7]}];
+let selectedSupp = null;
+function renderRx(){
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div class="inner-tabs">
+      <button class="inner-tab active" id="rtab-0" onclick="rxTab(0)" ontouchend="event.preventDefault();rxTab(0)" style="background:#8B5CF6;color:#fff;">Schedule</button>
+      <button class="inner-tab" id="rtab-1" onclick="rxTab(1)" ontouchend="event.preventDefault();rxTab(1)">Library</button>
+      <button class="inner-tab" id="rtab-2" onclick="rxTab(2)" ontouchend="event.preventDefault();rxTab(2)">Rx Guide</button>
+    </div>
+    <div id="rx-content" class="screen-content">${renderRxSchedule()}</div>
+  </div>`;
+}
+function bindRxEvents(){}
+function rxTab(n){
+  [0,1,2].forEach(i=>{const t=document.getElementById('rtab-'+i);if(t){t.className='inner-tab'+(i===n?' active':'');t.style.background=i===n?'#8B5CF6':'';t.style.color=i===n?'#fff':'#4A8FA8';}});
+  const c=document.getElementById('rx-content');if(!c)return;
+  if(n===0)c.innerHTML=renderRxSchedule();
+  else if(n===1)c.innerHTML=renderRxLibrary();
+  else c.innerHTML=renderRxGuide();
+}
+function renderRxSchedule(){
+  var shopBanner = '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:10px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(139,92,246,.03));border:1px solid rgba(139,92,246,.22);border-radius:14px;padding:12px 14px;text-decoration:none;margin-bottom:14px;"><div style=\"width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;\">💊</div><div style=\"flex:1;\"><div style=\"font-size:12px;font-weight:800;color:#0F3D52;\">Order from Coach Kristi Store</div><div style=\"font-size:10px;color:#5B9BB5;margin-top:1px;\">Practitioner-grade · Fullscript</div></div><span style=\"font-size:11px;font-weight:700;color:#8B5CF6;\">Shop →</span></a>';
+  return shopBanner + SUPP_BLOCKS.map(b=>`<div style="margin-bottom:16px;"><div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;"><span style="font-size:14px;">${b.icon}</span><span style="font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">${b.time}</span></div>`+
+    b.ids.map(id=>{const s=SUPPS.find(x=>x.id===id);const tk=suppTaken[id];return `<div onclick="toggleSupp(${id})" ontouchend="event.preventDefault();toggleSupp(${id})" style="background:${tk?s.color+'14':'#fff'};border:1px solid ${tk?s.color+'38':'rgba(15,100,140,.09)'};border-radius:12px;padding:10px 13px;margin-bottom:6px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .2s;"><div style="width:34px;height:34px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><div style="width:24px;height:24px;border-radius:50%;border:2px solid ${tk?s.color:'rgba(15,100,140,.18)'};background:${tk?s.color:'transparent'};display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800;transition:all .2s;">${tk?'✓':''}</div></div>`;}).join('')+'</div>').join('');
+}
+function renderRxLibrary(){
+  if(selectedSupp){const s=selectedSupp;return `<button onclick="closeSupp()" ontouchend="event.preventDefault();closeSupp()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;">← Back</button><div style="background:${s.color}14;border:1px solid ${s.color}28;border-radius:14px;padding:16px;"><div style="font-size:36px;margin-bottom:8px;">${s.icon}</div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#0F3D52;font-style:italic;margin-bottom:4px;">${s.name}</div><div style="font-size:12px;color:${s.color};font-family:'DM Mono',monospace;margin-bottom:12px;">${s.dose}</div><div style="font-size:12px;color:#2A5F78;line-height:1.65;">${s.note}</div></div>`;}
+  return SUPPS.map(s=>`<div onclick="openSupp(${s.id})" ontouchend="event.preventDefault();openSupp(${s.id})" style="background:#fff;border:1px solid ${s.color}18;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;gap:10px;align-items:center;"><div style="width:38px;height:38px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><span style="font-size:16px;color:rgba(15,100,140,.2);">›</span></div>`).join('');
+}
+function renderRxGuide(){
+  return [{icon:'🔬',t:'Form Matters',b:'Magnesium oxide has only 4% absorption. Glycinate, malate, or threonate forms absorb 40–80%. The cheapest supplement is worthless if it cannot absorb.'},{icon:'⏰',t:'Timing is Pharmacology',b:'Fat-soluble vitamins (A, D, E, K) require fat for absorption. Water-soluble (B, C) are best taken with food. Magnesium is most effective at night.'},{icon:'🔗',t:'Cofactor Pairs',b:'D3 needs K2. Zinc depletes copper. Iron competes with calcium. Isolated supplementation misses these critical interactions.'},{icon:'🧬',t:'Bioindividuality',b:'MTHFR gene variants (40% of population) cannot process folic acid. Methylated folate bypasses this. Bloodwork is the only way to know what YOU need.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(139,92,246,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+}
+function toggleSupp(id){suppTaken[id]=!suppTaken[id];const c=document.getElementById('rx-content');if(c)c.innerHTML=renderRxSchedule();}
+function openSupp(id){selectedSupp=SUPPS.find(s=>s.id===id);rxTab(1);}
+function closeSupp(){selectedSupp=null;rxTab(1);}
+
+// ── CALCULATOR ───────────────────────────────────────────────────
+function renderCalc(){
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div class="inner-tabs">
+      <button class="inner-tab active" id="ctab2-0" onclick="calcTab(0)" ontouchend="event.preventDefault();calcTab(0)" style="background:#0EA5E9;color:#fff;">TDEE</button>
+      <button class="inner-tab" id="ctab2-1" onclick="calcTab(1)" ontouchend="event.preventDefault();calcTab(1)">Macros</button>
+      <button class="inner-tab" id="ctab2-2" onclick="calcTab(2)" ontouchend="event.preventDefault();calcTab(2)">Guide</button>
+    </div>
+    <div id="calc-content" class="screen-content">${renderCalcTDEE()}</div>
+  </div>`;
+}
+function calcTab(n){
+  [0,1,2].forEach(i=>{const t=document.getElementById('ctab2-'+i);if(t){t.className='inner-tab'+(i===n?' active':'');t.style.background=i===n?'#0EA5E9':'';t.style.color=i===n?'#fff':'#4A8FA8';}});
+  const c=document.getElementById('calc-content');if(!c)return;
+  if(n===0)c.innerHTML=renderCalcTDEE();
+  else if(n===1)c.innerHTML=renderCalcMacros();
+  else c.innerHTML=renderCalcGuide();
+}
+function renderCalcTDEE(){
+  return `<div class="card mb-12">
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#0EA5E9;font-style:italic;margin-bottom:10px;">Total Daily Energy Expenditure</div>
+    <div style="font-size:11px;color:#4A8FA8;line-height:1.5;margin-bottom:14px;">Calculate how many calories your body burns each day using the Mifflin-St Jeor formula.</div>
+    <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;">Biological Sex</label>
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <div id="sex-f" onclick="setSex('female')" ontouchend="event.preventDefault();setSex('female')" style="flex:1;padding:10px;border-radius:12px;border:1.5px solid #0EA5E9;background:rgba(14,165,233,.1);cursor:pointer;text-align:center;">
+        <div style="font-size:20px;margin-bottom:2px;">👩</div><div style="font-size:11px;font-weight:700;color:#0EA5E9;">Female</div>
+      </div>
+      <div id="sex-m" onclick="setSex('male')" ontouchend="event.preventDefault();setSex('male')" style="flex:1;padding:10px;border-radius:12px;border:1.5px solid rgba(15,100,140,.15);background:#fff;cursor:pointer;text-align:center;">
+        <div style="font-size:20px;margin-bottom:2px;">👨</div><div style="font-size:11px;font-weight:700;color:#0F3D52;">Male</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div><label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px;">Age</label><input id="tdee-age" class="calc-input" style="margin-bottom:0;" type="number" placeholder="yrs"/></div>
+      <div><label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px;">Weight (lbs)</label><input id="tdee-wt" class="calc-input" style="margin-bottom:0;" type="number" placeholder="lbs"/></div>
+      <div><label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px;">Height (in)</label><input id="tdee-ht" class="calc-input" style="margin-bottom:0;" type="number" placeholder="in"/></div>
+    </div>
+    <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;">Activity Level</label>
+    ${[['sedentary',1.2,'Sedentary','Little/no exercise'],['light',1.375,'Lightly Active','1–3 days/week'],['moderate',1.55,'Moderately Active','3–5 days/week'],['active',1.725,'Very Active','6–7 days/week'],['extra',1.9,'Athlete','2x/day or physical job']].map(([id,m,l,s])=>`<div id="act-${id}" onclick="setActivity('${id}')" ontouchend="event.preventDefault();setActivity('${id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-radius:12px;border:1.5px solid ${id==='moderate'?'#0EA5E9':'rgba(15,100,140,.12)'};background:${id==='moderate'?'rgba(14,165,233,.08)':'#fff'};cursor:pointer;margin-bottom:6px;"><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div><div style="font-size:10px;font-weight:700;color:${id==='moderate'?'#0EA5E9':'#5B9BB5'};font-family:'DM Mono',monospace;">×${m}</div></div>`).join('')}
+    <button onclick="doCalcTDEE()" ontouchend="event.preventDefault();doCalcTDEE()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#0EA5E9,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My TDEE 🔥</button>
+  </div>
+  <div id="tdee-result"></div>`;
+}
+let calcSex='female', calcActivity='moderate';
+function setSex(s){calcSex=s;['female','male'].forEach(x=>{const el=document.getElementById('sex-'+x[0]);if(el){el.style.border=x===s?'1.5px solid #0EA5E9':'1.5px solid rgba(15,100,140,.15)';el.style.background=x===s?'rgba(14,165,233,.1)':'#fff';el.querySelector('div:last-child').style.color=x===s?'#0EA5E9':'#0F3D52';}});}
+function setActivity(a){calcActivity=a;['sedentary','light','moderate','active','extra'].forEach(x=>{const el=document.getElementById('act-'+x);if(el){el.style.border=x===a?'1.5px solid #0EA5E9':'1.5px solid rgba(15,100,140,.12)';el.style.background=x===a?'rgba(14,165,233,.08)':'#fff';el.querySelector('div:last-child').style.color=x===a?'#0EA5E9':'#5B9BB5';}});}
+function doCalcTDEE(){
+  const age=parseFloat(document.getElementById('tdee-age').value);
+  const wt=parseFloat(document.getElementById('tdee-wt').value);
+  const ht=parseFloat(document.getElementById('tdee-ht').value);
+  if(!age||!wt||!ht)return;
+  const mults={sedentary:1.2,light:1.375,moderate:1.55,active:1.725,extra:1.9};
+  const wKg=wt*.453592,hCm=ht*2.54;
+  const bmr=calcSex==='female'?(10*wKg)+(6.25*hCm)-(5*age)-161:(10*wKg)+(6.25*hCm)-(5*age)+5;
+  const tdee=Math.round(bmr*mults[calcActivity]);
+  const bmrR=Math.round(bmr);
+  const el=document.getElementById('tdee-result');
+  if(el)el.innerHTML=`<div style="background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(14,165,233,.04));border:1.5px solid rgba(14,165,233,.25);border-radius:16px;padding:16px;">
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#0EA5E9;font-style:italic;margin-bottom:14px;">Your Results ✦</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div style="background:#fff;border-radius:12px;padding:13px 14px;text-align:center;border:1px solid rgba(139,92,246,.2);"><div style="font-family:'DM Mono',monospace;font-size:26px;font-weight:800;color:#8B5CF6;line-height:1;">${bmrR}</div><div style="font-size:9px;font-weight:800;color:#8B5CF6;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">BMR</div><div style="font-size:9px;color:#5B9BB5;margin-top:2px;">Calories at rest</div></div>
+      <div style="background:#fff;border-radius:12px;padding:13px 14px;text-align:center;border:1px solid rgba(14,165,233,.2);"><div style="font-family:'DM Mono',monospace;font-size:26px;font-weight:800;color:#0EA5E9;line-height:1;">${tdee}</div><div style="font-size:9px;font-weight:800;color:#0EA5E9;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">TDEE</div><div style="font-size:9px;color:#5B9BB5;margin-top:2px;">Total daily burn</div></div>
+    </div>
+    ${[{l:'Aggressive Fat Loss',v:tdee-500,c:'#EF4444',i:'🔥'},{l:'Mild Fat Loss',v:tdee-250,c:'#F97316',i:'📉'},{l:'Maintenance',v:tdee,c:'#0EA5E9',i:'⚖️'},{l:'Lean Muscle Gain',v:tdee+300,c:'#10B981',i:'💪'}].map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid ${r.c}18;margin-bottom:6px;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:14px;">${r.i}</span><span style="font-size:11px;font-weight:600;color:#0F3D52;">${r.l}</span></div><span style="font-family:'DM Mono',monospace;font-size:14px;font-weight:800;color:${r.c};">${r.v} <span style="font-size:9px;color:#5B9BB5;">cal</span></span></div>`).join('')}
+    <div style="background:rgba(14,165,233,.1);border-radius:10px;padding:10px 12px;margin-top:4px;font-size:10px;color:#2A5F78;line-height:1.5;">💡 <strong>Coach Kristi:</strong> Use your TDEE maintenance number in the Macros tab to build your personalized meal plan.</div>
+  </div>`;
+}
+function renderCalcMacros(){
+  return `<div class="card mb-12">
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#10B981;font-style:italic;margin-bottom:10px;">Personalized Macro Calculator</div>
+    <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;">Your TDEE / Daily Calories</label>
+    <input id="macro-cals" class="calc-input" type="number" placeholder="e.g. 1850"/>
+    <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;">Your Goal</label>
+    ${[['fat_loss','Fat Loss','🔥','-500 cal'],['maintain','Maintenance','⚖️','±0 cal'],['muscle','Build Muscle','💪','+300 cal']].map(([id,l,ic,mod])=>`<div id="mgoal-${id}" onclick="setMacroGoal('${id}')" ontouchend="event.preventDefault();setMacroGoal('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='fat_loss'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='fat_loss'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div></div><span style="font-size:10px;font-weight:700;color:${id==='fat_loss'?'#10B981':'#5B9BB5'};font-family:'DM Mono',monospace;">${mod}</span></div>`).join('')}
+    <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;margin-top:6px;">Nutrition Style</label>
+    ${[['animal_based','Animal-Based','🥩','High protein & fat, lower carbs'],['balanced','Balanced','⚖️','Standard macro split'],['low_carb','Low Carb','🥑','Keto-adjacent approach']].map(([id,l,ic,s])=>`<div id="mstyle-${id}" onclick="setMacroStyle('${id}')" ontouchend="event.preventDefault();setMacroStyle('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='animal_based'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='animal_based'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div></div>`).join('')}
+    <button onclick="doCalcMacros()" ontouchend="event.preventDefault();doCalcMacros()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#10B981,#059669);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My Macros 🥩</button>
+  </div>
+  <div id="macro-result"></div>`;
+}
+let macroGoal='fat_loss', macroStyle='animal_based';
+function setMacroGoal(g){macroGoal=g;['fat_loss','maintain','muscle'].forEach(x=>{const el=document.getElementById('mgoal-'+x);if(el){el.style.border=x===g?'1.5px solid #10B981':'1.5px solid rgba(15,100,140,.12)';el.style.background=x===g?'rgba(16,185,129,.1)':'#fff';}});}
+function setMacroStyle(s){macroStyle=s;['animal_based','balanced','low_carb'].forEach(x=>{const el=document.getElementById('mstyle-'+x);if(el){el.style.border=x===s?'1.5px solid #10B981':'1.5px solid rgba(15,100,140,.12)';el.style.background=x===s?'rgba(16,185,129,.1)':'#fff';}});}
+function doCalcMacros(){
+  const cals=parseFloat(document.getElementById('macro-cals').value);
+  if(!cals||cals<800)return;
+  const mods={fat_loss:-500,maintain:0,muscle:300};
+  const target=cals+(mods[macroGoal]||0);
+  let pro,fat,carbs;
+  if(macroStyle==='animal_based'){pro=Math.round((target*.38)/4);fat=Math.round((target*.42)/9);carbs=Math.round((target*.20)/4);}
+  else if(macroStyle==='low_carb'){pro=Math.round((target*.35)/4);fat=Math.round((target*.55)/9);carbs=Math.round((target*.10)/4);}
+  else{pro=Math.round((target*.30)/4);fat=Math.round((target*.30)/9);carbs=Math.round((target*.40)/4);}
+  const el=document.getElementById('macro-result');
+  if(el)el.innerHTML=`<div style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.04));border:1.5px solid rgba(16,185,129,.25);border-radius:16px;padding:16px;">
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#10B981;font-style:italic;margin-bottom:14px;">Your Daily Macros ✦</div>
+    <div style="background:#fff;border-radius:12px;padding:13px 16px;text-align:center;border:1px solid rgba(15,100,140,.1);margin-bottom:12px;"><div style="font-family:'DM Mono',monospace;font-size:32px;font-weight:800;color:#2DD4BF;line-height:1;">${Math.round(target)}</div><div style="font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Daily Calorie Target</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+      ${[{l:'Protein',v:pro,c:'#EF4444',i:'🥩',cal:pro*4},{l:'Fat',v:fat,c:'#F97316',i:'🥑',cal:fat*9},{l:'Carbs',v:carbs,c:'#F59E0B',i:'🍠',cal:carbs*4}].map(m=>`<div style="background:#fff;border-radius:12px;padding:12px 8px;text-align:center;border:1.5px solid ${m.c}22;"><div style="font-size:20px;margin-bottom:4px;">${m.i}</div><div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:800;color:${m.c};line-height:1;">${m.v}</div><div style="font-size:9px;font-weight:700;color:${m.c};text-transform:uppercase;letter-spacing:.5px;">${m.l}</div><div style="font-size:9px;color:#5B9BB5;font-family:'DM Mono',monospace;margin-top:2px;">${m.cal} cal</div></div>`).join('')}
+    </div>
+    <div style="background:rgba(16,185,129,.1);border-radius:10px;padding:10px 12px;font-size:10px;color:#2A5F78;line-height:1.5;">💊 <strong>PharmD note:</strong> Active women typically thrive on 0.7–1g protein per lb of bodyweight. Adjust based on your bloodwork, energy, and recovery.</div>
+  </div>`;
+}
+function renderCalcGuide(){
+  return [{icon:'🔬',t:'What is TDEE?',b:'Total Daily Energy Expenditure — all calories your body burns in a day including exercise, digestion, and organ function.'},{icon:'🧮',t:'BMR vs TDEE',b:'BMR is what you burn at complete rest. TDEE multiplies your BMR by your activity level to estimate true daily burn.'},{icon:'🥩',t:'Animal-Based Macros',b:'My preferred approach: 35–40% protein, 40–45% fat, 15–20% carbs. Prioritizes complete amino acids and fat-adapted energy.'},{icon:'📉',t:'Fat Loss Math',b:'1 lb fat = ~3,500 calories. A 500 cal/day deficit = ~1 lb/week. Do not go below 1,200 cal — your metabolism will suffer.'},{icon:'💪',t:'Protein Priority',b:'Aim for 0.7–1g per lb of bodyweight. Protein has the highest thermic effect and keeps you full longer than any other macro.'},{icon:'⚖️',t:'Adjust Over Time',b:'Your TDEE changes as you lose weight or gain muscle. Recalculate every 4–6 weeks or when progress stalls.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(14,165,233,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+}
+
+// ── GROCERY ──────────────────────────────────────────────────────
+const GROCERY = {
+  proteins:{label:'Proteins',icon:'🥩',color:'#DC2626',sub:'Animal-based · Grass-fed & wild-caught',items:[{n:'Grass-Fed Ground Beef 80/20',note:'Best for burgers, bowls & skillets',star:true},{n:'Grass-Fed Ground Beef 93/7',note:'Leaner option for fat loss phases',star:false},{n:'Grass-Fed Ribeye Steak',note:'Highest nutrient density cut',star:true},{n:'Beef Liver (Grass-Fed)',note:"Nature's multivitamin — 2x/week",star:true},{n:'Lamb Chops / Ground Lamb',note:'Rich in CLA & omega-3s',star:false},{n:'Pasture-Raised Whole Eggs',note:'Complete amino acids + choline',star:true},{n:'Wild Salmon (Fresh or Frozen)',note:'Best omega-3 to omega-6 ratio',star:true},{n:'Wild Sardines (Canned in water)',note:'Bone broth in a can',star:true},{n:'Wild-Caught Shrimp',note:'High protein, low calorie',star:false},{n:'Oysters (Fresh or Canned)',note:'Best zinc source on the planet',star:true},{n:'Pasture-Raised Chicken Thighs',note:'Dark meat = more nutrients & fat',star:false},{n:'Pastured Bacon (No sugar)',note:'Read labels — avoid nitrates',star:false},{n:'Bone Broth (Beef or Chicken)',note:'Collagen, minerals & gut support',star:true}]},
+  fats:{label:'Healthy Fats',icon:'🥑',color:'#D97706',sub:'Saturated & monounsaturated · Avoid seed oils',items:[{n:'Grass-Fed Butter (Kerrygold)',note:'Best everyday cooking fat',star:true},{n:'Beef Tallow',note:'Highest smoke point — best for searing',star:true},{n:'Ghee (Clarified Butter)',note:'Dairy-free, high smoke point',star:false},{n:'Extra Virgin Olive Oil',note:'Cold use & light sautéing only',star:true},{n:'Avocados',note:'Monounsaturated fat + potassium',star:true},{n:'Coconut Oil (Virgin)',note:'Good for baking & medium-heat cooking',star:false},{n:'Cottage Cheese 2%',note:'High protein + healthy dairy fat',star:true},{n:'Full-Fat Greek Yogurt (Plain)',note:'Probiotics + casein protein',star:false},{n:'Heavy Cream (Grass-Fed)',note:'Coffee, sauces, fat bomb recipes',star:false},{n:'Raw Cheddar / Gouda Cheese',note:'Choose aged, full-fat varieties',star:false}]},
+  carbs:{label:'Smart Carbs',icon:'🍠',color:'#F59E0B',sub:'Whole food sources · Post-workout timing',items:[{n:'Sweet Potatoes',note:'Best post-workout carb — vitamin A',star:true},{n:'White Potatoes',note:'High potassium, resistant starch when cooled',star:false},{n:'Raw Honey (Local if possible)',note:'Enzymes, propolis, antioxidants',star:true},{n:'Ripe Bananas',note:'Quick energy + magnesium',star:true},{n:'Wild Blueberries (Frozen)',note:'Highest antioxidant density of all berries',star:true},{n:'Strawberries',note:'Low sugar, high vitamin C',star:false},{n:'Medjool Dates',note:'Natural sweetener for recipes',star:false},{n:'White Rice',note:'Easily digestible — best for athletes',star:false},{n:'Plantains (Ripe)',note:'Resistant starch + gut-friendly',star:false}]},
+  vegetables:{label:'Non-Starchy Vegetables',icon:'🥦',color:'#10B981',sub:'Low carb · High fiber & micronutrients',items:[{n:'Arugula',note:'Peppery base for any salad or bowl',star:true},{n:'Microgreens',note:'Up to 40x more nutrients than mature greens',star:true},{n:'Spinach (Baby)',note:'Iron, magnesium, folate',star:true},{n:'Broccoli',note:'Sulforaphane — powerful anti-inflammatory',star:true},{n:'Spaghetti Squash',note:'Great pasta substitute, almost zero carbs',star:true},{n:'Asparagus',note:'Prebiotic fiber + natural diuretic',star:false},{n:'Zucchini',note:'Versatile — spiralize, sauté, or grill',star:false},{n:'Brussels Sprouts',note:'Roast in tallow for incredible flavor',star:false},{n:'Cucumbers',note:'Hydration + electrolytes',star:false},{n:'Bell Peppers',note:'Highest vitamin C of any vegetable',star:false},{n:'Mushrooms',note:'Vitamin D2 + immune support',star:false},{n:'Cauliflower',note:'Sub for rice, mash & pizza crust',star:false}]},
+  pantry:{label:'Pantry Staples',icon:'🧂',color:'#8B5CF6',sub:'Clean ingredients · Read every label',items:[{n:'Sea Salt / Himalayan Pink Salt',note:'Trace minerals — avoid iodized table salt',star:true},{n:'Garlic (Fresh Bulbs)',note:'Antimicrobial + cardiovascular support',star:true},{n:'Colostrum Powder',note:'Gut health + immune + growth factors',star:true},{n:'Collagen Peptides',note:'Skin, joints, gut lining — pair with Vit C',star:true},{n:'Raw Cacao Powder',note:'For bone broth hot chocolate!',star:true},{n:'Cinnamon (Ceylon)',note:'Blood sugar regulation — not cassia',star:false},{n:'Apple Cider Vinegar',note:'Digestive aid + blood sugar management',star:false},{n:'Dijon Mustard (Clean)',note:'Check for no added sugar or oils',star:false},{n:'Coconut Aminos',note:'Soy sauce alternative — no gluten',star:false},{n:'Black Pepper (Fresh Ground)',note:'Enhances nutrient absorption',star:false}]}
+};
+let shopSection='proteins';
+function renderShop(){
+  const secs=Object.keys(GROCERY);
+  const cur=GROCERY[shopSection];
+  const cnt=Object.values(checkedGrocery).filter(Boolean).length;
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div style="padding:0 0 10px;flex-shrink:0;">
+      <input oninput="shopSearch(this.value)" placeholder="🔍  Search any item..." style="width:100%;background:#fff;border:1.5px solid rgba(15,100,140,.15);border-radius:12px;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:10px 14px;"/>
+    </div>
+    ${cnt>0?`<div style="margin-bottom:10px;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;"><div style="display:flex;gap:7px;align-items:center;"><span style="font-size:16px;">🛒</span><span style="font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;color:#0F3D52;">${cnt} item${cnt>1?'s':''} in cart</span></div><button onclick="clearGrocery()" ontouchend="event.preventDefault();clearGrocery()" style="background:none;border:none;font-size:10px;font-weight:700;color:#2DD4BF;cursor:pointer;font-family:'Outfit',sans-serif;text-transform:uppercase;">Clear All</button></div>`:''}
+    <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px;flex-shrink:0;">
+      ${secs.map(s=>`<button onclick="setShopSection('${s}')" ontouchend="event.preventDefault();setShopSection('${s}')" style="flex-shrink:0;display:flex;gap:5px;align-items:center;padding:6px 12px;border-radius:20px;border:1.5px solid ${shopSection===s?GROCERY[s].color:'rgba(15,100,140,.12)'};background:${shopSection===s?GROCERY[s].color+'18':'#fff'};cursor:pointer;"><span style="font-size:14px;">${GROCERY[s].icon}</span><span style="font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:${shopSection===s?GROCERY[s].color:'#4A8FA8'};">${GROCERY[s].label}</span></button>`).join('')}
+    </div>
+    <div style="margin-bottom:10px;background:${cur.color}12;border:1px solid ${cur.color}22;border-radius:12px;padding:10px 14px;flex-shrink:0;display:flex;gap:8px;align-items:center;">
+      <span style="font-size:22px;">${cur.icon}</span>
+      <div style="flex:1;"><div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:${cur.color};font-style:italic;">${cur.label}</div><div style="font-size:10px;color:#4A8FA8;">${cur.sub}</div></div>
+      <div style="background:#fff;border-radius:20px;padding:3px 9px;font-size:9px;font-weight:700;color:${cur.color};font-family:'DM Mono',monospace;border:1px solid ${cur.color}25;">${cur.items.length} items</div>
+    </div>
+    <div id="shop-items" class="screen-content">${renderShopItems(cur.items,shopSection)}<div style="background:${cur.color}12;border:1px solid ${cur.color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${cur.color};font-style:italic;margin-bottom:5px;">💊 Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div></div>
+  </div>`;
+}
+function renderShopItems(items,sec){
+  return items.map((item,i)=>{const k=sec+'-'+i;const chk=checkedGrocery[k];const c=GROCERY[sec].color;return `<div onclick="toggleGrocery('${sec}',${i})" ontouchend="event.preventDefault();toggleGrocery('${sec}',${i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;transition:all .18s;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;">✓</span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};transition:all .18s;">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div>${item.star&&!chk?`<div style="background:${c}18;border-radius:20px;padding:2px 7px;font-size:9px;font-weight:700;color:${c};flex-shrink:0;">★ Top Pick</div>`:''}</div>`;}).join('');
+}
+function getShopTip(s){const tips={proteins:'Always prioritize grass-fed and wild-caught. If budget is tight, prioritize beef & eggs above all. Organ meats are the most nutrient-dense and usually the cheapest cut.',fats:'Avoid all refined seed oils (canola, soybean, sunflower, corn). The quality of fat you eat becomes the quality of your cells. Stick to animal fats and olive/coconut oils.',carbs:'Eat your carbs around your workouts when possible. Raw honey is my favorite natural sweetener. Whole fruit over fruit juice every single time.',vegetables:'Arugula and microgreens are my staples — they go on everything. Cook leafy greens in butter or tallow to absorb fat-soluble vitamins A, D, E and K.',pantry:'Read every label. If you cannot pronounce it, do not eat it. The best pantry staple is bone broth — keep it stocked. Sea salt over table salt always.'};return tips[s]||'';}
+function bindShopEvents(){}
+function setShopSection(s){shopSection=s;const host=document.getElementById('screen-host');if(host){host.innerHTML=renderShop();}}
+function toggleGrocery(sec,i){const k=sec+'-'+i;checkedGrocery[k]=!checkedGrocery[k];const host=document.getElementById('screen-host');if(host)host.innerHTML=renderShop();}
+function clearGrocery(){checkedGrocery={};const host=document.getElementById('screen-host');if(host)host.innerHTML=renderShop();}
+function shopSearch(val){
+  const items=document.getElementById('shop-items');
+  if(!items)return;
+  if(!val.trim()){items.innerHTML=renderShopItems(GROCERY[shopSection].items,shopSection)+`<div style="background:${GROCERY[shopSection].color}12;border:1px solid ${GROCERY[shopSection].color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${GROCERY[shopSection].color};font-style:italic;margin-bottom:5px;">💊 Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div>`;return;}
+  const q=val.toLowerCase();
+  const results=[];
+  Object.keys(GROCERY).forEach(sec=>{GROCERY[sec].items.forEach((item,i)=>{if(item.n.toLowerCase().includes(q))results.push({...item,sec,i,color:GROCERY[sec].color});});});
+  if(!results.length){items.innerHTML='<div style="text-align:center;padding:40px 20px;"><div style="font-size:32px;margin-bottom:8px;">🔍</div><div style="font-size:13px;color:#4A8FA8;">No items found</div></div>';return;}
+  items.innerHTML=results.map(item=>{const k=item.sec+'-'+item.i;const chk=checkedGrocery[k];const c=item.color;return `<div onclick="toggleGrocery('${item.sec}',${item.i})" ontouchend="event.preventDefault();toggleGrocery('${item.sec}',${item.i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;">✓</span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div></div>`;}).join('');
+}
+
+// ── PROGRESS ─────────────────────────────────────────────────────
+function renderProgress(){
+  return `<div style="display:flex;flex-direction:column;height:100%;">
+    <div class="inner-tabs">
+      <button class="inner-tab active" id="ptab-0" onclick="progTab(0)" ontouchend="event.preventDefault();progTab(0)" style="background:#2DD4BF;color:#fff;">Body</button>
+      <button class="inner-tab" id="ptab-1" onclick="progTab(1)" ontouchend="event.preventDefault();progTab(1)">Wellness</button>
+      <button class="inner-tab" id="ptab-2" onclick="progTab(2)" ontouchend="event.preventDefault();progTab(2)">Biomarkers</button>
+    </div>
+    <div id="prog-content" class="screen-content">${renderProgBody()}</div>
+  </div>`;
+}
+function progTab(n){
+  [0,1,2].forEach(i=>{const t=document.getElementById('ptab-'+i);if(t){t.className='inner-tab'+(i===n?' active':'');t.style.background=i===n?'#2DD4BF':'';t.style.color=i===n?'#fff':'#4A8FA8';}});
+  const c=document.getElementById('prog-content');if(!c)return;
+  if(n===0)c.innerHTML=renderProgBody();
+  else if(n===1)c.innerHTML=renderProgWellness();
+  else c.innerHTML=renderProgBio();
+  setTimeout(()=>{document.querySelectorAll('.prog-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w;});},100);
+}
+function renderProgBody(){
+  return `<div class="card mb-12"><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">12-Week Weight</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#2DD4BF;font-weight:700;">−4.7 lbs</span></div>
+    <svg width="100%" height="60" viewBox="0 0 290 60" style="overflow:visible;">
+      <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.3"/><stop offset="100%" stop-color="#2DD4BF" stop-opacity="0"/></linearGradient></defs>
+      <path d="M0,48 L24,44 L48,37 L72,35 L96,28 L120,22 L144,18 L168,14 L192,10 L216,6 L240,3 L264,0 L264,60 L0,60 Z" fill="url(#wg)"/>
+      <path d="M0,48 L24,44 L48,37 L72,35 L96,28 L120,22 L144,18 L168,14 L192,10 L216,6 L240,3 L264,0" fill="none" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="264" cy="0" r="4" fill="#2DD4BF"/>
+    </svg>
+    <div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:9px;color:#5B9BB5;font-family:'DM Mono',monospace;">148.2</span><span style="font-size:9px;color:#5B9BB5;font-family:'DM Mono',monospace;">143.5 lbs</span></div>
+  </div>
+  ${[{l:'Weight',cur:'143.5 lbs',ch:'-4.7 lbs',pct:79,c:'#2DD4BF'},{l:'Body Fat',cur:'20.6%',ch:'-3.6%',pct:75,c:'#F97316'},{l:'Muscle Mass',cur:'111.8 lbs',ch:'+3.6 lbs',pct:88,c:'#10B981'}].map(m=>`<div class="card mb-12" style="border-color:${m.c}20;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#2A5F78;">${m.l}</span><div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:800;color:#0F3D52;">${m.cur}</div><div style="font-size:10px;color:${m.c};font-family:'DM Mono',monospace;">${m.ch}</div></div></div><div class="prog-track"><div class="prog-fill" data-w="${m.pct}%" style="width:0%;background:${m.c};"></div></div></div>`).join('')}
+  <div class="card" style="background:linear-gradient(135deg,rgba(45,212,191,.12),rgba(45,212,191,.04));border-color:rgba(45,212,191,.2);">
+    <div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Journey — Day 57 of 84</div>
+    <div class="prog-track" style="height:10px;"><div class="prog-fill" data-w="68%" style="width:0%;background:linear-gradient(90deg,#2DD4BF,#0891B2);"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:5px;"><span style="font-size:9px;color:#5B9BB5;">Start</span><span style="font-size:9px;color:#2DD4BF;font-family:'DM Mono',monospace;font-weight:700;">68% complete</span><span style="font-size:9px;color:#5B9BB5;">Day 84</span></div>
+  </div>`;
+}
+function renderProgWellness(){
+  const ws=[{l:'Nutrition',v:92,c:'#10B981'},{l:'Sleep',v:85,c:'#8B5CF6'},{l:'Hydration',v:88,c:'#38BDF8'},{l:'Movement',v:95,c:'#2DD4BF'}];
+  return `<div class="card mb-12"><div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">Wellness Rings</div>
+    <div style="display:flex;justify-content:space-around;">
+      ${ws.map(w=>`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <svg width="64" height="64" style="transform:rotate(-90deg);"><circle cx="32" cy="32" r="27" fill="none" stroke="rgba(15,100,140,.1)" stroke-width="6"/><circle cx="32" cy="32" r="27" fill="none" stroke="${w.c}" stroke-width="6" stroke-dasharray="169.6" stroke-dashoffset="${169.6*(1-w.v/100)}" stroke-linecap="round" style="transition:stroke-dashoffset 1.2s ease;"/></svg>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:800;color:#0F3D52;margin-top:-48px;margin-bottom:36px;">${w.v}%</div>
+        <span style="font-size:9px;color:#5B9BB5;font-weight:600;text-transform:uppercase;letter-spacing:.7px;">${w.l}</span>
+      </div>`).join('')}
+    </div>
+  </div>
+  ${ws.map(w=>`<div class="card mb-12" style="border-color:${w.c}18;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;"><span style="font-size:12px;font-weight:700;color:#2A5F78;">${w.l}</span><span style="font-family:'DM Mono',monospace;font-size:12px;color:${w.c};font-weight:700;">${w.v}%</span></div><div class="prog-track" style="height:6px;"><div class="prog-fill" data-w="${w.v}%" style="width:0%;background:${w.c};"></div></div></div>`).join('')}`;
+}
+function renderProgBio(){
+  return `<div style="font-size:12px;color:#4A8FA8;margin-bottom:8px;">Bloodwork panel — last drawn 2/15:</div>`+
+  [{n:'Vitamin D3',v:'68',u:'ng/mL',s:'Optimal',c:'#F59E0B'},{n:'Omega-3 Index',v:'8.2',u:'%',s:'Optimal',c:'#0EA5E9'},{n:'Fasting Insulin',v:'4.8',u:'µIU/mL',s:'Excellent',c:'#10B981'},{n:'hs-CRP',v:'0.4',u:'mg/L',s:'Excellent',c:'#10B981'},{n:'Free Testosterone',v:'18.2',u:'pg/mL',s:'Good',c:'#2DD4BF'},{n:'TSH',v:'1.8',u:'mIU/L',s:'Optimal',c:'#F59E0B'}].map(b=>`<div class="card mb-12"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:12px;font-weight:600;color:#2A5F78;">${b.n}</div><div style="font-size:9px;color:#5B9BB5;">${b.u}</div></div><div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:15px;font-weight:800;color:#0F3D52;">${b.v}</div><div style="font-size:9px;color:${b.c};font-weight:700;">${b.s}</div></div></div></div>`).join('');
+}
+
+// ── COACH TABS ───────────────────────────────────────────────────
+function switchCoachTab(n){
+  coachTab=n;
+  [0,1,2].forEach(i=>{const t=document.getElementById('ctab-'+i);if(t){t.style.color=i===n?'#2DD4BF':'rgba(255,255,255,.3)';t.style.borderBottom=i===n?'2px solid #2DD4BF':'2px solid transparent';}});
+  renderCoachTab(n);
+}
+function renderCoachTab(n){
+  const c=document.getElementById('coach-content');if(!c)return;
+  if(n===0)c.innerHTML=renderCoachAbout();
+  else if(n===1)c.innerHTML=renderCoachServices();
+  else c.innerHTML=renderCoachReviews();
+}
+function renderCoachAbout(){
+  return `<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:12px;">
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#2DD4BF;font-style:italic;margin-bottom:8px;">My Story</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;">Hi, I'm Kristi Lamoncha — a Doctor of Pharmacy who believes the most powerful medicine is the food on your plate, the weights you lift, and the life you build around your health. Originally from Youngstown, Ohio, I'm now living my dream in Southwest Florida 🌴</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">As a pharmacist specializing in natural and holistic care, I watched too many patients leave with a bag full of pills when what they needed was real food, purposeful movement, and someone in their corner. That's why I became a certified personal trainer, nutrition coach — and a wellness coach.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">My passion is coaching and helping others achieve their dream wellness and fitness journey — supporting them every single step along the way.</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px;">
+    <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:#F97316;font-style:italic;margin-bottom:10px;">What I Love</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;">
+      ${[['🏋️','Strength Training'],['🏐','Beach Volleyball'],['🥩','Animal-Based Nutrition'],['🌊','Coastal Living'],['💊','Holistic Pharmacy'],['🌿','Natural Wellness'],['🏡','SW Florida Life'],['🧡','Coaching Others']].map(([i,l])=>`<div style="display:flex;gap:5px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;"><span style="font-size:13px;">${i}</span><span style="font-size:10px;color:rgba(255,255,255,.65);font-weight:600;">${l}</span></div>`).join('')}
+    </div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(249,115,22,.14),rgba(249,115,22,.04));border:1px solid rgba(249,115,22,.22);border-radius:14px;padding:14px;">
+    <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#F97316;font-style:italic;margin-bottom:6px;">🏡 Youngstown → Southwest Florida</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">From the heart of Ohio to the shores of Southwest Florida — I'm living proof that you can design a life around your wellness values. As a licensed Realtor with eXp Realty, I help health-minded clients find their own dream coastal home. 🌴</div>
+  </div>`;
+}
+function renderCoachServices(){
+  return '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style=\"display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(109,40,217,.12));border:1.5px solid rgba(139,92,246,.45);border-radius:16px;padding:16px;text-decoration:none;margin-bottom:14px;\"><div style=\"width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;\">💊</div><div style=\"flex:1;\"><div style=\"font-size:9px;font-weight:700;color:rgba(139,92,246,.9);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;\">My Online Store</div><div style=\"font-size:14px;font-weight:800;color:#fff;\">Shop Supplements</div><div style=\"font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;\">Practitioner-grade via Fullscript</div></div><div style=\"background:rgba(139,92,246,.35);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;\">Shop →</div></a>' +
+  [{"icon":'💊',"n":'Supplement Consulting',d:'Evidence-based protocols tailored to your bloodwork, goals, and lifestyle.',c:'#8B5CF6',p:'From $99/session'},{icon:'🥩',n:'Nutrition Programming',d:'Animal-based whole food meal plans built around your macros and lifestyle.',c:'#D97706',p:'From $149/month'},{icon:'🏋️',n:'Strength Coaching',d:'Personalized progressive overload programs with mobility and HIIT.',c:'#F97316',p:'From $149/month'},{icon:'🩸',n:'Bloodwork Review',d:'PharmD-level full panel interpretation — optimize D3, hormones, thyroid, metabolic markers.',c:'#0EA5E9',p:'From $75/review'},{icon:'🏡',n:'Coastal Real Estate',d:'Coastal homes in SW Florida. I find you the lifestyle, not just the house.',c:'#2DD4BF',p:'eXp Realty'},{icon:'📱',n:'App Coaching',d:'Full app access with weekly check-ins, custom programming, and direct messaging.',c:'#10B981',p:'$49–$149/month'}].map(s=>`<div style="background:rgba(255,255,255,.04);border:1px solid ${s.c}20;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:12px;background:${s.c}18;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><div style="font-size:13px;font-weight:700;color:#fff;">${s.n}</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:${s.c};font-weight:700;flex-shrink:0;margin-left:8px;">${s.p}</div></div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">${s.d}</div></div></div>`).join('');
+}
+function renderCoachReviews(){
+  return `<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:16px;align-items:center;">
+    <div style="text-align:center;flex-shrink:0;"><div style="font-family:'DM Mono',monospace;font-size:36px;font-weight:800;color:#F59E0B;line-height:1;">4.9</div><div style="font-size:14px;letter-spacing:1px;margin-top:2px;">⭐⭐⭐⭐⭐</div><div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:3px;">Average Rating</div></div>
+    <div style="flex:1;">${[[5,'92%'],[4,'6%'],[3,'2%']].map(([n,w])=>`<div style="display:flex;gap:6px;align-items:center;margin-bottom:5px;"><span style="font-size:9px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace;width:8px;">${n}</span><div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;"><div style="height:100%;width:${w};background:#F59E0B;border-radius:3px;"></div></div></div>`).join('')}</div>
+  </div>`+
+  [{n:'Sarah M.',r:'Lost 22 lbs in 90 days',t:'She reviewed my bloodwork, fixed my supplement stack, and designed a meal plan I actually love. My D3 was at 18 — now it's 72. Game changer.',l:'Tampa, FL'},{n:'James R.',r:'Gained 8 lbs lean muscle',t:'The combination of PharmD knowledge and personal training expertise is unreal. No one else gives you this level of detail.',l:'St. Pete, FL'},{n:'Maria L.',r:'Off 2 prescriptions in 6 months',t:'I came for weight loss and left with my health back. Her whole-person approach changed my life.',l:'Clearwater, FL'}].map(t=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-size:12px;font-weight:700;color:#fff;">${t.n}</div><div style="font-size:9px;color:rgba(255,255,255,.3);">${t.l}</div></div><div style="background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.35);border-radius:20px;padding:3px 10px;font-size:9px;color:#10B981;font-weight:700;">${t.r}</div></div><div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;font-style:italic;">"${t.t}"</div><div style="font-size:12px;margin-top:8px;letter-spacing:1px;">⭐⭐⭐⭐⭐</div></div>`).join('');
+}
+
+
+// ── SIGNUP ───────────────────────────────────────────────────────
+let suSelectedGoal = '';
+let suSelectedPlan = '';
+
+function showSignup() {
+  document.getElementById('splash-screen').classList.add('hidden');
+  document.getElementById('signup-screen').classList.remove('hidden');
+  // reset to step 1
+  document.getElementById('su-step1').style.display = 'block';
+  document.getElementById('su-step2').style.display = 'none';
+  document.getElementById('su-step3').style.display = 'none';
+  document.getElementById('su-success').style.display = 'none';
+  document.getElementById('su-progress').style.width = '33%';
+  document.getElementById('su-title').textContent = 'Create Your Account';
+  document.getElementById('su-subtitle').textContent = 'Step 1 of 3 — Your Details';
+}
+
+function showSplash() {
+  document.getElementById('signup-screen').classList.add('hidden');
+  document.getElementById('splash-screen').classList.remove('hidden');
+}
+
+function suStep2() {
+  const name  = document.getElementById('su-name').value.trim();
+  const email = document.getElementById('su-email').value.trim();
+  const phone = document.getElementById('su-phone').value.trim();
+  const dob   = document.getElementById('su-dob').value;
+  if (!name || !email) {
+    alert('Please enter your name and email to continue.');
+    return;
+  }
+  document.getElementById('su-step1').style.display = 'none';
+  document.getElementById('su-step2').style.display = 'block';
+  document.getElementById('su-progress').style.width = '66%';
+  document.getElementById('su-title').textContent = 'Set Your Goals';
+  document.getElementById('su-subtitle').textContent = 'Step 2 of 3 — What brings you here?';
+}
+
+function suStep3() {
+  document.getElementById('su-step2').style.display = 'none';
+  document.getElementById('su-step3').style.display = 'block';
+  document.getElementById('su-progress').style.width = '100%';
+  document.getElementById('su-title').textContent = 'Choose Your Plan';
+  document.getElementById('su-subtitle').textContent = 'Step 3 of 3 — Coaching level';
+}
+
+function selectGoal(el) {
+  document.querySelectorAll('.su-goal-card').forEach(c => {
+    c.style.border = '1.5px solid rgba(15,100,140,.12)';
+    c.style.background = '#fff';
+  });
+  el.style.border = '1.5px solid #2DD4BF';
+  el.style.background = 'rgba(45,212,191,.08)';
+  suSelectedGoal = el.dataset.goal;
+}
+
+function selectPlan(el) {
+  document.querySelectorAll('.su-plan-card').forEach(c => {
+    c.style.border = '1.5px solid rgba(15,100,140,.12)';
+    c.querySelector('.plan-check').style.background = 'transparent';
+    c.querySelector('.plan-check').style.borderColor = 'rgba(15,100,140,.2)';
+  });
+  el.style.border = '1.5px solid #2DD4BF';
+  el.querySelector('.plan-check').style.background = '#2DD4BF';
+  el.querySelector('.plan-check').style.borderColor = '#2DD4BF';
+  suSelectedPlan = el.dataset.plan;
+}
+
+async function submitSignup() {
+  const name  = document.getElementById('su-name').value.trim();
+  const email = document.getElementById('su-email').value.trim();
+  const phone = document.getElementById('su-phone').value.trim();
+  const dob   = document.getElementById('su-dob').value;
+  const errEl = document.getElementById('su-error');
+  const btn   = document.getElementById('su-submit-btn');
+
+  if (!name || !email) {
+    errEl.textContent = 'Name and email are required.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+
+  const clientData = {
+    name:       name,
+    email:      email,
+    phone:      phone || 'Not provided',
+    birthday:   dob   || 'Not provided',
+    goal:       suSelectedGoal || 'Not selected',
+    plan:       suSelectedPlan || 'Not selected',
+    signupDate: new Date().toISOString(),
+    source:     'Lamoncha Living App'
+  };
+
+  try {
+    await db.collection('clients').add(clientData);
+    // Show success
+    document.getElementById('su-step3').style.display = 'none';
+    document.getElementById('su-success').style.display = 'flex';
+    document.getElementById('su-title').textContent = 'Welcome!';
+    document.getElementById('su-subtitle').textContent = 'Account created successfully';
+  } catch(err) {
+    console.error(err);
+    errEl.textContent = 'Could not save — check your internet connection and try again.';
+    errEl.style.display = 'block';
+    btn.textContent = 'Start My Journey 🌊';
+    btn.disabled = false;
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+try {
+  renderScreen('home');
+  console.log('App loaded successfully!');
+} catch(e) {
+  console.error('Init error:', e);
+  document.body.innerHTML = '<div style="padding:40px;font-family:sans-serif;text-align:center;"><h2 style="color:#0F3D52;">Loading Error</h2><p style="color:#5B9BB5;margin:10px 0;">'+e.message+'</p><button onclick="location.reload()" ontouchend="event.preventDefault();location.reload()" style="padding:12px 24px;background:#2DD4BF;border:none;border-radius:12px;color:#fff;font-weight:700;font-size:14px;cursor:pointer;margin-top:10px;">Refresh</button></div>';
+}
+</script>
+
+</body>
+</html>

@@ -18,6 +18,8 @@ html,body{height:100%;background:#EAF5FA;font-family:'Outfit',sans-serif;overflo
 .hidden{display:none!important;}
 .scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none;}
+button{cursor:pointer;-webkit-tap-highlight-color:rgba(45,212,191,0.2);}
+[onclick]{cursor:pointer;}
 /* ── Typography ── */
 .serif{font-family:'Playfair Display',serif;}
 .mono{font-family:'DM Mono',monospace;}
@@ -53,6 +55,8 @@ html,body{height:100%;background:#EAF5FA;font-family:'Outfit',sans-serif;overflo
 /* ── Section scroll area ── */
 .screen-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 18px 28px;}
 .screen-content::-webkit-scrollbar{display:none;}
+button{cursor:pointer;-webkit-tap-highlight-color:rgba(45,212,191,0.2);}
+[onclick]{cursor:pointer;}
 /* ── Inner tabs ── */
 .inner-tabs{display:flex;gap:6px;padding:0 18px 12px;flex-shrink:0;}
 .inner-tab{flex:1;padding:7px 0;border-radius:20px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(15,100,140,0.07);color:#4A8FA8;transition:all .2s;}
@@ -126,33 +130,29 @@ html,body{height:100%;background:#EAF5FA;font-family:'Outfit',sans-serif;overflo
 .ls1{letter-spacing:1px;}
 .ls08{letter-spacing:.8px;}
 </style>
-<!-- Firebase CDN -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCNJLBZ-Rf0lT4PbfzKwkB1wFLL06yhkQU",
-  authDomain: "lamonchaliving-1809c.firebaseapp.com",
-  projectId: "lamonchaliving-1809c",
-  storageBucket: "lamonchaliving-1809c.firebasestorage.app",
-  messagingSenderId: "646546923092",
-  appId: "1:646546923092:web:87349a72c9737f0d0057c1"
+// Firebase stub - saves to localStorage until Firebase is configured
+const db = {
+  collection: function(name) {
+    return {
+      add: function(data) {
+        try {
+          const clients = JSON.parse(localStorage.getItem('ll_clients') || '[]');
+          clients.push(data);
+          localStorage.setItem('ll_clients', JSON.stringify(clients));
+          console.log('Client saved locally!', data);
+        } catch(e) { console.log('Save error:', e); }
+        return Promise.resolve();
+      }
+    };
+  }
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 function saveClient(data) {
-  return db.collection('clients').add({
-    ...data,
-    signupDate: new Date().toISOString(),
-    source: 'LamonchaLiving App'
-  })
-  .then(() => { console.log('Client saved!'); return true; })
-  .catch(err => { console.error('Save error:', err); return false; });
+  return db.collection('clients').add({...data, signupDate: new Date().toISOString()});
 }
 </script>
 </head>
-<body>
+<body onclick="">
 <div id="app">
 
 <!-- ═══════════ SPLASH ═══════════ -->
@@ -402,7 +402,7 @@ let loggedMeals = [];
 let checkedGrocery = {};
 let coachTab = 0;
 
-// ── Navigation ─────────────────────────────────────────────────
+// - Navigation -
 function showMain() {
   document.getElementById('splash-screen').classList.add('hidden');
   document.getElementById('coach-view').classList.add('hidden');
@@ -424,7 +424,7 @@ function switchTab(btn, name, accent) {
   btn.classList.add('active');
   btn.querySelector('.nav-label').style.color = accent;
   currentScreen = name;
-  document.getElementById('screen-title').innerHTML = LABELS[name] + ' <span style="color:'+accent+'">✦</span>';
+  document.getElementById('screen-title').innerHTML = LABELS[name] + ' <span style="color:'+accent+'"></span>';
   document.getElementById('screen-host').style.background = BG[name];
   renderScreen(name);
 }
@@ -446,28 +446,28 @@ function renderScreen(name) {
   }, 100);
 }
 
-// ── HOME ────────────────────────────────────────────────────────
+// - HOME -
 function renderHome() {
   const days = ['M','T','W','T','F','S','S'];
   const done = [true,true,true,false,true,true,false];
   const dots = days.map((d,i) => `
     <div class="week-dot">
       <span class="week-letter">${d}</span>
-      <div class="week-circle" style="background:${done[i]?'#2DD4BF':'rgba(15,100,140,0.06)'};border-color:${done[i]?'#2DD4BF':'rgba(15,100,140,0.12)'};color:#fff;">${done[i]?'✓':''}</div>
+      <div class="week-circle" style="background:${done[i]?'#2DD4BF':'rgba(15,100,140,0.06)'};border-color:${done[i]?'#2DD4BF':'rgba(15,100,140,0.12)'};color:#fff;">${done[i]?'':''}</div>
     </div>`).join('');
   return `<div class="screen-content">
     <div class="card mb-14" style="background:linear-gradient(135deg,rgba(45,212,191,.12),rgba(45,212,191,.04));border-color:rgba(45,212,191,.25);display:flex;align-items:center;gap:14px;">
-      <div style="width:52px;height:52px;border-radius:50%;background:rgba(45,212,191,.15);border:2px solid rgba(45,212,191,.3);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🌊</div>
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(45,212,191,.15);border:2px solid rgba(45,212,191,.3);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;"></div>
       <div>
         <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#0F3D52;line-height:1.2;">Good morning,</div>
         <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#2DD4BF;font-style:italic;">Lamoncha Living</div>
-        <div style="font-size:10px;color:#5B9BB5;margin-top:3px;font-family:'Outfit',sans-serif;">Day 57 of 84 · 7-day streak 🔥</div>
+        <div style="font-size:10px;color:#5B9BB5;margin-top:3px;font-family:'Outfit',sans-serif;">Day 57 of 84  7-day streak </div>
       </div>
     </div>
     <div class="stat-grid">
-      <div class="stat-card"><div style="font-size:18px;">🔥</div><div class="stat-val">1,842</div><div class="stat-sub">/ 2,200 Cal</div></div>
-      <div class="stat-card"><div style="font-size:18px;">💧</div><div class="stat-val">56</div><div class="stat-sub">/ 80oz Water</div></div>
-      <div class="stat-card"><div style="font-size:18px;">👟</div><div class="stat-val">8,430</div><div class="stat-sub">/ 10k Steps</div></div>
+      <div class="stat-card"><div style="font-size:18px;"></div><div class="stat-val">1,842</div><div class="stat-sub">/ 2,200 Cal</div></div>
+      <div class="stat-card"><div style="font-size:18px;"></div><div class="stat-val">56</div><div class="stat-sub">/ 80oz Water</div></div>
+      <div class="stat-card"><div style="font-size:18px;"></div><div class="stat-val">8,430</div><div class="stat-sub">/ 10k Steps</div></div>
     </div>
     <div class="card mb-14">
       <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
@@ -488,30 +488,30 @@ function renderHome() {
     </div>
     <div class="card" style="background:linear-gradient(135deg,rgba(45,212,191,.1),rgba(45,212,191,.03));border-color:rgba(45,212,191,.2);">
       <div style="display:flex;gap:10px;align-items:flex-start;">
-        <span style="font-size:22px;">💊</span>
+        <span style="font-size:22px;"></span>
         <div>
           <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#2DD4BF;margin-bottom:4px;font-style:italic;">Pharmacist's Daily Tip</div>
-          <div style="font-size:11px;color:#2A5F78;line-height:1.55;">Take your D3 with your fattiest meal — fat-soluble vitamins absorb up to 32% better with dietary fat. Never skip the K2 co-factor.</div>
+          <div style="font-size:11px;color:#2A5F78;line-height:1.55;">Take your D3 with your fattiest meal  fat-soluble vitamins absorb up to 32% better with dietary fat. Never skip the K2 co-factor.</div>
         </div>
       </div>
     </div>
   </div>
   <a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(139,92,246,.03));border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:14px 16px;text-decoration:none;margin-top:14px;">
-    <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💊</div>
+    <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;"></div>
     <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#0F3D52;">Shop My Supplement Store</div><div style="font-size:10px;color:#5B9BB5;margin-top:1px;">Practitioner-grade via Fullscript</div></div>
-    <span style="font-size:11px;font-weight:700;color:#8B5CF6;">Shop →</span>
+    <span style="font-size:11px;font-weight:700;color:#8B5CF6;">Shop </span>
   </a>`;
 }
 
-// ── MOVE ────────────────────────────────────────────────────────
+// - MOVE -
 function renderMove() {
   const workouts = [
-    {name:'Coastal Strength',tag:'Upper Push · Pull',emoji:'🏋️',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',
-     ex:[{n:'Barbell Bench Press',s:'4×6'},{n:'Bent-Over Barbell Row',s:'4×6'},{n:'Overhead Press',s:'3×8'},{n:'Face Pulls',s:'3×15'},{n:'Tricep Dips',s:'3×10'}]},
-    {name:'Ocean HIIT',tag:'Metabolic Conditioning',emoji:'🌊',dur:'35 min',level:'High Intensity',color:'#0891B2',
-     ex:[{n:'Kettlebell Swings',s:'5×20'},{n:'Box Jumps',s:'5×8'},{n:'Battle Ropes',s:'5×30s'},{n:'Burpees',s:'4×10'}]},
-    {name:'Surf Mobility Flow',tag:'Flexibility · Balance',emoji:'🏄',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',
-     ex:[{n:'Hip Circles',s:'2×20 each'},{n:'Thoracic Rotations',s:'3×10 each'},{n:'Single-Leg RDL',s:'3×12'},{n:'Turkish Get-Up',s:'3×3 each'}]},
+    {name:'Coastal Strength',tag:'Upper Push  Pull',emoji:'',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',
+     ex:[{n:'Barbell Bench Press',s:'46'},{n:'Bent-Over Barbell Row',s:'46'},{n:'Overhead Press',s:'38'},{n:'Face Pulls',s:'315'},{n:'Tricep Dips',s:'310'}]},
+    {name:'Ocean HIIT',tag:'Metabolic Conditioning',emoji:'',dur:'35 min',level:'High Intensity',color:'#0891B2',
+     ex:[{n:'Kettlebell Swings',s:'520'},{n:'Box Jumps',s:'58'},{n:'Battle Ropes',s:'530s'},{n:'Burpees',s:'410'}]},
+    {name:'Surf Mobility Flow',tag:'Flexibility  Balance',emoji:'',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',
+     ex:[{n:'Hip Circles',s:'220 each'},{n:'Thoracic Rotations',s:'310 each'},{n:'Single-Leg RDL',s:'312'},{n:'Turkish Get-Up',s:'33 each'}]},
   ];
   return `<div style="display:flex;flex-direction:column;height:100%;">
     <div class="inner-tabs">
@@ -540,9 +540,9 @@ function renderMove() {
   </div>`;
 }
 const WORKOUTS = [
-  {name:'Coastal Strength',emoji:'🏋️',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',ex:[{n:'Barbell Bench Press',s:'4×6'},{n:'Bent-Over Barbell Row',s:'4×6'},{n:'Overhead Press',s:'3×8'},{n:'Face Pulls',s:'3×15'},{n:'Tricep Dips',s:'3×10'}]},
-  {name:'Ocean HIIT',emoji:'🌊',dur:'35 min',level:'High Intensity',color:'#0891B2',ex:[{n:'Kettlebell Swings',s:'5×20'},{n:'Box Jumps',s:'5×8'},{n:'Battle Ropes',s:'5×30s'},{n:'Burpees',s:'4×10'}]},
-  {name:'Surf Mobility Flow',emoji:'🏄',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',ex:[{n:'Hip Circles',s:'2×20 each'},{n:'Thoracic Rotations',s:'3×10 each'},{n:'Single-Leg RDL',s:'3×12'},{n:'Turkish Get-Up',s:'3×3 each'}]},
+  {name:'Coastal Strength',emoji:'',dur:'55 min',level:'Moderate-Heavy',color:'#F97316',ex:[{n:'Barbell Bench Press',s:'46'},{n:'Bent-Over Barbell Row',s:'46'},{n:'Overhead Press',s:'38'},{n:'Face Pulls',s:'315'},{n:'Tricep Dips',s:'310'}]},
+  {name:'Ocean HIIT',emoji:'',dur:'35 min',level:'High Intensity',color:'#0891B2',ex:[{n:'Kettlebell Swings',s:'520'},{n:'Box Jumps',s:'58'},{n:'Battle Ropes',s:'530s'},{n:'Burpees',s:'410'}]},
+  {name:'Surf Mobility Flow',emoji:'',dur:'40 min',level:'Active Recovery',color:'#2DD4BF',ex:[{n:'Hip Circles',s:'220 each'},{n:'Thoracic Rotations',s:'310 each'},{n:'Single-Leg RDL',s:'312'},{n:'Turkish Get-Up',s:'33 each'}]},
 ];
 let workoutDone = {};
 let selectedWorkout = null;
@@ -555,31 +555,31 @@ function moveSwitchTab(n) {
   if(!c)return;
   if(n===0){c.innerHTML=WORKOUTS.map((w,i)=>`<div onclick="selectWorkout(${i})" style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;gap:10px;align-items:center;"><div style="width:40px;height:40px;border-radius:10px;background:${w.color}20;display:flex;align-items:center;justify-content:center;font-size:20px;">${w.emoji}</div><div><div style="font-size:13px;font-weight:700;color:#0F3D52;">${w.name}</div><div style="font-size:10px;color:#5B9BB5;">${w.tag}</div></div></div><div style="text-align:right;"><div style="font-size:11px;color:${w.color};font-family:'DM Mono',monospace;font-weight:700;">${w.dur}</div><div style="font-size:9px;color:#5B9BB5;">${w.level}</div></div></div></div>`).join('');}
   else if(n===1){
-    if(!selectedWorkout){c.innerHTML='<div style="text-align:center;padding:40px 20px;color:#4A8FA8;font-size:13px;">← Select a plan from Plans tab</div>';return;}
+    if(!selectedWorkout){c.innerHTML='<div style="text-align:center;padding:40px 20px;color:#4A8FA8;font-size:13px;"> Select a plan from Plans tab</div>';return;}
     const w=selectedWorkout;
-    c.innerHTML=`<div style="background:${w.color}14;border:1px solid ${w.color}30;border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center;"><span style="font-size:28px;">${w.emoji}</span><div><div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#0F3D52;font-style:italic;">${w.name}</div><div style="font-size:10px;color:#5B9BB5;">${w.dur} · ${w.level}</div></div></div>`+w.ex.map((e,i)=>`<div onclick="toggleExercise(${WORKOUTS.indexOf(w)},${i})" id="ex-${WORKOUTS.indexOf(w)}-${i}" style="border-radius:12px;padding:12px 14px;margin-bottom:7px;cursor:pointer;display:flex;align-items:center;gap:12px;background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'14':'#fff'};border:1px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'40':'rgba(15,100,140,.09)'};"><div style="width:22px;height:22px;border-radius:50%;border:2px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'rgba(15,100,140,.2)'};background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:11px;">${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?'✓':''}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${e.n}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${e.s}</div></div></div>`).join('');
+    c.innerHTML=`<div style="background:${w.color}14;border:1px solid ${w.color}30;border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center;"><span style="font-size:28px;">${w.emoji}</span><div><div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#0F3D52;font-style:italic;">${w.name}</div><div style="font-size:10px;color:#5B9BB5;">${w.dur}  ${w.level}</div></div></div>`+w.ex.map((e,i)=>`<div onclick="toggleExercise(${WORKOUTS.indexOf(w)},${i})" id="ex-${WORKOUTS.indexOf(w)}-${i}" style="border-radius:12px;padding:12px 14px;margin-bottom:7px;cursor:pointer;display:flex;align-items:center;gap:12px;background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'14':'#fff'};border:1px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color+'40':'rgba(15,100,140,.09)'};"><div style="width:22px;height:22px;border-radius:50%;border:2px solid ${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'rgba(15,100,140,.2)'};background:${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?w.color:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:11px;">${workoutDone[WORKOUTS.indexOf(w)+'-'+i]?'':''}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${e.n}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${e.s}</div></div></div>`).join('');
   }
-  else{c.innerHTML=[{icon:'📈',t:'Progressive Overload',b:'Add 2.5–5 lbs or 1 rep each week. Track every set.'},{icon:'😴',t:'Sleep = Gains',b:'Growth hormone peaks during deep sleep. 7–9 hours is your most anabolic window.'},{icon:'🥩',t:'Protein Timing',b:'Hit 0.8–1g per lb of bodyweight. Pre & post-workout windows matter.'},{icon:'🌊',t:'Coastal Recovery',b:'Cold water exposure post-training reduces inflammation and speeds recovery.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');}
+  else{c.innerHTML=[{icon:'',t:'Progressive Overload',b:'Add 2.55 lbs or 1 rep each week. Track every set.'},{icon:'',t:'Sleep = Gains',b:'Growth hormone peaks during deep sleep. 79 hours is your most anabolic window.'},{icon:'',t:'Protein Timing',b:'Hit 0.81g per lb of bodyweight. Pre & post-workout windows matter.'},{icon:'',t:'Coastal Recovery',b:'Cold water exposure post-training reduces inflammation and speeds recovery.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');}
 }
 function selectWorkout(i){selectedWorkout=WORKOUTS[i];moveSwitchTab(1);}
 function toggleExercise(wi,ei){const k=wi+'-'+ei;workoutDone[k]=!workoutDone[k];moveSwitchTab(1);}
 
-// ── RECIPES DATA ─────────────────────────────────────────────────
+// - RECIPES DATA -
 const RECIPES = [
-  {id:1,name:'Grass-Fed Ribeye & Eggs',cat:'Breakfast',emoji:'🥩',time:'20 min',cal:680,pro:58,fat:48,carbs:2,color:'#D97706',steps:['Let steak rest 30 min at room temp','Season generously with salt & pepper','Sear in butter 3–4 min each side','Rest 5 min, cook eggs in drippings']},
-  {id:2,name:'Protein Banana Pancakes',cat:'Breakfast',emoji:'🥞',time:'15 min',cal:420,pro:38,fat:14,carbs:32,color:'#F59E0B',steps:['Mash 1 ripe banana with 3 eggs until smooth','Add 2 scoops vanilla protein powder & cinnamon','Cook small rounds in butter, 2–3 min per side','Top with raw honey, sliced banana & butter']},
-  {id:3,name:'Bone Broth Hot Chocolate',cat:'Breakfast',emoji:'🍫',time:'8 min',cal:210,pro:18,fat:10,carbs:14,color:'#92400E',steps:['Heat 12oz bone broth over medium heat','Whisk in 1 tbsp raw cacao & 1 tbsp honey','Add 1 tbsp grass-fed butter for richness','Froth & finish with sea salt & cinnamon']},
-  {id:4,name:'Hot Honey Cottage Cheese Beef Bowl',cat:'Lunch',emoji:'🍯',time:'20 min',cal:580,pro:52,fat:24,carbs:28,color:'#EF4444',steps:['Brown 5oz ground beef with garlic & paprika','Roast sweet potato at 425°F for 20 min','Plate beef over sweet potato with cottage cheese','Drizzle with hot honey & top with microgreens']},
-  {id:5,name:'Salmon Arugula Salad',cat:'Lunch',emoji:'🐟',time:'20 min',cal:490,pro:42,fat:30,carbs:8,color:'#0891B2',steps:['Season wild salmon with salt, lemon zest & dill','Pan-sear in avocado oil 4 min skin-side, flip 2 min','Toss arugula with olive oil, lemon & sea salt','Plate salad, top with flaked salmon & avocado']},
-  {id:6,name:'Beef Liver & Bacon',cat:'Lunch',emoji:'🫀',time:'15 min',cal:390,pro:42,fat:22,carbs:6,color:'#7C3AED',steps:['Cook bacon until crispy, reserve fat','Sauté sliced onion in bacon fat until golden','Add liver slices, cook 2–3 min per side','Top with crispy bacon & fresh thyme']},
-  {id:7,name:'Sweet Potato Burger Bowl',cat:'Dinner',emoji:'🍔',time:'30 min',cal:620,pro:48,fat:28,carbs:36,color:'#F97316',steps:['Roast diced sweet potato in tallow at 425°F, 25 min','Cook 6oz grass-fed ground beef until crispy','Bowl: sweet potato base, beef, avocado, arugula','Finish with hot honey drizzle']},
-  {id:8,name:'Meat & Honey Skillet',cat:'Dinner',emoji:'🍖',time:'25 min',cal:640,pro:50,fat:36,carbs:20,color:'#B45309',steps:['Sear 6oz skirt steak in cast iron with butter','Deglaze with 2 tbsp raw honey & chili flakes','Add sliced sweet potato, cook in honey glaze','Slice steak thin, plate over potatoes']},
-  {id:9,name:'Lamb Chops & Tallow',cat:'Dinner',emoji:'🥩',time:'35 min',cal:760,pro:52,fat:58,carbs:8,color:'#059669',steps:['Render beef tallow in cast iron over high heat','Season lamb with salt, rosemary & garlic','Sear 4 min per side for medium-rare','Rest 5 min before serving']},
-  {id:10,name:'Oysters & Beef Tartare',cat:'Dinner',emoji:'🦪',time:'20 min',cal:340,pro:35,fat:18,carbs:8,color:'#0E7490',steps:['Shuck oysters on crushed ice with lemon','Finely hand-chop chilled beef tenderloin','Mix with egg yolk, mustard, capers & salt','Plate alongside oysters — serve immediately']},
-  {id:11,name:'Carnivore Pizza',cat:'Dinner',emoji:'🍕',time:'35 min',cal:820,pro:72,fat:58,carbs:2,color:'#DC2626',steps:['Mix 1 lb ground beef 80/20 with 1 egg & salt','Press thin onto parchment, bake at 400°F 15 min','Top with mozzarella, pepperoni & bacon','Bake 10–12 more min until cheese is golden']},
-  {id:12,name:'Cottage Cheese Crust Pizza',cat:'Dinner',emoji:'🧀',time:'40 min',cal:560,pro:58,fat:26,carbs:18,color:'#F59E0B',steps:['Blend 1.5 cups cottage cheese + mozzarella + 2 eggs','Spread thin on parchment, bake at 375°F 25–28 min','Let cool 5 min, add marinara & toppings','Broil 3–4 min until melted & bubbling']},
-  {id:13,name:'Raw Honey & Colostrum Shake',cat:'Snack',emoji:'🥛',time:'5 min',cal:280,pro:22,fat:8,carbs:28,color:'#6D28D9',steps:['Add colostrum powder to 8oz whole milk','Add 1 tbsp raw honey, 1 egg yolk & sea salt','Blend 20 seconds until frothy','Serve over ice — add vanilla if desired']},
-  {id:14,name:'Honey Butter Banana Bites',cat:'Snack',emoji:'🍌',time:'5 min',cal:220,pro:4,fat:12,carbs:28,color:'#D97706',steps:['Slice banana into rounds','Melt 1 tbsp grass-fed butter in pan','Pan-fry banana slices 1–2 min per side','Drizzle with raw honey & flaky sea salt']},
+  {id:1,name:'Grass-Fed Ribeye & Eggs',cat:'Breakfast',emoji:'',time:'20 min',cal:680,pro:58,fat:48,carbs:2,color:'#D97706',steps:['Let steak rest 30 min at room temp','Season generously with salt & pepper','Sear in butter 34 min each side','Rest 5 min, cook eggs in drippings']},
+  {id:2,name:'Protein Banana Pancakes',cat:'Breakfast',emoji:'',time:'15 min',cal:420,pro:38,fat:14,carbs:32,color:'#F59E0B',steps:['Mash 1 ripe banana with 3 eggs until smooth','Add 2 scoops vanilla protein powder & cinnamon','Cook small rounds in butter, 23 min per side','Top with raw honey, sliced banana & butter']},
+  {id:3,name:'Bone Broth Hot Chocolate',cat:'Breakfast',emoji:'',time:'8 min',cal:210,pro:18,fat:10,carbs:14,color:'#92400E',steps:['Heat 12oz bone broth over medium heat','Whisk in 1 tbsp raw cacao & 1 tbsp honey','Add 1 tbsp grass-fed butter for richness','Froth & finish with sea salt & cinnamon']},
+  {id:4,name:'Hot Honey Cottage Cheese Beef Bowl',cat:'Lunch',emoji:'',time:'20 min',cal:580,pro:52,fat:24,carbs:28,color:'#EF4444',steps:['Brown 5oz ground beef with garlic & paprika','Roast sweet potato at 425F for 20 min','Plate beef over sweet potato with cottage cheese','Drizzle with hot honey & top with microgreens']},
+  {id:5,name:'Salmon Arugula Salad',cat:'Lunch',emoji:'',time:'20 min',cal:490,pro:42,fat:30,carbs:8,color:'#0891B2',steps:['Season wild salmon with salt, lemon zest & dill','Pan-sear in avocado oil 4 min skin-side, flip 2 min','Toss arugula with olive oil, lemon & sea salt','Plate salad, top with flaked salmon & avocado']},
+  {id:6,name:'Beef Liver & Bacon',cat:'Lunch',emoji:'',time:'15 min',cal:390,pro:42,fat:22,carbs:6,color:'#7C3AED',steps:['Cook bacon until crispy, reserve fat','Saut sliced onion in bacon fat until golden','Add liver slices, cook 23 min per side','Top with crispy bacon & fresh thyme']},
+  {id:7,name:'Sweet Potato Burger Bowl',cat:'Dinner',emoji:'',time:'30 min',cal:620,pro:48,fat:28,carbs:36,color:'#F97316',steps:['Roast diced sweet potato in tallow at 425F, 25 min','Cook 6oz grass-fed ground beef until crispy','Bowl: sweet potato base, beef, avocado, arugula','Finish with hot honey drizzle']},
+  {id:8,name:'Meat & Honey Skillet',cat:'Dinner',emoji:'',time:'25 min',cal:640,pro:50,fat:36,carbs:20,color:'#B45309',steps:['Sear 6oz skirt steak in cast iron with butter','Deglaze with 2 tbsp raw honey & chili flakes','Add sliced sweet potato, cook in honey glaze','Slice steak thin, plate over potatoes']},
+  {id:9,name:'Lamb Chops & Tallow',cat:'Dinner',emoji:'',time:'35 min',cal:760,pro:52,fat:58,carbs:8,color:'#059669',steps:['Render beef tallow in cast iron over high heat','Season lamb with salt, rosemary & garlic','Sear 4 min per side for medium-rare','Rest 5 min before serving']},
+  {id:10,name:'Oysters & Beef Tartare',cat:'Dinner',emoji:'',time:'20 min',cal:340,pro:35,fat:18,carbs:8,color:'#0E7490',steps:['Shuck oysters on crushed ice with lemon','Finely hand-chop chilled beef tenderloin','Mix with egg yolk, mustard, capers & salt','Plate alongside oysters  serve immediately']},
+  {id:11,name:'Carnivore Pizza',cat:'Dinner',emoji:'',time:'35 min',cal:820,pro:72,fat:58,carbs:2,color:'#DC2626',steps:['Mix 1 lb ground beef 80/20 with 1 egg & salt','Press thin onto parchment, bake at 400F 15 min','Top with mozzarella, pepperoni & bacon','Bake 1012 more min until cheese is golden']},
+  {id:12,name:'Cottage Cheese Crust Pizza',cat:'Dinner',emoji:'',time:'40 min',cal:560,pro:58,fat:26,carbs:18,color:'#F59E0B',steps:['Blend 1.5 cups cottage cheese + mozzarella + 2 eggs','Spread thin on parchment, bake at 375F 2528 min','Let cool 5 min, add marinara & toppings','Broil 34 min until melted & bubbling']},
+  {id:13,name:'Raw Honey & Colostrum Shake',cat:'Snack',emoji:'',time:'5 min',cal:280,pro:22,fat:8,carbs:28,color:'#6D28D9',steps:['Add colostrum powder to 8oz whole milk','Add 1 tbsp raw honey, 1 egg yolk & sea salt','Blend 20 seconds until frothy','Serve over ice  add vanilla if desired']},
+  {id:14,name:'Honey Butter Banana Bites',cat:'Snack',emoji:'',time:'5 min',cal:220,pro:4,fat:12,carbs:28,color:'#D97706',steps:['Slice banana into rounds','Melt 1 tbsp grass-fed butter in pan','Pan-fry banana slices 12 min per side','Drizzle with raw honey & flaky sea salt']},
 ];
 let selectedRecipe = null;
 let recipeCatFilter = 'All';
@@ -603,7 +603,7 @@ function nourishTab(n){
   else c.innerHTML=renderNourishRx();
 }
 function renderNourishLog(){
-  if(!loggedMeals.length) return '<div style="text-align:center;padding:40px 20px;"><div style="font-size:36px;margin-bottom:10px;">🥗</div><div style="font-size:13px;color:#4A8FA8;">No meals logged yet</div><div style="font-size:11px;color:#5B9BB5;margin-top:4px;">Add meals from the Recipes tab</div></div>';
+  if(!loggedMeals.length) return '<div style="text-align:center;padding:40px 20px;"><div style="font-size:36px;margin-bottom:10px;"></div><div style="font-size:13px;color:#4A8FA8;">No meals logged yet</div><div style="font-size:11px;color:#5B9BB5;margin-top:4px;">Add meals from the Recipes tab</div></div>';
   const totCal=loggedMeals.reduce((s,r)=>s+r.cal,0);
   const totPro=loggedMeals.reduce((s,r)=>s+r.pro,0);
   const totFat=loggedMeals.reduce((s,r)=>s+r.fat,0);
@@ -614,7 +614,7 @@ function renderNourishLog(){
       <div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:800;color:#10B981;">${totPro}g</div><div style="font-size:9px;color:#5B9BB5;">Pro</div></div>
       <div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:800;color:#F97316;">${totFat}g</div><div style="font-size:9px;color:#5B9BB5;">Fat</div></div>
     </div>
-  </div>`+loggedMeals.map((r,i)=>`<div style="background:${r.color}10;border:1px solid ${r.color}22;border-radius:12px;padding:11px 14px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:20px;">${r.emoji}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${r.cal} kcal</div></div></div><button onclick="removeLoggedMeal(${i})" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:4px 8px;color:#5B9BB5;cursor:pointer;font-size:12px;">✕</button></div>`).join('');
+  </div>`+loggedMeals.map((r,i)=>`<div style="background:${r.color}10;border:1px solid ${r.color}22;border-radius:12px;padding:11px 14px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:20px;">${r.emoji}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${r.cal} kcal</div></div></div><button onclick="removeLoggedMeal(${i})" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:4px 8px;color:#5B9BB5;cursor:pointer;font-size:12px;"></button></div>`).join('');
 }
 function renderNourishRecipes(){
   const cats=['All','Breakfast','Lunch','Dinner','Snack'];
@@ -622,10 +622,10 @@ function renderNourishRecipes(){
   return `<div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:8px;margin-bottom:4px;">`+
     cats.map(c=>`<button onclick="setRecipeCat('${c}')" style="flex-shrink:0;padding:5px 12px;border-radius:20px;border:1.5px solid ${recipeCatFilter===c?'#10B981':'rgba(15,100,140,.12)'};background:${recipeCatFilter===c?'rgba(16,185,129,.15)':'#fff'};color:${recipeCatFilter===c?'#10B981':'#4A8FA8'};font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;cursor:pointer;">${c}</button>`).join('')+
     '</div>'+
-    filtered.map(r=>`<div onclick="openRecipe(${r.id})" class="recipe-card"><div class="recipe-emoji" style="background:${r.color}20;">${r.emoji}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;">${r.cat} · ${r.time}</div></div><div class="recipe-cal">${r.cal}<span style="font-size:8px;color:#5B9BB5;">kcal</span></div></div>`).join('');
+    filtered.map(r=>`<div onclick="openRecipe(${r.id})" class="recipe-card"><div class="recipe-emoji" style="background:${r.color}20;">${r.emoji}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${r.name}</div><div style="font-size:10px;color:#5B9BB5;">${r.cat}  ${r.time}</div></div><div class="recipe-cal">${r.cal}<span style="font-size:8px;color:#5B9BB5;">kcal</span></div></div>`).join('');
 }
 function renderNourishRecipeDetail(r){
-  return `<button onclick="closeRecipe()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;">← Back</button>
+  return `<button onclick="closeRecipe()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;"> Back</button>
   <div style="background:${r.color}14;border:1px solid ${r.color}28;border-radius:14px;padding:16px;margin-bottom:12px;">
     <div style="font-size:32px;margin-bottom:8px;">${r.emoji}</div>
     <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#0F3D52;font-style:italic;margin-bottom:8px;">${r.name}</div>
@@ -637,7 +637,7 @@ function renderNourishRecipeDetail(r){
   <button onclick="logMeal(${r.id})" style="width:100%;padding:13px;border-radius:13px;border:none;background:${r.color};color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;">+ Log This Meal</button>`;
 }
 function renderNourishRx(){
-  return [{icon:'🥩',t:'Animal Protein Priority',b:'Animal proteins have a complete amino acid profile and 94% bioavailability vs plant proteins at 60–80%. Prioritize red meat, fish, eggs, and organs.'},{icon:'🫀',t:"Organ Meats = Nature's Multivitamin",b:'3oz of beef liver provides 700% RDI of B12, 50% copper, and complete CoQ10. The most nutrient-dense food on earth.'},{icon:'🐟',t:'Omega-3 to Omega-6 Ratio',b:'Aim for 1:4. Modern diets skew 1:20 causing inflammation. Wild salmon, sardines, and pastured eggs shift this favorably.'},{icon:'🍯',t:'Raw Honey & Metabolic Health',b:'Raw honey contains enzymes, propolis, and antioxidants. Consumed post-workout it replenishes liver glycogen preferentially.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+  return [{icon:'',t:'Animal Protein Priority',b:'Animal proteins have a complete amino acid profile and 94% bioavailability vs plant proteins at 6080%. Prioritize red meat, fish, eggs, and organs.'},{icon:'',t:"Organ Meats = Nature's Multivitamin",b:'3oz of beef liver provides 700% RDI of B12, 50% copper, and complete CoQ10. The most nutrient-dense food on earth.'},{icon:'',t:'Omega-3 to Omega-6 Ratio',b:'Aim for 1:4. Modern diets skew 1:20 causing inflammation. Wild salmon, sardines, and pastured eggs shift this favorably.'},{icon:'',t:'Raw Honey & Metabolic Health',b:'Raw honey contains enzymes, propolis, and antioxidants. Consumed post-workout it replenishes liver glycogen preferentially.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
 }
 function setRecipeCat(c){recipeCatFilter=c;const el=document.getElementById('nourish-content');if(el)el.innerHTML=renderNourishRecipes();}
 function openRecipe(id){const r=RECIPES.find(x=>x.id===id);selectedRecipe=r;const c=document.getElementById('nourish-content');if(c)c.innerHTML=renderNourishRecipeDetail(r);}
@@ -645,18 +645,18 @@ function closeRecipe(){selectedRecipe=null;const c=document.getElementById('nour
 function logMeal(id){const r=RECIPES.find(x=>x.id===id);loggedMeals.push(r);selectedRecipe=null;nourishTab(0);}
 function removeLoggedMeal(i){loggedMeals.splice(i,1);const c=document.getElementById('nourish-content');if(c)c.innerHTML=renderNourishLog();}
 
-// ── SUPPLEMENTS ──────────────────────────────────────────────────
+// - SUPPLEMENTS -
 const SUPPS = [
-  {id:1,name:'Vitamin D3 + K2',dose:'5,000 IU D3 · 100mcg K2',time:'Morning',icon:'☀️',color:'#F59E0B',note:'Take with fat. K2 (MK-7) directs calcium to bones not arteries.'},
-  {id:2,name:'Omega-3 Fish Oil',dose:'2–3g EPA+DHA',time:'Morning',icon:'🐟',color:'#0EA5E9',note:'Triglyceride form absorbs 70% better. Choose wild sardine-based.'},
-  {id:3,name:'Magnesium Glycinate',dose:'400mg elemental',time:'Evening',icon:'🌙',color:'#8B5CF6',note:'Glycinate crosses blood-brain barrier. Avoid oxide form.'},
-  {id:4,name:'Essential Amino Acids',dose:'10–15g EAAs',time:'Pre-Workout',icon:'💪',color:'#10B981',note:'Superior to BCAAs. Leucine-forward ratio triggers mTOR.'},
-  {id:5,name:'Collagen Peptides',dose:'15–20g',time:'Morning',icon:'💧',color:'#06B6D4',note:'Always pair with Vitamin C for proper collagen synthesis.'},
-  {id:6,name:'Creatine Monohydrate',dose:'5g daily',time:'Post-Workout',icon:'⚡',color:'#F97316',note:'Most studied supplement. No loading needed. Stay hydrated.'},
-  {id:7,name:'Zinc + Copper',dose:'30mg Zn · 2mg Cu',time:'Evening',icon:'🦪',color:'#EC4899',note:'Always pair — zinc depletes copper. Oysters provide perfect ratio.'},
-  {id:8,name:'Methylated B-Complex',dose:'Active forms',time:'Morning',icon:'🧬',color:'#84CC16',note:'40% cannot convert folic acid. Methylated forms bypass MTHFR.'},
+  {id:1,name:'Vitamin D3 + K2',dose:'5,000 IU D3  100mcg K2',time:'Morning',icon:'',color:'#F59E0B',note:'Take with fat. K2 (MK-7) directs calcium to bones not arteries.'},
+  {id:2,name:'Omega-3 Fish Oil',dose:'23g EPA+DHA',time:'Morning',icon:'',color:'#0EA5E9',note:'Triglyceride form absorbs 70% better. Choose wild sardine-based.'},
+  {id:3,name:'Magnesium Glycinate',dose:'400mg elemental',time:'Evening',icon:'',color:'#8B5CF6',note:'Glycinate crosses blood-brain barrier. Avoid oxide form.'},
+  {id:4,name:'Essential Amino Acids',dose:'1015g EAAs',time:'Pre-Workout',icon:'',color:'#10B981',note:'Superior to BCAAs. Leucine-forward ratio triggers mTOR.'},
+  {id:5,name:'Collagen Peptides',dose:'1520g',time:'Morning',icon:'',color:'#06B6D4',note:'Always pair with Vitamin C for proper collagen synthesis.'},
+  {id:6,name:'Creatine Monohydrate',dose:'5g daily',time:'Post-Workout',icon:'',color:'#F97316',note:'Most studied supplement. No loading needed. Stay hydrated.'},
+  {id:7,name:'Zinc + Copper',dose:'30mg Zn  2mg Cu',time:'Evening',icon:'',color:'#EC4899',note:'Always pair  zinc depletes copper. Oysters provide perfect ratio.'},
+  {id:8,name:'Methylated B-Complex',dose:'Active forms',time:'Morning',icon:'',color:'#84CC16',note:'40% cannot convert folic acid. Methylated forms bypass MTHFR.'},
 ];
-const SUPP_BLOCKS=[{time:'Morning',icon:'🌅',ids:[1,2,5,8]},{time:'Pre-Workout',icon:'💪',ids:[4]},{time:'Post-Workout',icon:'⚡',ids:[6]},{time:'Evening',icon:'🌙',ids:[3,7]}];
+const SUPP_BLOCKS=[{time:'Morning',icon:'',ids:[1,2,5,8]},{time:'Pre-Workout',icon:'',ids:[4]},{time:'Post-Workout',icon:'',ids:[6]},{time:'Evening',icon:'',ids:[3,7]}];
 let selectedSupp = null;
 function renderRx(){
   return `<div style="display:flex;flex-direction:column;height:100%;">
@@ -677,22 +677,22 @@ function rxTab(n){
   else c.innerHTML=renderRxGuide();
 }
 function renderRxSchedule(){
-  var shopBanner = '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:10px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(139,92,246,.03));border:1px solid rgba(139,92,246,.22);border-radius:14px;padding:12px 14px;text-decoration:none;margin-bottom:14px;"><div style=\"width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;\">💊</div><div style=\"flex:1;\"><div style=\"font-size:12px;font-weight:800;color:#0F3D52;\">Order from Coach Kristi Store</div><div style=\"font-size:10px;color:#5B9BB5;margin-top:1px;\">Practitioner-grade · Fullscript</div></div><span style=\"font-size:11px;font-weight:700;color:#8B5CF6;\">Shop →</span></a>';
+  var shopBanner = '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:10px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(139,92,246,.03));border:1px solid rgba(139,92,246,.22);border-radius:14px;padding:12px 14px;text-decoration:none;margin-bottom:14px;"><div style=\"width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;\"></div><div style=\"flex:1;\"><div style=\"font-size:12px;font-weight:800;color:#0F3D52;\">Order from Coach Kristi Store</div><div style=\"font-size:10px;color:#5B9BB5;margin-top:1px;\">Practitioner-grade  Fullscript</div></div><span style=\"font-size:11px;font-weight:700;color:#8B5CF6;\">Shop </span></a>';
   return shopBanner + SUPP_BLOCKS.map(b=>`<div style="margin-bottom:16px;"><div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;"><span style="font-size:14px;">${b.icon}</span><span style="font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">${b.time}</span></div>`+
-    b.ids.map(id=>{const s=SUPPS.find(x=>x.id===id);const tk=suppTaken[id];return `<div onclick="toggleSupp(${id})" style="background:${tk?s.color+'14':'#fff'};border:1px solid ${tk?s.color+'38':'rgba(15,100,140,.09)'};border-radius:12px;padding:10px 13px;margin-bottom:6px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .2s;"><div style="width:34px;height:34px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><div style="width:24px;height:24px;border-radius:50%;border:2px solid ${tk?s.color:'rgba(15,100,140,.18)'};background:${tk?s.color:'transparent'};display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800;transition:all .2s;">${tk?'✓':''}</div></div>`;}).join('')+'</div>').join('');
+    b.ids.map(id=>{const s=SUPPS.find(x=>x.id===id);const tk=suppTaken[id];return `<div onclick="toggleSupp(${id})" style="background:${tk?s.color+'14':'#fff'};border:1px solid ${tk?s.color+'38':'rgba(15,100,140,.09)'};border-radius:12px;padding:10px 13px;margin-bottom:6px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .2s;"><div style="width:34px;height:34px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><div style="width:24px;height:24px;border-radius:50%;border:2px solid ${tk?s.color:'rgba(15,100,140,.18)'};background:${tk?s.color:'transparent'};display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800;transition:all .2s;">${tk?'':''}</div></div>`;}).join('')+'</div>').join('');
 }
 function renderRxLibrary(){
-  if(selectedSupp){const s=selectedSupp;return `<button onclick="closeSupp()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;">← Back</button><div style="background:${s.color}14;border:1px solid ${s.color}28;border-radius:14px;padding:16px;"><div style="font-size:36px;margin-bottom:8px;">${s.icon}</div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#0F3D52;font-style:italic;margin-bottom:4px;">${s.name}</div><div style="font-size:12px;color:${s.color};font-family:'DM Mono',monospace;margin-bottom:12px;">${s.dose}</div><div style="font-size:12px;color:#2A5F78;line-height:1.65;">${s.note}</div></div>`;}
-  return SUPPS.map(s=>`<div onclick="openSupp(${s.id})" style="background:#fff;border:1px solid ${s.color}18;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;gap:10px;align-items:center;"><div style="width:38px;height:38px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><span style="font-size:16px;color:rgba(15,100,140,.2);">›</span></div>`).join('');
+  if(selectedSupp){const s=selectedSupp;return `<button onclick="closeSupp()" style="background:rgba(15,100,140,.07);border:none;border-radius:8px;padding:6px 12px;color:#1E7A8C;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:'Outfit',sans-serif;"> Back</button><div style="background:${s.color}14;border:1px solid ${s.color}28;border-radius:14px;padding:16px;"><div style="font-size:36px;margin-bottom:8px;">${s.icon}</div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#0F3D52;font-style:italic;margin-bottom:4px;">${s.name}</div><div style="font-size:12px;color:${s.color};font-family:'DM Mono',monospace;margin-bottom:12px;">${s.dose}</div><div style="font-size:12px;color:#2A5F78;line-height:1.65;">${s.note}</div></div>`;}
+  return SUPPS.map(s=>`<div onclick="openSupp(${s.id})" style="background:#fff;border:1px solid ${s.color}18;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;gap:10px;align-items:center;"><div style="width:38px;height:38px;border-radius:10px;background:${s.color}18;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${s.name}</div><div style="font-size:10px;color:#5B9BB5;font-family:'DM Mono',monospace;">${s.dose}</div></div><span style="font-size:16px;color:rgba(15,100,140,.2);"></span></div>`).join('');
 }
 function renderRxGuide(){
-  return [{icon:'🔬',t:'Form Matters',b:'Magnesium oxide has only 4% absorption. Glycinate, malate, or threonate forms absorb 40–80%. The cheapest supplement is worthless if it cannot absorb.'},{icon:'⏰',t:'Timing is Pharmacology',b:'Fat-soluble vitamins (A, D, E, K) require fat for absorption. Water-soluble (B, C) are best taken with food. Magnesium is most effective at night.'},{icon:'🔗',t:'Cofactor Pairs',b:'D3 needs K2. Zinc depletes copper. Iron competes with calcium. Isolated supplementation misses these critical interactions.'},{icon:'🧬',t:'Bioindividuality',b:'MTHFR gene variants (40% of population) cannot process folic acid. Methylated folate bypasses this. Bloodwork is the only way to know what YOU need.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(139,92,246,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+  return [{icon:'',t:'Form Matters',b:'Magnesium oxide has only 4% absorption. Glycinate, malate, or threonate forms absorb 4080%. The cheapest supplement is worthless if it cannot absorb.'},{icon:'',t:'Timing is Pharmacology',b:'Fat-soluble vitamins (A, D, E, K) require fat for absorption. Water-soluble (B, C) are best taken with food. Magnesium is most effective at night.'},{icon:'',t:'Cofactor Pairs',b:'D3 needs K2. Zinc depletes copper. Iron competes with calcium. Isolated supplementation misses these critical interactions.'},{icon:'',t:'Bioindividuality',b:'MTHFR gene variants (40% of population) cannot process folic acid. Methylated folate bypasses this. Bloodwork is the only way to know what YOU need.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(139,92,246,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
 }
 function toggleSupp(id){suppTaken[id]=!suppTaken[id];const c=document.getElementById('rx-content');if(c)c.innerHTML=renderRxSchedule();}
 function openSupp(id){selectedSupp=SUPPS.find(s=>s.id===id);rxTab(1);}
 function closeSupp(){selectedSupp=null;rxTab(1);}
 
-// ── CALCULATOR ───────────────────────────────────────────────────
+// - CALCULATOR -
 function renderCalc(){
   return `<div style="display:flex;flex-direction:column;height:100%;">
     <div class="inner-tabs">
@@ -717,10 +717,10 @@ function renderCalcTDEE(){
     <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;">Biological Sex</label>
     <div style="display:flex;gap:8px;margin-bottom:14px;">
       <div id="sex-f" onclick="setSex('female')" style="flex:1;padding:10px;border-radius:12px;border:1.5px solid #0EA5E9;background:rgba(14,165,233,.1);cursor:pointer;text-align:center;">
-        <div style="font-size:20px;margin-bottom:2px;">👩</div><div style="font-size:11px;font-weight:700;color:#0EA5E9;">Female</div>
+        <div style="font-size:20px;margin-bottom:2px;"></div><div style="font-size:11px;font-weight:700;color:#0EA5E9;">Female</div>
       </div>
       <div id="sex-m" onclick="setSex('male')" style="flex:1;padding:10px;border-radius:12px;border:1.5px solid rgba(15,100,140,.15);background:#fff;cursor:pointer;text-align:center;">
-        <div style="font-size:20px;margin-bottom:2px;">👨</div><div style="font-size:11px;font-weight:700;color:#0F3D52;">Male</div>
+        <div style="font-size:20px;margin-bottom:2px;"></div><div style="font-size:11px;font-weight:700;color:#0F3D52;">Male</div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
@@ -729,8 +729,8 @@ function renderCalcTDEE(){
       <div><label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px;">Height (in)</label><input id="tdee-ht" class="calc-input" style="margin-bottom:0;" type="number" placeholder="in"/></div>
     </div>
     <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;">Activity Level</label>
-    ${[['sedentary',1.2,'Sedentary','Little/no exercise'],['light',1.375,'Lightly Active','1–3 days/week'],['moderate',1.55,'Moderately Active','3–5 days/week'],['active',1.725,'Very Active','6–7 days/week'],['extra',1.9,'Athlete','2x/day or physical job']].map(([id,m,l,s])=>`<div id="act-${id}" onclick="setActivity('${id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-radius:12px;border:1.5px solid ${id==='moderate'?'#0EA5E9':'rgba(15,100,140,.12)'};background:${id==='moderate'?'rgba(14,165,233,.08)':'#fff'};cursor:pointer;margin-bottom:6px;"><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div><div style="font-size:10px;font-weight:700;color:${id==='moderate'?'#0EA5E9':'#5B9BB5'};font-family:'DM Mono',monospace;">×${m}</div></div>`).join('')}
-    <button onclick="doCalcTDEE()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#0EA5E9,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My TDEE 🔥</button>
+    ${[['sedentary',1.2,'Sedentary','Little/no exercise'],['light',1.375,'Lightly Active','13 days/week'],['moderate',1.55,'Moderately Active','35 days/week'],['active',1.725,'Very Active','67 days/week'],['extra',1.9,'Athlete','2x/day or physical job']].map(([id,m,l,s])=>`<div id="act-${id}" onclick="setActivity('${id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-radius:12px;border:1.5px solid ${id==='moderate'?'#0EA5E9':'rgba(15,100,140,.12)'};background:${id==='moderate'?'rgba(14,165,233,.08)':'#fff'};cursor:pointer;margin-bottom:6px;"><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div><div style="font-size:10px;font-weight:700;color:${id==='moderate'?'#0EA5E9':'#5B9BB5'};font-family:'DM Mono',monospace;">${m}</div></div>`).join('')}
+    <button onclick="doCalcTDEE()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#0EA5E9,#0891B2);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My TDEE </button>
   </div>
   <div id="tdee-result"></div>`;
 }
@@ -749,13 +749,13 @@ function doCalcTDEE(){
   const bmrR=Math.round(bmr);
   const el=document.getElementById('tdee-result');
   if(el)el.innerHTML=`<div style="background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(14,165,233,.04));border:1.5px solid rgba(14,165,233,.25);border-radius:16px;padding:16px;">
-    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#0EA5E9;font-style:italic;margin-bottom:14px;">Your Results ✦</div>
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#0EA5E9;font-style:italic;margin-bottom:14px;">Your Results </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
       <div style="background:#fff;border-radius:12px;padding:13px 14px;text-align:center;border:1px solid rgba(139,92,246,.2);"><div style="font-family:'DM Mono',monospace;font-size:26px;font-weight:800;color:#8B5CF6;line-height:1;">${bmrR}</div><div style="font-size:9px;font-weight:800;color:#8B5CF6;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">BMR</div><div style="font-size:9px;color:#5B9BB5;margin-top:2px;">Calories at rest</div></div>
       <div style="background:#fff;border-radius:12px;padding:13px 14px;text-align:center;border:1px solid rgba(14,165,233,.2);"><div style="font-family:'DM Mono',monospace;font-size:26px;font-weight:800;color:#0EA5E9;line-height:1;">${tdee}</div><div style="font-size:9px;font-weight:800;color:#0EA5E9;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">TDEE</div><div style="font-size:9px;color:#5B9BB5;margin-top:2px;">Total daily burn</div></div>
     </div>
-    ${[{l:'Aggressive Fat Loss',v:tdee-500,c:'#EF4444',i:'🔥'},{l:'Mild Fat Loss',v:tdee-250,c:'#F97316',i:'📉'},{l:'Maintenance',v:tdee,c:'#0EA5E9',i:'⚖️'},{l:'Lean Muscle Gain',v:tdee+300,c:'#10B981',i:'💪'}].map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid ${r.c}18;margin-bottom:6px;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:14px;">${r.i}</span><span style="font-size:11px;font-weight:600;color:#0F3D52;">${r.l}</span></div><span style="font-family:'DM Mono',monospace;font-size:14px;font-weight:800;color:${r.c};">${r.v} <span style="font-size:9px;color:#5B9BB5;">cal</span></span></div>`).join('')}
-    <div style="background:rgba(14,165,233,.1);border-radius:10px;padding:10px 12px;margin-top:4px;font-size:10px;color:#2A5F78;line-height:1.5;">💡 <strong>Coach Kristi:</strong> Use your TDEE maintenance number in the Macros tab to build your personalized meal plan.</div>
+    ${[{l:'Aggressive Fat Loss',v:tdee-500,c:'#EF4444',i:''},{l:'Mild Fat Loss',v:tdee-250,c:'#F97316',i:''},{l:'Maintenance',v:tdee,c:'#0EA5E9',i:''},{l:'Lean Muscle Gain',v:tdee+300,c:'#10B981',i:''}].map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid ${r.c}18;margin-bottom:6px;"><div style="display:flex;gap:8px;align-items:center;"><span style="font-size:14px;">${r.i}</span><span style="font-size:11px;font-weight:600;color:#0F3D52;">${r.l}</span></div><span style="font-family:'DM Mono',monospace;font-size:14px;font-weight:800;color:${r.c};">${r.v} <span style="font-size:9px;color:#5B9BB5;">cal</span></span></div>`).join('')}
+    <div style="background:rgba(14,165,233,.1);border-radius:10px;padding:10px 12px;margin-top:4px;font-size:10px;color:#2A5F78;line-height:1.5;"> <strong>Coach Kristi:</strong> Use your TDEE maintenance number in the Macros tab to build your personalized meal plan.</div>
   </div>`;
 }
 function renderCalcMacros(){
@@ -764,10 +764,10 @@ function renderCalcMacros(){
     <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;">Your TDEE / Daily Calories</label>
     <input id="macro-cals" class="calc-input" type="number" placeholder="e.g. 1850"/>
     <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;">Your Goal</label>
-    ${[['fat_loss','Fat Loss','🔥','-500 cal'],['maintain','Maintenance','⚖️','±0 cal'],['muscle','Build Muscle','💪','+300 cal']].map(([id,l,ic,mod])=>`<div id="mgoal-${id}" onclick="setMacroGoal('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='fat_loss'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='fat_loss'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div></div><span style="font-size:10px;font-weight:700;color:${id==='fat_loss'?'#10B981':'#5B9BB5'};font-family:'DM Mono',monospace;">${mod}</span></div>`).join('')}
+    ${[['fat_loss','Fat Loss','','-500 cal'],['maintain','Maintenance','','0 cal'],['muscle','Build Muscle','','+300 cal']].map(([id,l,ic,mod])=>`<div id="mgoal-${id}" onclick="setMacroGoal('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='fat_loss'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='fat_loss'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div></div><span style="font-size:10px;font-weight:700;color:${id==='fat_loss'?'#10B981':'#5B9BB5'};font-family:'DM Mono',monospace;">${mod}</span></div>`).join('')}
     <label style="font-size:9px;color:#5B9BB5;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px;margin-top:6px;">Nutrition Style</label>
-    ${[['animal_based','Animal-Based','🥩','High protein & fat, lower carbs'],['balanced','Balanced','⚖️','Standard macro split'],['low_carb','Low Carb','🥑','Keto-adjacent approach']].map(([id,l,ic,s])=>`<div id="mstyle-${id}" onclick="setMacroStyle('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='animal_based'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='animal_based'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div></div>`).join('')}
-    <button onclick="doCalcMacros()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#10B981,#059669);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My Macros 🥩</button>
+    ${[['animal_based','Animal-Based','','High protein & fat, lower carbs'],['balanced','Balanced','','Standard macro split'],['low_carb','Low Carb','','Keto-adjacent approach']].map(([id,l,ic,s])=>`<div id="mstyle-${id}" onclick="setMacroStyle('${id}')" style="display:flex;gap:12px;align-items:center;padding:11px 13px;border-radius:12px;border:1.5px solid ${id==='animal_based'?'#10B981':'rgba(15,100,140,.12)'};background:${id==='animal_based'?'rgba(16,185,129,.1)':'#fff'};cursor:pointer;margin-bottom:7px;"><span style="font-size:22px;">${ic}</span><div><div style="font-size:12px;font-weight:700;color:#0F3D52;">${l}</div><div style="font-size:10px;color:#5B9BB5;">${s}</div></div></div>`).join('')}
+    <button onclick="doCalcMacros()" style="width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#10B981,#059669);color:#fff;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;margin-top:4px;">Calculate My Macros </button>
   </div>
   <div id="macro-result"></div>`;
 }
@@ -785,25 +785,25 @@ function doCalcMacros(){
   else{pro=Math.round((target*.30)/4);fat=Math.round((target*.30)/9);carbs=Math.round((target*.40)/4);}
   const el=document.getElementById('macro-result');
   if(el)el.innerHTML=`<div style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.04));border:1.5px solid rgba(16,185,129,.25);border-radius:16px;padding:16px;">
-    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#10B981;font-style:italic;margin-bottom:14px;">Your Daily Macros ✦</div>
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#10B981;font-style:italic;margin-bottom:14px;">Your Daily Macros </div>
     <div style="background:#fff;border-radius:12px;padding:13px 16px;text-align:center;border:1px solid rgba(15,100,140,.1);margin-bottom:12px;"><div style="font-family:'DM Mono',monospace;font-size:32px;font-weight:800;color:#2DD4BF;line-height:1;">${Math.round(target)}</div><div style="font-size:10px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Daily Calorie Target</div></div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-      ${[{l:'Protein',v:pro,c:'#EF4444',i:'🥩',cal:pro*4},{l:'Fat',v:fat,c:'#F97316',i:'🥑',cal:fat*9},{l:'Carbs',v:carbs,c:'#F59E0B',i:'🍠',cal:carbs*4}].map(m=>`<div style="background:#fff;border-radius:12px;padding:12px 8px;text-align:center;border:1.5px solid ${m.c}22;"><div style="font-size:20px;margin-bottom:4px;">${m.i}</div><div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:800;color:${m.c};line-height:1;">${m.v}</div><div style="font-size:9px;font-weight:700;color:${m.c};text-transform:uppercase;letter-spacing:.5px;">${m.l}</div><div style="font-size:9px;color:#5B9BB5;font-family:'DM Mono',monospace;margin-top:2px;">${m.cal} cal</div></div>`).join('')}
+      ${[{l:'Protein',v:pro,c:'#EF4444',i:'',cal:pro*4},{l:'Fat',v:fat,c:'#F97316',i:'',cal:fat*9},{l:'Carbs',v:carbs,c:'#F59E0B',i:'',cal:carbs*4}].map(m=>`<div style="background:#fff;border-radius:12px;padding:12px 8px;text-align:center;border:1.5px solid ${m.c}22;"><div style="font-size:20px;margin-bottom:4px;">${m.i}</div><div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:800;color:${m.c};line-height:1;">${m.v}</div><div style="font-size:9px;font-weight:700;color:${m.c};text-transform:uppercase;letter-spacing:.5px;">${m.l}</div><div style="font-size:9px;color:#5B9BB5;font-family:'DM Mono',monospace;margin-top:2px;">${m.cal} cal</div></div>`).join('')}
     </div>
-    <div style="background:rgba(16,185,129,.1);border-radius:10px;padding:10px 12px;font-size:10px;color:#2A5F78;line-height:1.5;">💊 <strong>PharmD note:</strong> Active women typically thrive on 0.7–1g protein per lb of bodyweight. Adjust based on your bloodwork, energy, and recovery.</div>
+    <div style="background:rgba(16,185,129,.1);border-radius:10px;padding:10px 12px;font-size:10px;color:#2A5F78;line-height:1.5;"> <strong>PharmD note:</strong> Active women typically thrive on 0.71g protein per lb of bodyweight. Adjust based on your bloodwork, energy, and recovery.</div>
   </div>`;
 }
 function renderCalcGuide(){
-  return [{icon:'🔬',t:'What is TDEE?',b:'Total Daily Energy Expenditure — all calories your body burns in a day including exercise, digestion, and organ function.'},{icon:'🧮',t:'BMR vs TDEE',b:'BMR is what you burn at complete rest. TDEE multiplies your BMR by your activity level to estimate true daily burn.'},{icon:'🥩',t:'Animal-Based Macros',b:'My preferred approach: 35–40% protein, 40–45% fat, 15–20% carbs. Prioritizes complete amino acids and fat-adapted energy.'},{icon:'📉',t:'Fat Loss Math',b:'1 lb fat = ~3,500 calories. A 500 cal/day deficit = ~1 lb/week. Do not go below 1,200 cal — your metabolism will suffer.'},{icon:'💪',t:'Protein Priority',b:'Aim for 0.7–1g per lb of bodyweight. Protein has the highest thermic effect and keeps you full longer than any other macro.'},{icon:'⚖️',t:'Adjust Over Time',b:'Your TDEE changes as you lose weight or gain muscle. Recalculate every 4–6 weeks or when progress stalls.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(14,165,233,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
+  return [{icon:'',t:'What is TDEE?',b:'Total Daily Energy Expenditure  all calories your body burns in a day including exercise, digestion, and organ function.'},{icon:'',t:'BMR vs TDEE',b:'BMR is what you burn at complete rest. TDEE multiplies your BMR by your activity level to estimate true daily burn.'},{icon:'',t:'Animal-Based Macros',b:'My preferred approach: 3540% protein, 4045% fat, 1520% carbs. Prioritizes complete amino acids and fat-adapted energy.'},{icon:'',t:'Fat Loss Math',b:'1 lb fat = ~3,500 calories. A 500 cal/day deficit = ~1 lb/week. Do not go below 1,200 cal  your metabolism will suffer.'},{icon:'',t:'Protein Priority',b:'Aim for 0.71g per lb of bodyweight. Protein has the highest thermic effect and keeps you full longer than any other macro.'},{icon:'',t:'Adjust Over Time',b:'Your TDEE changes as you lose weight or gain muscle. Recalculate every 46 weeks or when progress stalls.'}].map(tip=>`<div style="background:#fff;border:1px solid rgba(15,100,140,.09);border-radius:14px;padding:14px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(14,165,233,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">${tip.icon}</div><div><div style="font-size:12px;font-weight:700;color:#0F3D52;margin-bottom:4px;">${tip.t}</div><div style="font-size:11px;color:#2A5F78;line-height:1.5;">${tip.b}</div></div></div>`).join('');
 }
 
-// ── GROCERY ──────────────────────────────────────────────────────
+// - GROCERY -
 const GROCERY = {
-  proteins:{label:'Proteins',icon:'🥩',color:'#DC2626',sub:'Animal-based · Grass-fed & wild-caught',items:[{n:'Grass-Fed Ground Beef 80/20',note:'Best for burgers, bowls & skillets',star:true},{n:'Grass-Fed Ground Beef 93/7',note:'Leaner option for fat loss phases',star:false},{n:'Grass-Fed Ribeye Steak',note:'Highest nutrient density cut',star:true},{n:'Beef Liver (Grass-Fed)',note:"Nature's multivitamin — 2x/week",star:true},{n:'Lamb Chops / Ground Lamb',note:'Rich in CLA & omega-3s',star:false},{n:'Pasture-Raised Whole Eggs',note:'Complete amino acids + choline',star:true},{n:'Wild Salmon (Fresh or Frozen)',note:'Best omega-3 to omega-6 ratio',star:true},{n:'Wild Sardines (Canned in water)',note:'Bone broth in a can',star:true},{n:'Wild-Caught Shrimp',note:'High protein, low calorie',star:false},{n:'Oysters (Fresh or Canned)',note:'Best zinc source on the planet',star:true},{n:'Pasture-Raised Chicken Thighs',note:'Dark meat = more nutrients & fat',star:false},{n:'Pastured Bacon (No sugar)',note:'Read labels — avoid nitrates',star:false},{n:'Bone Broth (Beef or Chicken)',note:'Collagen, minerals & gut support',star:true}]},
-  fats:{label:'Healthy Fats',icon:'🥑',color:'#D97706',sub:'Saturated & monounsaturated · Avoid seed oils',items:[{n:'Grass-Fed Butter (Kerrygold)',note:'Best everyday cooking fat',star:true},{n:'Beef Tallow',note:'Highest smoke point — best for searing',star:true},{n:'Ghee (Clarified Butter)',note:'Dairy-free, high smoke point',star:false},{n:'Extra Virgin Olive Oil',note:'Cold use & light sautéing only',star:true},{n:'Avocados',note:'Monounsaturated fat + potassium',star:true},{n:'Coconut Oil (Virgin)',note:'Good for baking & medium-heat cooking',star:false},{n:'Cottage Cheese 2%',note:'High protein + healthy dairy fat',star:true},{n:'Full-Fat Greek Yogurt (Plain)',note:'Probiotics + casein protein',star:false},{n:'Heavy Cream (Grass-Fed)',note:'Coffee, sauces, fat bomb recipes',star:false},{n:'Raw Cheddar / Gouda Cheese',note:'Choose aged, full-fat varieties',star:false}]},
-  carbs:{label:'Smart Carbs',icon:'🍠',color:'#F59E0B',sub:'Whole food sources · Post-workout timing',items:[{n:'Sweet Potatoes',note:'Best post-workout carb — vitamin A',star:true},{n:'White Potatoes',note:'High potassium, resistant starch when cooled',star:false},{n:'Raw Honey (Local if possible)',note:'Enzymes, propolis, antioxidants',star:true},{n:'Ripe Bananas',note:'Quick energy + magnesium',star:true},{n:'Wild Blueberries (Frozen)',note:'Highest antioxidant density of all berries',star:true},{n:'Strawberries',note:'Low sugar, high vitamin C',star:false},{n:'Medjool Dates',note:'Natural sweetener for recipes',star:false},{n:'White Rice',note:'Easily digestible — best for athletes',star:false},{n:'Plantains (Ripe)',note:'Resistant starch + gut-friendly',star:false}]},
-  vegetables:{label:'Non-Starchy Vegetables',icon:'🥦',color:'#10B981',sub:'Low carb · High fiber & micronutrients',items:[{n:'Arugula',note:'Peppery base for any salad or bowl',star:true},{n:'Microgreens',note:'Up to 40x more nutrients than mature greens',star:true},{n:'Spinach (Baby)',note:'Iron, magnesium, folate',star:true},{n:'Broccoli',note:'Sulforaphane — powerful anti-inflammatory',star:true},{n:'Spaghetti Squash',note:'Great pasta substitute, almost zero carbs',star:true},{n:'Asparagus',note:'Prebiotic fiber + natural diuretic',star:false},{n:'Zucchini',note:'Versatile — spiralize, sauté, or grill',star:false},{n:'Brussels Sprouts',note:'Roast in tallow for incredible flavor',star:false},{n:'Cucumbers',note:'Hydration + electrolytes',star:false},{n:'Bell Peppers',note:'Highest vitamin C of any vegetable',star:false},{n:'Mushrooms',note:'Vitamin D2 + immune support',star:false},{n:'Cauliflower',note:'Sub for rice, mash & pizza crust',star:false}]},
-  pantry:{label:'Pantry Staples',icon:'🧂',color:'#8B5CF6',sub:'Clean ingredients · Read every label',items:[{n:'Sea Salt / Himalayan Pink Salt',note:'Trace minerals — avoid iodized table salt',star:true},{n:'Garlic (Fresh Bulbs)',note:'Antimicrobial + cardiovascular support',star:true},{n:'Colostrum Powder',note:'Gut health + immune + growth factors',star:true},{n:'Collagen Peptides',note:'Skin, joints, gut lining — pair with Vit C',star:true},{n:'Raw Cacao Powder',note:'For bone broth hot chocolate!',star:true},{n:'Cinnamon (Ceylon)',note:'Blood sugar regulation — not cassia',star:false},{n:'Apple Cider Vinegar',note:'Digestive aid + blood sugar management',star:false},{n:'Dijon Mustard (Clean)',note:'Check for no added sugar or oils',star:false},{n:'Coconut Aminos',note:'Soy sauce alternative — no gluten',star:false},{n:'Black Pepper (Fresh Ground)',note:'Enhances nutrient absorption',star:false}]}
+  proteins:{label:'Proteins',icon:'',color:'#DC2626',sub:'Animal-based  Grass-fed & wild-caught',items:[{n:'Grass-Fed Ground Beef 80/20',note:'Best for burgers, bowls & skillets',star:true},{n:'Grass-Fed Ground Beef 93/7',note:'Leaner option for fat loss phases',star:false},{n:'Grass-Fed Ribeye Steak',note:'Highest nutrient density cut',star:true},{n:'Beef Liver (Grass-Fed)',note:"Nature's multivitamin  2x/week",star:true},{n:'Lamb Chops / Ground Lamb',note:'Rich in CLA & omega-3s',star:false},{n:'Pasture-Raised Whole Eggs',note:'Complete amino acids + choline',star:true},{n:'Wild Salmon (Fresh or Frozen)',note:'Best omega-3 to omega-6 ratio',star:true},{n:'Wild Sardines (Canned in water)',note:'Bone broth in a can',star:true},{n:'Wild-Caught Shrimp',note:'High protein, low calorie',star:false},{n:'Oysters (Fresh or Canned)',note:'Best zinc source on the planet',star:true},{n:'Pasture-Raised Chicken Thighs',note:'Dark meat = more nutrients & fat',star:false},{n:'Pastured Bacon (No sugar)',note:'Read labels  avoid nitrates',star:false},{n:'Bone Broth (Beef or Chicken)',note:'Collagen, minerals & gut support',star:true}]},
+  fats:{label:'Healthy Fats',icon:'',color:'#D97706',sub:'Saturated & monounsaturated  Avoid seed oils',items:[{n:'Grass-Fed Butter (Kerrygold)',note:'Best everyday cooking fat',star:true},{n:'Beef Tallow',note:'Highest smoke point  best for searing',star:true},{n:'Ghee (Clarified Butter)',note:'Dairy-free, high smoke point',star:false},{n:'Extra Virgin Olive Oil',note:'Cold use & light sauting only',star:true},{n:'Avocados',note:'Monounsaturated fat + potassium',star:true},{n:'Coconut Oil (Virgin)',note:'Good for baking & medium-heat cooking',star:false},{n:'Cottage Cheese 2%',note:'High protein + healthy dairy fat',star:true},{n:'Full-Fat Greek Yogurt (Plain)',note:'Probiotics + casein protein',star:false},{n:'Heavy Cream (Grass-Fed)',note:'Coffee, sauces, fat bomb recipes',star:false},{n:'Raw Cheddar / Gouda Cheese',note:'Choose aged, full-fat varieties',star:false}]},
+  carbs:{label:'Smart Carbs',icon:'',color:'#F59E0B',sub:'Whole food sources  Post-workout timing',items:[{n:'Sweet Potatoes',note:'Best post-workout carb  vitamin A',star:true},{n:'White Potatoes',note:'High potassium, resistant starch when cooled',star:false},{n:'Raw Honey (Local if possible)',note:'Enzymes, propolis, antioxidants',star:true},{n:'Ripe Bananas',note:'Quick energy + magnesium',star:true},{n:'Wild Blueberries (Frozen)',note:'Highest antioxidant density of all berries',star:true},{n:'Strawberries',note:'Low sugar, high vitamin C',star:false},{n:'Medjool Dates',note:'Natural sweetener for recipes',star:false},{n:'White Rice',note:'Easily digestible  best for athletes',star:false},{n:'Plantains (Ripe)',note:'Resistant starch + gut-friendly',star:false}]},
+  vegetables:{label:'Non-Starchy Vegetables',icon:'',color:'#10B981',sub:'Low carb  High fiber & micronutrients',items:[{n:'Arugula',note:'Peppery base for any salad or bowl',star:true},{n:'Microgreens',note:'Up to 40x more nutrients than mature greens',star:true},{n:'Spinach (Baby)',note:'Iron, magnesium, folate',star:true},{n:'Broccoli',note:'Sulforaphane  powerful anti-inflammatory',star:true},{n:'Spaghetti Squash',note:'Great pasta substitute, almost zero carbs',star:true},{n:'Asparagus',note:'Prebiotic fiber + natural diuretic',star:false},{n:'Zucchini',note:'Versatile  spiralize, saut, or grill',star:false},{n:'Brussels Sprouts',note:'Roast in tallow for incredible flavor',star:false},{n:'Cucumbers',note:'Hydration + electrolytes',star:false},{n:'Bell Peppers',note:'Highest vitamin C of any vegetable',star:false},{n:'Mushrooms',note:'Vitamin D2 + immune support',star:false},{n:'Cauliflower',note:'Sub for rice, mash & pizza crust',star:false}]},
+  pantry:{label:'Pantry Staples',icon:'',color:'#8B5CF6',sub:'Clean ingredients  Read every label',items:[{n:'Sea Salt / Himalayan Pink Salt',note:'Trace minerals  avoid iodized table salt',star:true},{n:'Garlic (Fresh Bulbs)',note:'Antimicrobial + cardiovascular support',star:true},{n:'Colostrum Powder',note:'Gut health + immune + growth factors',star:true},{n:'Collagen Peptides',note:'Skin, joints, gut lining  pair with Vit C',star:true},{n:'Raw Cacao Powder',note:'For bone broth hot chocolate!',star:true},{n:'Cinnamon (Ceylon)',note:'Blood sugar regulation  not cassia',star:false},{n:'Apple Cider Vinegar',note:'Digestive aid + blood sugar management',star:false},{n:'Dijon Mustard (Clean)',note:'Check for no added sugar or oils',star:false},{n:'Coconut Aminos',note:'Soy sauce alternative  no gluten',star:false},{n:'Black Pepper (Fresh Ground)',note:'Enhances nutrient absorption',star:false}]}
 };
 let shopSection='proteins';
 function renderShop(){
@@ -812,9 +812,9 @@ function renderShop(){
   const cnt=Object.values(checkedGrocery).filter(Boolean).length;
   return `<div style="display:flex;flex-direction:column;height:100%;">
     <div style="padding:0 0 10px;flex-shrink:0;">
-      <input oninput="shopSearch(this.value)" placeholder="🔍  Search any item..." style="width:100%;background:#fff;border:1.5px solid rgba(15,100,140,.15);border-radius:12px;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:10px 14px;"/>
+      <input oninput="shopSearch(this.value)" placeholder="  Search any item..." style="width:100%;background:#fff;border:1.5px solid rgba(15,100,140,.15);border-radius:12px;outline:none;color:#0F3D52;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:10px 14px;"/>
     </div>
-    ${cnt>0?`<div style="margin-bottom:10px;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;"><div style="display:flex;gap:7px;align-items:center;"><span style="font-size:16px;">🛒</span><span style="font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;color:#0F3D52;">${cnt} item${cnt>1?'s':''} in cart</span></div><button onclick="clearGrocery()" style="background:none;border:none;font-size:10px;font-weight:700;color:#2DD4BF;cursor:pointer;font-family:'Outfit',sans-serif;text-transform:uppercase;">Clear All</button></div>`:''}
+    ${cnt>0?`<div style="margin-bottom:10px;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;"><div style="display:flex;gap:7px;align-items:center;"><span style="font-size:16px;"></span><span style="font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;color:#0F3D52;">${cnt} item${cnt>1?'s':''} in cart</span></div><button onclick="clearGrocery()" style="background:none;border:none;font-size:10px;font-weight:700;color:#2DD4BF;cursor:pointer;font-family:'Outfit',sans-serif;text-transform:uppercase;">Clear All</button></div>`:''}
     <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px;flex-shrink:0;">
       ${secs.map(s=>`<button onclick="setShopSection('${s}')" style="flex-shrink:0;display:flex;gap:5px;align-items:center;padding:6px 12px;border-radius:20px;border:1.5px solid ${shopSection===s?GROCERY[s].color:'rgba(15,100,140,.12)'};background:${shopSection===s?GROCERY[s].color+'18':'#fff'};cursor:pointer;"><span style="font-size:14px;">${GROCERY[s].icon}</span><span style="font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:${shopSection===s?GROCERY[s].color:'#4A8FA8'};">${GROCERY[s].label}</span></button>`).join('')}
     </div>
@@ -823,13 +823,13 @@ function renderShop(){
       <div style="flex:1;"><div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:${cur.color};font-style:italic;">${cur.label}</div><div style="font-size:10px;color:#4A8FA8;">${cur.sub}</div></div>
       <div style="background:#fff;border-radius:20px;padding:3px 9px;font-size:9px;font-weight:700;color:${cur.color};font-family:'DM Mono',monospace;border:1px solid ${cur.color}25;">${cur.items.length} items</div>
     </div>
-    <div id="shop-items" class="screen-content">${renderShopItems(cur.items,shopSection)}<div style="background:${cur.color}12;border:1px solid ${cur.color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${cur.color};font-style:italic;margin-bottom:5px;">💊 Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div></div>
+    <div id="shop-items" class="screen-content">${renderShopItems(cur.items,shopSection)}<div style="background:${cur.color}12;border:1px solid ${cur.color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${cur.color};font-style:italic;margin-bottom:5px;"> Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div></div>
   </div>`;
 }
 function renderShopItems(items,sec){
-  return items.map((item,i)=>{const k=sec+'-'+i;const chk=checkedGrocery[k];const c=GROCERY[sec].color;return `<div onclick="toggleGrocery('${sec}',${i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;transition:all .18s;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;">✓</span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};transition:all .18s;">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div>${item.star&&!chk?`<div style="background:${c}18;border-radius:20px;padding:2px 7px;font-size:9px;font-weight:700;color:${c};flex-shrink:0;">★ Top Pick</div>`:''}</div>`;}).join('');
+  return items.map((item,i)=>{const k=sec+'-'+i;const chk=checkedGrocery[k];const c=GROCERY[sec].color;return `<div onclick="toggleGrocery('${sec}',${i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;transition:all .18s;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;"></span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};transition:all .18s;">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div>${item.star&&!chk?`<div style="background:${c}18;border-radius:20px;padding:2px 7px;font-size:9px;font-weight:700;color:${c};flex-shrink:0;"> Top Pick</div>`:''}</div>`;}).join('');
 }
-function getShopTip(s){const tips={proteins:'Always prioritize grass-fed and wild-caught. If budget is tight, prioritize beef & eggs above all. Organ meats are the most nutrient-dense and usually the cheapest cut.',fats:'Avoid all refined seed oils (canola, soybean, sunflower, corn). The quality of fat you eat becomes the quality of your cells. Stick to animal fats and olive/coconut oils.',carbs:'Eat your carbs around your workouts when possible. Raw honey is my favorite natural sweetener. Whole fruit over fruit juice every single time.',vegetables:'Arugula and microgreens are my staples — they go on everything. Cook leafy greens in butter or tallow to absorb fat-soluble vitamins A, D, E and K.',pantry:'Read every label. If you cannot pronounce it, do not eat it. The best pantry staple is bone broth — keep it stocked. Sea salt over table salt always.'};return tips[s]||'';}
+function getShopTip(s){const tips={proteins:'Always prioritize grass-fed and wild-caught. If budget is tight, prioritize beef & eggs above all. Organ meats are the most nutrient-dense and usually the cheapest cut.',fats:'Avoid all refined seed oils (canola, soybean, sunflower, corn). The quality of fat you eat becomes the quality of your cells. Stick to animal fats and olive/coconut oils.',carbs:'Eat your carbs around your workouts when possible. Raw honey is my favorite natural sweetener. Whole fruit over fruit juice every single time.',vegetables:'Arugula and microgreens are my staples  they go on everything. Cook leafy greens in butter or tallow to absorb fat-soluble vitamins A, D, E and K.',pantry:'Read every label. If you cannot pronounce it, do not eat it. The best pantry staple is bone broth  keep it stocked. Sea salt over table salt always.'};return tips[s]||'';}
 function bindShopEvents(){}
 function setShopSection(s){shopSection=s;const host=document.getElementById('screen-host');if(host){host.innerHTML=renderShop();}}
 function toggleGrocery(sec,i){const k=sec+'-'+i;checkedGrocery[k]=!checkedGrocery[k];const host=document.getElementById('screen-host');if(host)host.innerHTML=renderShop();}
@@ -837,15 +837,15 @@ function clearGrocery(){checkedGrocery={};const host=document.getElementById('sc
 function shopSearch(val){
   const items=document.getElementById('shop-items');
   if(!items)return;
-  if(!val.trim()){items.innerHTML=renderShopItems(GROCERY[shopSection].items,shopSection)+`<div style="background:${GROCERY[shopSection].color}12;border:1px solid ${GROCERY[shopSection].color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${GROCERY[shopSection].color};font-style:italic;margin-bottom:5px;">💊 Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div>`;return;}
+  if(!val.trim()){items.innerHTML=renderShopItems(GROCERY[shopSection].items,shopSection)+`<div style="background:${GROCERY[shopSection].color}12;border:1px solid ${GROCERY[shopSection].color}20;border-radius:14px;padding:13px 15px;margin-top:6px;"><div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:${GROCERY[shopSection].color};font-style:italic;margin-bottom:5px;"> Coach Kristi's Tip</div><div style="font-size:11px;color:#2A5F78;line-height:1.55;">${getShopTip(shopSection)}</div></div>`;return;}
   const q=val.toLowerCase();
   const results=[];
   Object.keys(GROCERY).forEach(sec=>{GROCERY[sec].items.forEach((item,i)=>{if(item.n.toLowerCase().includes(q))results.push({...item,sec,i,color:GROCERY[sec].color});});});
-  if(!results.length){items.innerHTML='<div style="text-align:center;padding:40px 20px;"><div style="font-size:32px;margin-bottom:8px;">🔍</div><div style="font-size:13px;color:#4A8FA8;">No items found</div></div>';return;}
-  items.innerHTML=results.map(item=>{const k=item.sec+'-'+item.i;const chk=checkedGrocery[k];const c=item.color;return `<div onclick="toggleGrocery('${item.sec}',${item.i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;">✓</span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div></div>`;}).join('');
+  if(!results.length){items.innerHTML='<div style="text-align:center;padding:40px 20px;"><div style="font-size:32px;margin-bottom:8px;"></div><div style="font-size:13px;color:#4A8FA8;">No items found</div></div>';return;}
+  items.innerHTML=results.map(item=>{const k=item.sec+'-'+item.i;const chk=checkedGrocery[k];const c=item.color;return `<div onclick="toggleGrocery('${item.sec}',${item.i})" style="display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:13px;border:1px solid ${chk?c+'30':'rgba(15,100,140,.09)'};background:${chk?c+'08':'#fff'};margin-bottom:7px;cursor:pointer;"><div style="width:22px;height:22px;border-radius:7px;border:2px solid ${chk?c:'rgba(15,100,140,.2)'};background:${chk?c:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${chk?'<span style="font-size:12px;color:#fff;font-weight:800;"></span>':''}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:${chk?'#5B9BB5':'#0F3D52'};text-decoration:${chk?'line-through':'none'};">${item.n}</div><div style="font-size:10px;color:#5B9BB5;margin-top:2px;">${item.note}</div></div></div>`;}).join('');
 }
 
-// ── PROGRESS ─────────────────────────────────────────────────────
+// - PROGRESS -
 function renderProgress(){
   return `<div style="display:flex;flex-direction:column;height:100%;">
     <div class="inner-tabs">
@@ -865,7 +865,7 @@ function progTab(n){
   setTimeout(()=>{document.querySelectorAll('.prog-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w;});},100);
 }
 function renderProgBody(){
-  return `<div class="card mb-12"><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">12-Week Weight</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#2DD4BF;font-weight:700;">−4.7 lbs</span></div>
+  return `<div class="card mb-12"><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;">12-Week Weight</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#2DD4BF;font-weight:700;">4.7 lbs</span></div>
     <svg width="100%" height="60" viewBox="0 0 290 60" style="overflow:visible;">
       <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.3"/><stop offset="100%" stop-color="#2DD4BF" stop-opacity="0"/></linearGradient></defs>
       <path d="M0,48 L24,44 L48,37 L72,35 L96,28 L120,22 L144,18 L168,14 L192,10 L216,6 L240,3 L264,0 L264,60 L0,60 Z" fill="url(#wg)"/>
@@ -876,7 +876,7 @@ function renderProgBody(){
   </div>
   ${[{l:'Weight',cur:'143.5 lbs',ch:'-4.7 lbs',pct:79,c:'#2DD4BF'},{l:'Body Fat',cur:'20.6%',ch:'-3.6%',pct:75,c:'#F97316'},{l:'Muscle Mass',cur:'111.8 lbs',ch:'+3.6 lbs',pct:88,c:'#10B981'}].map(m=>`<div class="card mb-12" style="border-color:${m.c}20;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#2A5F78;">${m.l}</span><div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:800;color:#0F3D52;">${m.cur}</div><div style="font-size:10px;color:${m.c};font-family:'DM Mono',monospace;">${m.ch}</div></div></div><div class="prog-track"><div class="prog-fill" data-w="${m.pct}%" style="width:0%;background:${m.c};"></div></div></div>`).join('')}
   <div class="card" style="background:linear-gradient(135deg,rgba(45,212,191,.12),rgba(45,212,191,.04));border-color:rgba(45,212,191,.2);">
-    <div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Journey — Day 57 of 84</div>
+    <div style="font-size:11px;font-weight:700;color:#5B9BB5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Journey  Day 57 of 84</div>
     <div class="prog-track" style="height:10px;"><div class="prog-fill" data-w="68%" style="width:0%;background:linear-gradient(90deg,#2DD4BF,#0891B2);"></div></div>
     <div style="display:flex;justify-content:space-between;margin-top:5px;"><span style="font-size:9px;color:#5B9BB5;">Start</span><span style="font-size:9px;color:#2DD4BF;font-family:'DM Mono',monospace;font-weight:700;">68% complete</span><span style="font-size:9px;color:#5B9BB5;">Day 84</span></div>
   </div>`;
@@ -895,11 +895,11 @@ function renderProgWellness(){
   ${ws.map(w=>`<div class="card mb-12" style="border-color:${w.c}18;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;"><span style="font-size:12px;font-weight:700;color:#2A5F78;">${w.l}</span><span style="font-family:'DM Mono',monospace;font-size:12px;color:${w.c};font-weight:700;">${w.v}%</span></div><div class="prog-track" style="height:6px;"><div class="prog-fill" data-w="${w.v}%" style="width:0%;background:${w.c};"></div></div></div>`).join('')}`;
 }
 function renderProgBio(){
-  return `<div style="font-size:12px;color:#4A8FA8;margin-bottom:8px;">Bloodwork panel — last drawn 2/15:</div>`+
-  [{n:'Vitamin D3',v:'68',u:'ng/mL',s:'Optimal',c:'#F59E0B'},{n:'Omega-3 Index',v:'8.2',u:'%',s:'Optimal',c:'#0EA5E9'},{n:'Fasting Insulin',v:'4.8',u:'µIU/mL',s:'Excellent',c:'#10B981'},{n:'hs-CRP',v:'0.4',u:'mg/L',s:'Excellent',c:'#10B981'},{n:'Free Testosterone',v:'18.2',u:'pg/mL',s:'Good',c:'#2DD4BF'},{n:'TSH',v:'1.8',u:'mIU/L',s:'Optimal',c:'#F59E0B'}].map(b=>`<div class="card mb-12"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:12px;font-weight:600;color:#2A5F78;">${b.n}</div><div style="font-size:9px;color:#5B9BB5;">${b.u}</div></div><div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:15px;font-weight:800;color:#0F3D52;">${b.v}</div><div style="font-size:9px;color:${b.c};font-weight:700;">${b.s}</div></div></div></div>`).join('');
+  return `<div style="font-size:12px;color:#4A8FA8;margin-bottom:8px;">Bloodwork panel  last drawn 2/15:</div>`+
+  [{n:'Vitamin D3',v:'68',u:'ng/mL',s:'Optimal',c:'#F59E0B'},{n:'Omega-3 Index',v:'8.2',u:'%',s:'Optimal',c:'#0EA5E9'},{n:'Fasting Insulin',v:'4.8',u:'IU/mL',s:'Excellent',c:'#10B981'},{n:'hs-CRP',v:'0.4',u:'mg/L',s:'Excellent',c:'#10B981'},{n:'Free Testosterone',v:'18.2',u:'pg/mL',s:'Good',c:'#2DD4BF'},{n:'TSH',v:'1.8',u:'mIU/L',s:'Optimal',c:'#F59E0B'}].map(b=>`<div class="card mb-12"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:12px;font-weight:600;color:#2A5F78;">${b.n}</div><div style="font-size:9px;color:#5B9BB5;">${b.u}</div></div><div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:15px;font-weight:800;color:#0F3D52;">${b.v}</div><div style="font-size:9px;color:${b.c};font-weight:700;">${b.s}</div></div></div></div>`).join('');
 }
 
-// ── COACH TABS ───────────────────────────────────────────────────
+// - COACH TABS -
 function switchCoachTab(n){
   coachTab=n;
   [0,1,2].forEach(i=>{const t=document.getElementById('ctab-'+i);if(t){t.style.color=i===n?'#2DD4BF':'rgba(255,255,255,.3)';t.style.borderBottom=i===n?'2px solid #2DD4BF':'2px solid transparent';}});
@@ -914,35 +914,35 @@ function renderCoachTab(n){
 function renderCoachAbout(){
   return `<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:12px;">
     <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:#2DD4BF;font-style:italic;margin-bottom:8px;">My Story</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;">Hi, I'm Kristi Lamoncha — a Doctor of Pharmacy who believes the most powerful medicine is the food on your plate, the weights you lift, and the life you build around your health. Originally from Youngstown, Ohio, I'm now living my dream in Southwest Florida 🌴</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">As a pharmacist specializing in natural and holistic care, I watched too many patients leave with a bag full of pills when what they needed was real food, purposeful movement, and someone in their corner. That's why I became a certified personal trainer, nutrition coach — and a wellness coach.</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">My passion is coaching and helping others achieve their dream wellness and fitness journey — supporting them every single step along the way.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;">Hi, I'm Kristi Lamoncha  a Doctor of Pharmacy who believes the most powerful medicine is the food on your plate, the weights you lift, and the life you build around your health. Originally from Youngstown, Ohio, I'm now living my dream in Southwest Florida </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">As a pharmacist specializing in natural and holistic care, I watched too many patients leave with a bag full of pills when what they needed was real food, purposeful movement, and someone in their corner. That's why I became a certified personal trainer, nutrition coach  and a wellness coach.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.75;margin-top:10px;">My passion is coaching and helping others achieve their dream wellness and fitness journey  supporting them every single step along the way.</div>
   </div>
   <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px;">
     <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:#F97316;font-style:italic;margin-bottom:10px;">What I Love</div>
     <div style="display:flex;flex-wrap:wrap;gap:7px;">
-      ${[['🏋️','Strength Training'],['🏐','Beach Volleyball'],['🥩','Animal-Based Nutrition'],['🌊','Coastal Living'],['💊','Holistic Pharmacy'],['🌿','Natural Wellness'],['🏡','SW Florida Life'],['🧡','Coaching Others']].map(([i,l])=>`<div style="display:flex;gap:5px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;"><span style="font-size:13px;">${i}</span><span style="font-size:10px;color:rgba(255,255,255,.65);font-weight:600;">${l}</span></div>`).join('')}
+      ${[['','Strength Training'],['','Beach Volleyball'],['','Animal-Based Nutrition'],['','Coastal Living'],['','Holistic Pharmacy'],['','Natural Wellness'],['','SW Florida Life'],['','Coaching Others']].map(([i,l])=>`<div style="display:flex;gap:5px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;"><span style="font-size:13px;">${i}</span><span style="font-size:10px;color:rgba(255,255,255,.65);font-weight:600;">${l}</span></div>`).join('')}
     </div>
   </div>
   <div style="background:linear-gradient(135deg,rgba(249,115,22,.14),rgba(249,115,22,.04));border:1px solid rgba(249,115,22,.22);border-radius:14px;padding:14px;">
-    <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#F97316;font-style:italic;margin-bottom:6px;">🏡 Youngstown → Southwest Florida</div>
-    <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">From the heart of Ohio to the shores of Southwest Florida — I'm living proof that you can design a life around your wellness values. As a licensed Realtor with eXp Realty, I help health-minded clients find their own dream coastal home. 🌴</div>
+    <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#F97316;font-style:italic;margin-bottom:6px;"> Youngstown  Southwest Florida</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">From the heart of Ohio to the shores of Southwest Florida  I'm living proof that you can design a life around your wellness values. As a licensed Realtor with eXp Realty, I help health-minded clients find their own dream coastal home. </div>
   </div>`;
 }
 function renderCoachServices(){
-  return '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style=\"display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(109,40,217,.12));border:1.5px solid rgba(139,92,246,.45);border-radius:16px;padding:16px;text-decoration:none;margin-bottom:14px;\"><div style=\"width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;\">💊</div><div style=\"flex:1;\"><div style=\"font-size:9px;font-weight:700;color:rgba(139,92,246,.9);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;\">My Online Store</div><div style=\"font-size:14px;font-weight:800;color:#fff;\">Shop Supplements</div><div style=\"font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;\">Practitioner-grade via Fullscript</div></div><div style=\"background:rgba(139,92,246,.35);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;\">Shop →</div></a>' +
-  [{"icon":'💊',"n":'Supplement Consulting',d:'Evidence-based protocols tailored to your bloodwork, goals, and lifestyle.',c:'#8B5CF6',p:'From $99/session'},{icon:'🥩',n:'Nutrition Programming',d:'Animal-based whole food meal plans built around your macros and lifestyle.',c:'#D97706',p:'From $149/month'},{icon:'🏋️',n:'Strength Coaching',d:'Personalized progressive overload programs with mobility and HIIT.',c:'#F97316',p:'From $149/month'},{icon:'🩸',n:'Bloodwork Review',d:'PharmD-level full panel interpretation — optimize D3, hormones, thyroid, metabolic markers.',c:'#0EA5E9',p:'From $75/review'},{icon:'🏡',n:'Coastal Real Estate',d:'Coastal homes in SW Florida. I find you the lifestyle, not just the house.',c:'#2DD4BF',p:'eXp Realty'},{icon:'📱',n:'App Coaching',d:'Full app access with weekly check-ins, custom programming, and direct messaging.',c:'#10B981',p:'$49–$149/month'}].map(s=>`<div style="background:rgba(255,255,255,.04);border:1px solid ${s.c}20;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:12px;background:${s.c}18;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><div style="font-size:13px;font-weight:700;color:#fff;">${s.n}</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:${s.c};font-weight:700;flex-shrink:0;margin-left:8px;">${s.p}</div></div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">${s.d}</div></div></div>`).join('');
+  return '<a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style=\"display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(109,40,217,.12));border:1.5px solid rgba(139,92,246,.45);border-radius:16px;padding:16px;text-decoration:none;margin-bottom:14px;\"><div style=\"width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;\"></div><div style=\"flex:1;\"><div style=\"font-size:9px;font-weight:700;color:rgba(139,92,246,.9);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;\">My Online Store</div><div style=\"font-size:14px;font-weight:800;color:#fff;\">Shop Supplements</div><div style=\"font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;\">Practitioner-grade via Fullscript</div></div><div style=\"background:rgba(139,92,246,.35);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;\">Shop </div></a>' +
+  [{"icon":'',"n":'Supplement Consulting',d:'Evidence-based protocols tailored to your bloodwork, goals, and lifestyle.',c:'#8B5CF6',p:'From $99/session'},{icon:'',n:'Nutrition Programming',d:'Animal-based whole food meal plans built around your macros and lifestyle.',c:'#D97706',p:'From $149/month'},{icon:'',n:'Strength Coaching',d:'Personalized progressive overload programs with mobility and HIIT.',c:'#F97316',p:'From $149/month'},{icon:'',n:'Bloodwork Review',d:'PharmD-level full panel interpretation  optimize D3, hormones, thyroid, metabolic markers.',c:'#0EA5E9',p:'From $75/review'},{icon:'',n:'Coastal Real Estate',d:'Coastal homes in SW Florida. I find you the lifestyle, not just the house.',c:'#2DD4BF',p:'eXp Realty'},{icon:'',n:'App Coaching',d:'Full app access with weekly check-ins, custom programming, and direct messaging.',c:'#10B981',p:'$49$149/month'}].map(s=>`<div style="background:rgba(255,255,255,.04);border:1px solid ${s.c}20;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:12px;background:${s.c}18;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${s.icon}</div><div style="flex:1;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><div style="font-size:13px;font-weight:700;color:#fff;">${s.n}</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:${s.c};font-weight:700;flex-shrink:0;margin-left:8px;">${s.p}</div></div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">${s.d}</div></div></div>`).join('');
 }
 function renderCoachReviews(){
   return `<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:16px;align-items:center;">
-    <div style="text-align:center;flex-shrink:0;"><div style="font-family:'DM Mono',monospace;font-size:36px;font-weight:800;color:#F59E0B;line-height:1;">4.9</div><div style="font-size:14px;letter-spacing:1px;margin-top:2px;">⭐⭐⭐⭐⭐</div><div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:3px;">Average Rating</div></div>
+    <div style="text-align:center;flex-shrink:0;"><div style="font-family:'DM Mono',monospace;font-size:36px;font-weight:800;color:#F59E0B;line-height:1;">4.9</div><div style="font-size:14px;letter-spacing:1px;margin-top:2px;"></div><div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:3px;">Average Rating</div></div>
     <div style="flex:1;">${[[5,'92%'],[4,'6%'],[3,'2%']].map(([n,w])=>`<div style="display:flex;gap:6px;align-items:center;margin-bottom:5px;"><span style="font-size:9px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace;width:8px;">${n}</span><div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;"><div style="height:100%;width:${w};background:#F59E0B;border-radius:3px;"></div></div></div>`).join('')}</div>
   </div>`+
-  [{n:'Sarah M.',r:'Lost 22 lbs in 90 days',t:'She reviewed my bloodwork, fixed my supplement stack, and designed a meal plan I actually love. My D3 was at 18 — now it's 72. Game changer.',l:'Tampa, FL'},{n:'James R.',r:'Gained 8 lbs lean muscle',t:'The combination of PharmD knowledge and personal training expertise is unreal. No one else gives you this level of detail.',l:'St. Pete, FL'},{n:'Maria L.',r:'Off 2 prescriptions in 6 months',t:'I came for weight loss and left with my health back. Her whole-person approach changed my life.',l:'Clearwater, FL'}].map(t=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-size:12px;font-weight:700;color:#fff;">${t.n}</div><div style="font-size:9px;color:rgba(255,255,255,.3);">${t.l}</div></div><div style="background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.35);border-radius:20px;padding:3px 10px;font-size:9px;color:#10B981;font-weight:700;">${t.r}</div></div><div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;font-style:italic;">"${t.t}"</div><div style="font-size:12px;margin-top:8px;letter-spacing:1px;">⭐⭐⭐⭐⭐</div></div>`).join('');
+  [{n:'Sarah M.',r:'Lost 22 lbs in 90 days',t:'She reviewed my bloodwork, fixed my supplement stack, and designed a meal plan I actually love. My D3 was at 18  now it's 72. Game changer.',l:'Tampa, FL'},{n:'James R.',r:'Gained 8 lbs lean muscle',t:'The combination of PharmD knowledge and personal training expertise is unreal. No one else gives you this level of detail.',l:'St. Pete, FL'},{n:'Maria L.',r:'Off 2 prescriptions in 6 months',t:'I came for weight loss and left with my health back. Her whole-person approach changed my life.',l:'Clearwater, FL'}].map(t=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-size:12px;font-weight:700;color:#fff;">${t.n}</div><div style="font-size:9px;color:rgba(255,255,255,.3);">${t.l}</div></div><div style="background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.35);border-radius:20px;padding:3px 10px;font-size:9px;color:#10B981;font-weight:700;">${t.r}</div></div><div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;font-style:italic;">"${t.t}"</div><div style="font-size:12px;margin-top:8px;letter-spacing:1px;"></div></div>`).join('');
 }
 
 
-// ── SIGNUP ───────────────────────────────────────────────────────
+// - SIGNUP -
 let suSelectedGoal = '';
 let suSelectedPlan = '';
 
@@ -956,7 +956,7 @@ function showSignup() {
   document.getElementById('su-success').style.display = 'none';
   document.getElementById('su-progress').style.width = '33%';
   document.getElementById('su-title').textContent = 'Create Your Account';
-  document.getElementById('su-subtitle').textContent = 'Step 1 of 3 — Your Details';
+  document.getElementById('su-subtitle').textContent = 'Step 1 of 3  Your Details';
 }
 
 function showSplash() {
@@ -977,7 +977,7 @@ function suStep2() {
   document.getElementById('su-step2').style.display = 'block';
   document.getElementById('su-progress').style.width = '66%';
   document.getElementById('su-title').textContent = 'Set Your Goals';
-  document.getElementById('su-subtitle').textContent = 'Step 2 of 3 — What brings you here?';
+  document.getElementById('su-subtitle').textContent = 'Step 2 of 3  What brings you here?';
 }
 
 function suStep3() {
@@ -985,7 +985,7 @@ function suStep3() {
   document.getElementById('su-step3').style.display = 'block';
   document.getElementById('su-progress').style.width = '100%';
   document.getElementById('su-title').textContent = 'Choose Your Plan';
-  document.getElementById('su-subtitle').textContent = 'Step 3 of 3 — Coaching level';
+  document.getElementById('su-subtitle').textContent = 'Step 3 of 3  Coaching level';
 }
 
 function selectGoal(el) {
@@ -1047,14 +1047,14 @@ async function submitSignup() {
     document.getElementById('su-subtitle').textContent = 'Account created successfully';
   } catch(err) {
     console.error(err);
-    errEl.textContent = 'Could not save — check your internet connection and try again.';
+    errEl.textContent = 'Could not save  check your internet connection and try again.';
     errEl.style.display = 'block';
-    btn.textContent = 'Start My Journey 🌊';
+    btn.textContent = 'Start My Journey ';
     btn.disabled = false;
   }
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
 try {
   renderScreen('home');
   console.log('App loaded successfully');

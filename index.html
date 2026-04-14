@@ -18,6 +18,8 @@ html,body{height:100%;background:#EAF5FA;font-family:'Outfit',sans-serif;overflo
 .hidden{display:none!important;}
 .scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none;}
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+button, [onclick], .nav-btn { cursor: pointer; touch-action: manipulation; }
 button{cursor:pointer;-webkit-tap-highlight-color:rgba(45,212,191,0.2);}
 [onclick]{cursor:pointer;}
 /* ── Typography ── */
@@ -55,6 +57,8 @@ button{cursor:pointer;-webkit-tap-highlight-color:rgba(45,212,191,0.2);}
 /* ── Section scroll area ── */
 .screen-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 18px 28px;}
 .screen-content::-webkit-scrollbar{display:none;}
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+button, [onclick], .nav-btn { cursor: pointer; touch-action: manipulation; }
 button{cursor:pointer;-webkit-tap-highlight-color:rgba(45,212,191,0.2);}
 [onclick]{cursor:pointer;}
 /* ── Inner tabs ── */
@@ -178,14 +182,14 @@ function saveClient(data) {
       <div class="feature-pill" style="margin-bottom:0;"><div class="feature-icon" style="background:rgba(45,212,191,.12);">🌊</div><div class="feature-text">Southwest Florida Coastal Living</div></div>
     </div>
     <div style="width:100%;display:flex;flex-direction:column;gap:9px;">
-      <button class="btn-primary" onclick="showSignup()">Start My Wellness Journey 🌊</button>
-      <button class="btn-outline" onclick="showSignup()">Sign In</button>
+      <a href="javascript:void(0)" onclick="showSignup()" style="display:block;width:100%;padding:14px;border-radius:16px;background:linear-gradient(135deg,#2DD4BF,#0891B2);color:#fff;font-weight:800;font-size:14px;text-align:center;text-decoration:none;font-family:'Outfit',sans-serif;letter-spacing:.5px;box-sizing:border-box;">Start My Wellness Journey 🌊</a>
+      <a href="javascript:void(0)" onclick="showSignup()" style="display:block;width:100%;padding:13px;border-radius:16px;border:1.5px solid #2DD4BF;color:#1E7A8C;font-weight:700;font-size:13px;text-align:center;text-decoration:none;font-family:'Outfit',sans-serif;box-sizing:border-box;">Sign In</a>
       <a href="https://us.fullscript.com/welcome/klamoncha" target="_blank" style="display:flex;gap:10px;align-items:center;justify-content:center;background:linear-gradient(135deg,#8B5CF620,#6D28D912);border:1.5px solid #8B5CF640;border-radius:16px;padding:13px 16px;text-decoration:none;">
         <span style="font-size:20px;">💊</span>
         <div><div style="font-size:13px;font-weight:800;color:#0F3D52;">Shop My Supplement Store</div><div style="font-size:10px;color:#5B9BB5;margin-top:1px;">Practitioner-grade · Fullscript</div></div>
         <span style="margin-left:auto;font-size:11px;font-weight:700;color:#8B5CF6;">Shop →</span>
       </a>
-      <button onclick="showCoach()" style="background:none;border:none;color:#5B9BB5;font-size:11px;cursor:pointer;font-family:'Outfit',sans-serif;text-align:center;padding:4px;">Meet Coach Kristi →</button>
+      <a href="javascript:void(0)" onclick="showCoach()" style="color:#5B9BB5;font-size:11px;text-align:center;padding:4px;display:block;text-decoration:none;font-family:'Outfit',sans-serif;">Meet Coach Kristi →</a>
     </div>
   </div>
 </div>
@@ -304,7 +308,7 @@ function saveClient(data) {
     <button class="coach-btn" onclick="showCoach()"><img src="data:image/jpeg;base64,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" alt="Kristi"/></button>
   </div>
   <div id="screen-host" style="flex:1;display:flex;flex-direction:column;overflow:hidden;"></div>
-  <nav id="bottom-nav">
+  <nav id="bottom-nav" onclick="">
     <button class="nav-btn active" data-screen="home" onclick="switchTab(this,'home','#2DD4BF')">
       <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
     </button>

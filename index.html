@@ -1,0 +1,473 @@
+import { useState, useEffect } from "react"; // â”€â”€ FONTS (loaded once at root) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ const HEADSHOT = "data:image/jpeg;base64,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"; const FONTS = "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Outfit:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"; // â”€â”€ SHARED HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ function Sparkline({ data, color, height = 40, width = 100 }) { if (!data || data.length < 2) return null; const min = Math.min(...data), max = Math.max(...data), range = max - min || 1; const pts = data.map((v, i) => [ (i / (data.length - 1)) * width, height - ((v - min) / range) * (height - 8) - 4, ]); const line = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" "); const area = `${line} L${width},${height} L0,${height} Z`; const gid = `sg${color.replace(/[^a-z0-9]/gi, "")}${height}`; return ( ); } function Ring({ pct, color, size = 64, stroke = 6, label, value }) { const r = (size - stroke) / 2, circ = 2 * Math.PI * r; return (
+{value}
+{label}
+); } // â”€â”€ DATA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ const weightData = [148.2, 147.8, 147.1, 146.9, 146.4, 145.8, 145.5, 145.1, 144.8, 144.3, 143.9, 143.5]; const recipes = [ // â”€â”€ BREAKFAST â”€â”€ { id: 1, name: "Grass-Fed Ribeye & Eggs", cat: "Breakfast", emoji: "ðŸ¥©", time: "20 min", cal: 680, pro: 58, fat: 48, carbs: 2, color: "#D97706", steps: ["Let steak rest 30 min at room temp", "Season generously with salt & pepper", "Sear in butter 3â€“4 min each side", "Rest 5 min, cook eggs in drippings"] }, { id: 2, name: "Protein Banana Pancakes", cat: "Breakfast", emoji: "ðŸ¥ž", time: "15 min", cal: 420, pro: 38, fat: 14, carbs: 32, color: "#F59E0B", steps: ["Mash 1 ripe banana with 3 eggs until smooth", "Add 2 scoops vanilla protein powder & pinch of cinnamon", "Cook small rounds in butter over medium-low heat, 2â€“3 min per side", "Top with raw honey, sliced banana & a pat of grass-fed butter"] }, { id: 3, name: "Bone Broth Hot Chocolate", cat: "Breakfast", emoji: "ðŸ«", time: "8 min", cal: 210, pro: 18, fat: 10, carbs: 14, color: "#92400E", steps: ["Heat 12oz quality bone broth over medium heat â€” do not boil", "Whisk in 1 tbsp raw cacao powder & 1 tbsp raw honey", "Add 1 tbsp grass-fed butter or coconut cream for richness", "Froth with milk frother & finish with a pinch of sea salt & cinnamon"] }, // â”€â”€ LUNCH â”€â”€ { id: 4, name: "Hot Honey Cottage Cheese Beef Bowl", cat: "Lunch", emoji: "ðŸ¯", time: "20 min", cal: 580, pro: 52, fat: 24, carbs: 28, color: "#EF4444", steps: ["Brown 5oz ground beef 93/7 with garlic, salt & smoked paprika", "Roast sweet potato cubes at 425Â°F until caramelized, 20 min", "Plate beef over sweet potato with Â½ cup 2% cottage cheese", "Drizzle generously with hot honey & top with microgreens"] }, { id: 5, name: "Salmon Arugula Salad", cat: "Lunch", emoji: "ðŸŸ", time: "20 min", cal: 490, pro: 42, fat: 30, carbs: 8, color: "#0891B2", steps: ["Season wild salmon fillet with salt, lemon zest & dill", "Pan-sear in avocado oil 4 min skin-side, flip 2 min", "Toss arugula & microgreens with olive oil, lemon juice & sea salt", "Plate salad, top with flaked salmon, sliced avocado & capers"] }, { id: 6, name: "Beef Liver & Bacon", cat: "Lunch", emoji: "ðŸ«€", time: "15 min", cal: 390, pro: 42, fat: 22, carbs: 6, color: "#7C3AED", steps: ["Cook bacon until crispy, reserve fat in pan", "SautÃ© sliced onion in bacon fat until golden", "Add liver slices, cook 2â€“3 min per side â€” don't overcook", "Top with crispy bacon, caramelized onion & fresh thyme"] }, // â”€â”€ DINNER â”€â”€ { id: 7, name: "Sweet Potato Burger Bowl", cat: "Dinner", emoji: "ðŸ”", time: "30 min", cal: 620, pro: 48, fat: 28, carbs: 36, color: "#F97316", steps: ["Roast diced sweet potato in tallow at 425Â°F for 25 min", "Form 6oz grass-fed ground beef into loose crumbles, season well", "Cook beef in cast iron until browned & slightly crispy", "Bowl: sweet potato base, beef, avocado, arugula & hot honey drizzle"] }, { id: 8, name: "Meat & Honey Skillet", cat: "Dinner", emoji: "ðŸ–", time: "25 min", cal: 640, pro: 50, fat: 36, carbs: 20, color: "#B45309", steps: ["Sear 6oz grass-fed skirt steak in cast iron with butter & garlic", "Remove steak, deglaze pan with 2 tbsp raw honey & pinch of chili flakes", "Add sliced sweet potato & cook in honey glaze until tender", "Slice steak thin, plate over potatoes, drizzle with honey pan sauce"] }, { id: 9, name: "Lamb Chops & Tallow", cat: "Dinner", emoji: "ðŸ¥©", time: "35 min", cal: 760, pro: 52, fat: 58, carbs: 8, color: "#059669", steps: ["Render beef tallow in cast iron over high heat", "Season lamb chops generously with salt, rosemary & garlic", "Sear 4 min per side for medium-rare", "Rest 5 min before serving with roasted root vegetables"] }, { id: 10, name: "Oysters & Beef Tartare", cat: "Dinner", emoji: "ðŸ¦ª", time: "20 min", cal: 340, pro: 35, fat: 18, carbs: 8, color: "#0E7490", steps: ["Shuck fresh oysters & arrange on crushed ice with lemon wedges", "Finely hand-chop chilled grass-fed beef tenderloin", "Mix with egg yolk, Dijon mustard, capers, shallot & sea salt", "Plate tartare alongside oysters â€” serve immediately"] }, { id: 13, name: "Carnivore Pizza", cat: "Dinner", emoji: "ðŸ•", time: "35 min", cal: 820, pro: 72, fat: 58, carbs: 2, color: "#DC2626", steps: [ "Crust: Mix 1 lb ground beef 80/20 with 1 egg & 1 tsp salt â€” press thin onto parchment-lined pan", "Pre-bake crust at 400Â°F for 15 min, drain any fat, pat dry with paper towel", "Top with marinara (or skip for strict carnivore), shredded mozzarella, pepperoni, crumbled bacon & Italian sausage", "Bake another 10â€“12 min until cheese is bubbly & golden â€” slice & serve hot" ]}, { id: 14, name: "Cottage Cheese Crust Pizza", cat: "Dinner", emoji: "ðŸ§€", time: "40 min", cal: 560, pro: 58, fat: 26, carbs: 18, color: "#F59E0B", steps: [ "Crust: Blend 1.5 cups 2% cottage cheese + 1.5 cups shredded mozzarella + 2 eggs until combined", "Spread mixture thin on parchment-lined baking sheet (about Â¼ inch thick)", "Bake crust at 375Â°F for 25â€“28 min until golden & firm â€” let cool 5 min before topping", "Add marinara, mozzarella, your choice of toppings & broil 3â€“4 min until melted & bubbling" ]}, // â”€â”€ SNACKS & DRINKS â”€â”€ { id: 11, name: "Raw Honey & Colostrum Shake", cat: "Snack", emoji: "ðŸ¥›", time: "5 min", cal: 280, pro: 22, fat: 8, carbs: 28, color: "#6D28D9", steps: ["Add 1 scoop colostrum powder to blender with 8oz whole milk", "Add 1 tbsp raw honey, 1 egg yolk & pinch of sea salt", "Blend 20 seconds until frothy", "Serve over ice â€” optionally add vanilla extract"] }, { id: 12, name: "Honey Butter Banana Bites", cat: "Snack", emoji: "ðŸŒ", time: "5 min", cal: 220, pro: 4, fat: 12, carbs: 28, color: "#D97706", steps: ["Slice banana into rounds", "Melt 1 tbsp grass-fed butter in pan over medium heat", "Pan-fry banana slices 1â€“2 min per side until golden", "Drizzle with raw honey & a pinch of flaky sea salt"] }, ]; const supplements = [ { id: 1, name: "Vitamin D3 + K2", dose: "5,000 IU D3 Â· 100mcg K2", time: "Morning", icon: "â˜€ï¸", color: "#F59E0B", taken: true, note: "Take with fat. K2 (MK-7) directs calcium to bones not arteries." }, { id: 2, name: "Omega-3 Fish Oil", dose: "2â€“3g EPA+DHA", time: "Morning", icon: "ðŸŸ", color: "#0EA5E9", taken: true, note: "Triglyceride form absorbs 70% better. Choose wild sardine-based." }, { id: 3, name: "Magnesium Glycinate", dose: "400mg elemental", time: "Evening", icon: "ðŸŒ™", color: "#8B5CF6", taken: false, note: "Glycinate crosses blood-brain barrier. Avoid oxide form." }, { id: 4, name: "Essential Amino Acids", dose: "10â€“15g EAAs", time: "Pre-Workout", icon: "ðŸ’ª", color: "#10B981", taken: false, note: "Superior to BCAAs. Leucine-forward ratio triggers mTOR." }, { id: 5, name: "Collagen Peptides", dose: "15â€“20g", time: "Morning", icon: "ðŸ’§", color: "#06B6D4", taken: true, note: "Always pair with Vitamin C for proper collagen synthesis." }, { id: 6, name: "Creatine Monohydrate", dose: "5g daily", time: "Post-Workout", icon: "âš¡", color: "#F97316", taken: false, note: "Most studied supplement. No loading needed. Stay hydrated." }, { id: 7, name: "Zinc + Copper", dose: "30mg Zn Â· 2mg Cu", time: "Evening", icon: "ðŸ¦ª", color: "#EC4899", taken: false, note: "Always pair â€” zinc depletes copper. Oysters provide perfect ratio." }, { id: 8, name: "Methylated B-Complex", dose: "Active forms", time: "Morning", icon: "ðŸ§¬", color: "#84CC16", taken: true, note: "40% can't convert folic acid. Methylated forms bypass MTHFR." }, ]; const workouts = [ { id: 1, name: "Coastal Strength", tag: "Upper Push Â· Pull", emoji: "ðŸ‹ï¸", duration: "55 min", level: "Moderate-Heavy", color: "#F97316", exercises: [{ name: "Barbell Bench Press", sets: "4Ã—6", rest: "3 min" }, { name: "Bent-Over Barbell Row", sets: "4Ã—6", rest: "3 min" }, { name: "Overhead Press", sets: "3Ã—8", rest: "2 min" }, { name: "Face Pulls", sets: "3Ã—15", rest: "90s" }, { name: "Tricep Dips", sets: "3Ã—10", rest: "90s" }] }, { id: 2, name: "Ocean HIIT", tag: "Metabolic Conditioning", emoji: "ðŸŒŠ", duration: "35 min", level: "High Intensity", color: "#0891B2", exercises: [{ name: "Kettlebell Swings", sets: "5Ã—20", rest: "60s" }, { name: "Box Jumps", sets: "5Ã—8", rest: "90s" }, { name: "Battle Ropes", sets: "5Ã—30s", rest: "60s" }, { name: "Burpees", sets: "4Ã—10", rest: "60s" }] }, { id: 3, name: "Surf Mobility Flow", tag: "Flexibility Â· Balance", emoji: "ðŸ„", duration: "40 min", level: "Active Recovery", color: "#2DD4BF", exercises: [{ name: "Hip Circles", sets: "2Ã—20 each", rest: "30s" }, { name: "Thoracic Rotations", sets: "3Ã—10 each", rest: "30s" }, { name: "Single-Leg RDL", sets: "3Ã—12", rest: "60s" }, { name: "Turkish Get-Up", sets: "3Ã—3 each", rest: "90s" }] }, ]; const coachServices = [ { icon: "ðŸ’Š", name: "Supplement Consulting", desc: "Evidence-based protocols tailored to your bloodwork, goals, and lifestyle. Pharmaceutical-grade precision.", color: "#8B5CF6", price: "From $99/session" }, { icon: "ðŸ¥©", name: "Nutrition Programming", desc: "Animal-based whole food meal plans. Macros, meal timing, and ancestral nutrition principles built around real food.", color: "#D97706", price: "From $149/month" }, { icon: "ðŸ‹ï¸", name: "Strength Coaching", desc: "Personalized progressive overload programs with mobility work, HIIT programming, and recovery optimization.", color: "#F97316", price: "From $149/month" }, { icon: "ðŸ©¸", name: "Bloodwork Review", desc: "Full panel interpretation with PharmD-level analysis. Optimize D3, hormones, thyroid, metabolic markers.", color: "#0EA5E9", price: "From $75/review" }, { icon: "ðŸ¡", name: "Coastal Real Estate", desc: "Buying or selling coastal property in Tampa Bay. I find you the lifestyle, not just the house.", color: "#2DD4BF", price: "eXp Realty" }, { icon: "ðŸ“±", name: "App Coaching", desc: "Full access with weekly check-ins, custom programming, and direct messaging. Real coaching, real results.", color: "#10B981", price: "$49â€“$149/month" }, ]; const testimonials = [ { name: "Sarah M.", result: "Lost 22 lbs in 90 days", text: "She reviewed my bloodwork, fixed my supplement stack, and designed a meal plan I actually love. My D3 was at 18 â€” now it's 72. Game changer.", loc: "Tampa, FL" }, { name: "James R.", result: "Gained 8 lbs lean muscle", text: "The combination of PharmD knowledge and personal training expertise is unreal. No one else gives you this level of detail.", loc: "St. Pete, FL" }, { name: "Maria L.", result: "Off 2 prescriptions in 6 months", text: "I came for weight loss and left with my health back. Her whole-person approach changed my life.", loc: "Clearwater, FL" }, ]; // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: SPLASH â€” Lamoncha Living // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenSplash({ onNext }) { const [vis, setVis] = useState(false); useEffect(() => { setTimeout(() => setVis(true), 100); }, []); const features = [ { icon: "ðŸ’Š", label: "Holistic PharmD Care â€” Natural First", color: "#8B5CF6" }, { icon: "ðŸ¥©", label: "Animal-Based & Whole Food Nutrition", color: "#D97706" }, { icon: "ðŸ‹ï¸", label: "Strength Training & Beach Volleyball", color: "#F97316" }, { icon: "ðŸŒŠ", label: "Southwest Florida Coastal Living", color: "#2DD4BF" }, ]; return (
+{/* Ambient background glow */}
+{/* Logo + Hero */}
+{/* Photo + name lockup */}
+
+ðŸŒŠ
+Welcome to
+Lamoncha
+Living
+with Coach Kristi Lamoncha
+{["PharmD", "CPT", "Nutrition Coach", "Realtor"].map(tag => (
+{tag}
+))}
+{/* Feature pills */}
+Your journey starts here
+{features.map((f, i) => (
+{f.icon}
+{f.label}
+))}
+{/* CTAs */}
+onNext("signup")} style={{ width: "100%", padding: "15px", borderRadius: 16, border: "none", background: "linear-gradient(135deg,#2DD4BF,#0891B2)", color: "#000", fontWeight: 800, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 14, letterSpacing: 0.5 }}> Start My Wellness Journey ðŸŒŠ onNext("main")} style={{ width: "100%", padding: "13px", borderRadius: 16, border: "1px solid rgba(15,100,140,0.14)", background: "transparent", color: "rgba(15,60,82,0.6)", fontWeight: 700, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 13 }}> Sign In onNext("coach")} style={{ background: "none", border: "none", color: "rgba(15,60,82,0.4)", fontSize: 11, cursor: "pointer", fontFamily: "'Outfit',sans-serif", marginTop: 2 }}> Meet Coach Kristi â†’ ðŸ’Š
+Shop My Supplement Store
+Practitioner-grade Â· Fullscript
+Shop â†’
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: SIGN UP (3-step flow) // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenSignUp({ onBack, onNext }) { const [step, setStep] = useState(0); const [vis, setVis] = useState(true); const [form, setForm] = useState({ name: "", email: "", password: "", goal: "", level: "", plan: "" }); const advance = (to) => { setVis(false); setTimeout(() => { setStep(to); setVis(true); }, 160); }; const goals = [ { id: "fat_loss", label: "Fat Loss", sub: "Lose body fat, preserve muscle", icon: "ðŸ”¥" }, { id: "muscle", label: "Build Muscle", sub: "Gain strength & lean mass", icon: "ðŸ’ª" }, { id: "performance", label: "Performance", sub: "Athletic conditioning & endurance", icon: "âš¡" }, { id: "wellness", label: "Longevity", sub: "Optimize health & biomarkers", icon: "ðŸŒ¿" }, ]; const levels = [ { id: "beginner", label: "New to this", sub: "< 1 year training" }, { id: "intermediate", label: "Some experience", sub: "1â€“3 years training" }, { id: "advanced", label: "Well-trained", sub: "3+ years, consistent" }, ]; const plans = [ { id: "essential", label: "Essential", price: "Free", color: "#2DD4BF", perks: ["Nutrition logging", "Workout library", "Basic supplement guide", "Progress tracking"] }, { id: "coaching", label: "Coaching+", price: "$49/mo", color: "#F97316", badge: "Most Popular", perks: ["Everything in Essential", "Weekly check-in calls", "Custom meal plans", "PharmD bloodwork review", "Priority messaging"] }, { id: "elite", label: "Elite 1:1", price: "$149/mo", color: "#8B5CF6", perks: ["Everything in Coaching+", "Daily coaching access", "Custom supplement protocols", "Lab panel included", "In-person option (Tampa FL)"] }, ]; const titles = ["Create Account", "Set Your Goals", "Choose Your Plan"]; return (
+{/* Header */}
+0 ? () => advance(step - 1) : onBack} style={{ width: 32, height: 32, borderRadius: 10, background: "rgba(15,100,140,0.07)", border: "none", color: "rgba(15,60,82,0.6)", cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>â€¹
+{titles[step]}
+Step {step + 1} of 3
+
+{/* STEP 0: Account */} {step === 0 && (
+{[["Full Name", "name", "text", "Your name"], ["Email Address", "email", "email", "you@email.com"], ["Password", "password", "password", "Create a password"]].map(([label, key, type, ph]) => (
+{label}
+{form[key]} setForm(f => ({ ...f, [key]: e.target.value }))} placeholder={ph} type={type} style={{ width: "100%", background: "none", border: "none", outline: "none", color: "#0F3D52", fontFamily: "'Outfit',sans-serif", fontSize: 15, fontWeight: 600, padding: "6px 0 10px", boxSizing: "border-box" }} />
+))}
+âœ“
+I agree to the Terms of Service and Privacy Policy
+advance(1)} style={{ width: "100%", padding: "14px", borderRadius: 16, border: "none", background: "linear-gradient(135deg,#2DD4BF,#0891B2)", color: "#000", fontWeight: 800, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 14, marginTop: 4 }}>Continue â†’
+Or continue with
+{["ðŸŽ Apple", "G Google"].map(s => ( {s} ))}
+)} {/* STEP 1: Goals */} {step === 1 && (
+What's your primary goal?
+{goals.map(g => (
+setForm(f => ({ ...f, goal: g.id }))} style={{ background: form.goal === g.id ? "#2DD4BF14" : "#FFFFFF", border: `1.5px solid ${form.goal === g.id ? "#2DD4BF" : "rgba(15,100,140,0.08)"}`, borderRadius: 14, padding: "13px 15px", cursor: "pointer", display: "flex", gap: 12, alignItems: "center", transition: "all 0.2s ease" }}> {g.icon}
+{g.label}
+{g.sub}
+{form.goal === g.id &&
+âœ“
+}
+))}
+Training experience?
+{levels.map(l => (
+setForm(f => ({ ...f, level: l.id }))} style={{ background: form.level === l.id ? "#2DD4BF14" : "#FFFFFF", border: `1.5px solid ${form.level === l.id ? "#2DD4BF" : "rgba(15,100,140,0.08)"}`, borderRadius: 14, padding: "12px 15px", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", transition: "all 0.2s ease" }}>
+{l.label}
+{l.sub}
+{form.level === l.id &&
+âœ“
+}
+))} advance(2)} style={{ width: "100%", padding: "14px", borderRadius: 16, border: "none", background: "linear-gradient(135deg,#2DD4BF,#0891B2)", color: "#000", fontWeight: 800, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 14, marginTop: 6 }}>Continue â†’
+)} {/* STEP 2: Plans */} {step === 2 && (
+Choose your coaching level:
+{plans.map(p => (
+setForm(f => ({ ...f, plan: p.id }))} style={{ background: form.plan === p.id ? `${p.color}14` : "#FFFFFF", border: `1.5px solid ${form.plan === p.id ? p.color : "rgba(15,100,140,0.08)"}`, borderRadius: 16, padding: "15px", cursor: "pointer", position: "relative", transition: "all 0.25s ease" }}> {p.badge &&
+{p.badge}
+}
+{p.label}
+{p.price}
+{form.plan === p.id && "âœ“"}
+{p.perks.map((perk, i) => (
+âœ“
+{perk}
+))}
+))} onNext("main")} style={{ width: "100%", padding: "15px", borderRadius: 16, border: "none", background: "linear-gradient(135deg,#2DD4BF,#0891B2)", color: "#000", fontWeight: 800, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 14, marginTop: 4 }}> Start My Journey ðŸŒŠ
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: ABOUT COACH // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenAboutCoach({ onBack, onSignUp }) { const [tab, setTab] = useState(0); const [vis, setVis] = useState(false); useEffect(() => { setTimeout(() => setVis(true), 100); }, []); const creds = [ { icon: "ðŸŽ“", label: "PharmD", sub: "Doctor of Pharmacy", color: "#8B5CF6" }, { icon: "ðŸ’ª", label: "NASM-CPT", sub: "Certified Personal Trainer", color: "#F97316" }, { icon: "ðŸ¥—", label: "Nutrition Coach", sub: "Precision Nutrition L1", color: "#10B981" }, { icon: "ðŸ ", label: "Realtor", sub: "eXp Realty Â· Coastal", color: "#2DD4BF" }, ]; return (
+{/* Hero */}
+â€¹
+
+ðŸŒŠ
+Meet Your Coach
+Kristi Lamoncha
+PharmD Â· CPT Â· Nutrition Coach Â· Realtor
+{["â­ 4.9", "ðŸ‘¥ 200+ clients", "ðŸ“ SW Florida"].map(b => (
+{b}
+))}
+{/* Credential chips */}
+{creds.map(c => (
+{c.icon}
+{c.label}
+{c.sub}
+))}
+{/* Tabs */}
+{["About", "Services", "Reviews"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "10px 0", border: "none", background: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 11, fontWeight: 700, color: tab === i ? "#2DD4BF" : "rgba(15,100,140,0.08)", borderBottom: `2px solid ${tab === i ? "#2DD4BF" : "transparent"}`, transition: "all 0.2s ease", textTransform: "uppercase", letterSpacing: 0.5 }}>{t} ))}
+{/* Tab Content */}
+{tab === 0 && (
+{/* Story */}
+My Story
+Hi, I'm Kristi Lamoncha â€” a Doctor of Pharmacy who believes the most powerful medicine is the food on your plate, the weights you lift, and the life you build around your health. Originally from Youngstown, Ohio, I'm now living my dream in Southwest Florida ðŸŒ´
+As a pharmacist specializing in natural and holistic care, I watched too many patients leave with a bag full of pills when what they truly needed was real food, purposeful movement, and someone in their corner. That's why I became a certified personal trainer, nutrition coach, and eventually â€” a wellness coach.
+My passion is coaching and helping others achieve their dream wellness and fitness journey â€” supporting them every single step along the way. Whether you're just starting out or ready to level up, I meet you exactly where you are.
+{/* Passions */}
+What I Love
+{[ { icon: "ðŸ‹ï¸", label: "Strength Training" }, { icon: "ðŸ", label: "Beach Volleyball" }, { icon: "ðŸ¥©", label: "Animal-Based Nutrition" }, { icon: "ðŸŒŠ", label: "Coastal Living" }, { icon: "ðŸ’Š", label: "Holistic Pharmacy" }, { icon: "ðŸŒ¿", label: "Natural Wellness" }, { icon: "ðŸ¡", label: "SW Florida Life" }, { icon: "ðŸ§¡", label: "Coaching Others" }, ].map(p => (
+{p.icon} {p.label}
+))}
+{/* Stats */}
+{[ { val: "200+", label: "Clients Transformed", icon: "ðŸ‘¥", color: "#2DD4BF" }, { val: "PharmD", label: "Holistic Pharmacy", icon: "ðŸ’Š", color: "#8B5CF6" }, { val: "5 yrs", label: "Fitness Coaching", icon: "ðŸ‹ï¸", color: "#F97316" }, { val: "94%", label: "Client Retention", icon: "â­", color: "#F59E0B" }, ].map(s => (
+{s.icon}
+{s.val}
+{s.label}
+))}
+{/* Approach */}
+My Philosophy
+{[ { icon: "ðŸŒ¿", t: "Natural & Holistic First", b: "Conventional medicine has its place â€” but food, movement, and lifestyle are always the foundation" }, { icon: "ðŸ¥©", t: "Whole Food Nutrition", b: "Animal-based, nutrient-dense eating that works with your biology, not against it" }, { icon: "ðŸ’ª", t: "Fitness Is Medicine", b: "Strength training and active living are the most underrated prescriptions on the planet" }, { icon: "ðŸ§¡", t: "You're Never Alone", b: "I walk alongside every client â€” celebrating wins, troubleshooting setbacks, and cheering you on" }, ].map((a, i) => (
+{a.icon}
+{a.t}
+{a.b}
+))}
+{/* From Ohio to Florida */}
+ðŸ¡ Youngstown â†’ Southwest Florida
+From the heart of Ohio to the shores of Southwest Florida â€” I'm living proof that you can design a life around your wellness values. As a licensed Realtor with eXp Realty, I help health-minded clients find their own dream coastal home. ðŸŒ´
+)} {tab === 1 && (
+Everything I offer â€” in one place:
+ðŸ’Š
+My Online Store
+Shop Supplements
+Practitioner-grade via Fullscript
+Shop â†’
+{coachServices.map(s => (
+{s.icon}
+{s.name}
+{s.price}
+{s.desc}
+))}
+)} {tab === 2 && (
+4.9
+â­â­â­â­â­
+Average Rating
+{[{ n: 5, w: "92%" }, { n: 4, w: "6%" }, { n: 3, w: "2%" }].map(r => (
+{r.n}
+
+))}
+{testimonials.map((t, i) => (
+{t.name}
+{t.loc}
+{t.result}
+"{t.text}"
+â­â­â­â­â­
+))}
+)}
+{/* CTA */}
+Work With Coach Kristi ðŸŒŠ
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: HOME DASHBOARD // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenHome({ accent }) { const days = ["M", "T", "W", "T", "F", "S", "S"]; const done = [true, true, true, false, true, true, false]; return (
+{/* Hero */}
+ðŸŒŠ
+Good morning,
+Lamoncha Living
+Day 57 of 84 Â· 7-day streak ðŸ”¥
+{/* Stats row */}
+{[{ label: "Calories", value: "1,842", sub: "/2,200", icon: "ðŸ”¥" }, { label: "Water", value: "56", sub: "/80oz", icon: "ðŸ’§" }, { label: "Steps", value: "8,430", sub: "/10k", icon: "ðŸ‘Ÿ" }].map(s => (
+{s.icon}
+{s.value}
+{s.sub}
+))}
+{/* Weight sparkline */}
+Weight Trend âˆ’4.7 lbs
+148.2 143.5 lbs
+{/* Macros */}
+Today's Macros
+{[{ label: "Protein", val: 148, max: 180, color: "#10B981" }, { label: "Carbs", val: 82, max: 150, color: "#F59E0B" }, { label: "Fat", val: 96, max: 120, color: "#F97316" }].map(m => (
+{m.label} {m.val}g / {m.max}g
+
+))}
+{/* Weekly calendar */}
+This Week
+{days.map((d, i) => (
+{d}
+{done[i] ? "âœ“" : ""}
+))}
+{/* PharmD tip */}
+ðŸ’Š
+Pharmacist's Daily Tip
+Take your D3 with your fattiest meal â€” fat-soluble vitamins absorb up to 32% better with dietary fat. Never skip the K2 co-factor.
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: WORKOUT // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenWorkout({ accent }) { const [tab, setTab] = useState(0); const [selected, setSelected] = useState(null); const [done, setDone] = useState({}); const tips = [ { icon: "ðŸ“ˆ", t: "Progressive Overload", b: "Add 2.5â€“5 lbs or 1 rep each week. Track every set â€” what gets measured gets improved." }, { icon: "ðŸ˜´", t: "Sleep = Gains", b: "Growth hormone peaks during deep sleep. 7â€“9 hours isn't optional â€” it's your most anabolic window." }, { icon: "ðŸ¥©", t: "Protein Timing", b: "Hit 0.8â€“1g per lb of bodyweight. Pre & post-workout windows matter for muscle protein synthesis." }, { icon: "ðŸŒŠ", t: "Coastal Recovery", b: "Cold water exposure post-training reduces inflammation and speeds recovery. Even 10 min makes a difference." }, ]; return (
+{["Plans", "Detail", "Coaching"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "7px 0", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", background: tab === i ? accent : "rgba(15,100,140,0.08)", color: tab === i ? "#fff" : "#4A8FA8", transition: "all 0.2s ease" }}>{t} ))}
+{tab === 0 && (
+{workouts.map(w => (
+{ setSelected(w); setTab(1); }} style={{ background: "#FFFFFF", border: `1px solid ${w.color}22`, borderRadius: 14, padding: "14px 16px", cursor: "pointer" }}>
+{w.emoji}
+{w.name}
+{w.tag}
+{w.duration}
+{w.level}
+))}
+)} {tab === 1 && ( !selected ?
+â† Select a plan from Plans tab
+: (
+{selected.emoji}
+{selected.name}
+{selected.duration} Â· {selected.level}
+{selected.exercises.map((ex, i) => (
+setDone(d => ({ ...d, [`${selected.id}-${i}`]: !d[`${selected.id}-${i}`] }))} style={{ background: done[`${selected.id}-${i}`] ? `${selected.color}12` : "#FFFFFF", border: `1px solid ${done[`${selected.id}-${i}`] ? selected.color + "40" : "rgba(15,100,140,0.08)"}`, borderRadius: 12, padding: "12px 14px", marginBottom: 7, cursor: "pointer", display: "flex", alignItems: "center", gap: 12 }}>
+{done[`${selected.id}-${i}`] && âœ“}
+{ex.name}
+{ex.sets} Â· rest {ex.rest}
+))}
+) )} {tab === 2 && (
+Training philosophy & PharmD insights:
+{tips.map((tip, i) => (
+{tip.icon}
+{tip.t}
+{tip.b}
+))}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: NUTRITION // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenNutrition({ accent }) { const [tab, setTab] = useState(0); const [selected, setSelected] = useState(null); const [logged, setLogged] = useState([]); const [catFilter, setCatFilter] = useState("All"); const cats = ["All", "Breakfast", "Lunch", "Dinner", "Snack"]; const filteredRecipes = catFilter === "All" ? recipes : recipes.filter(r => r.cat === catFilter); const rxTips = [ { icon: "ðŸ¥©", t: "Animal Protein Priority", b: "Animal proteins have a complete amino acid profile and higher bioavailability (94%) vs plant proteins (60â€“80%). Prioritize red meat, fish, eggs, and organs." }, { icon: "ðŸ«€", t: "Organ Meats = Nature's Multivitamin", b: "Liver is the most nutrient-dense food on earth. 3oz of beef liver provides 700% RDI of B12, 50% copper, complete CoQ10 and folate." }, { icon: "ðŸŸ", t: "Omega-3 to Omega-6 Ratio", b: "Aim for a 1:4 ratio. Modern diets skew 1:20 causing systemic inflammation. Wild salmon, sardines, and pastured eggs shift this favorably." }, { icon: "ðŸ¯", t: "Raw Honey & Metabolic Health", b: "Raw honey (unlike refined sugar) contains enzymes, propolis, and antioxidants. Consumed post-workout it replenishes liver glycogen preferentially." }, ]; return (
+{["Log", "Recipes", "Rx Coach"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "7px 0", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", background: tab === i ? accent : "rgba(15,100,140,0.08)", color: tab === i ? "#fff" : "#4A8FA8", transition: "all 0.2s ease" }}>{t} ))}
+{tab === 0 && ( logged.length === 0 ? (
+ðŸ¥—
+No meals logged yet
+Add meals from the Recipes tab
+) : (
+Today's Totals
+{[{ label: "Cal", val: logged.reduce((s, r) => s + r.cal, 0), color: accent }, { label: "Pro", val: logged.reduce((s, r) => s + r.pro, 0) + "g", color: "#10B981" }, { label: "Fat", val: logged.reduce((s, r) => s + r.fat, 0) + "g", color: "#F97316" }].map(t => (
+{t.val}
+{t.label}
+))}
+{logged.map((r, i) => (
+{r.emoji}
+{r.name}
+{r.cal} kcal
+setLogged(l => l.filter((_, j) => j !== i))} style={{ background: "rgba(15,100,140,0.07)", border: "none", borderRadius: 8, padding: "4px 8px", color: "rgba(15,60,82,0.45)", cursor: "pointer", fontSize: 12 }}>âœ•
+))}
+) )} {tab === 1 && ( !selected ? (
+{/* Category filter chips */}
+{cats.map(c => ( setCatFilter(c)} style={{ flexShrink: 0, padding: "5px 12px", borderRadius: 20, border: `1px solid ${catFilter === c ? accent : "rgba(15,100,140,0.15)"}`, background: catFilter === c ? `${accent}22` : "#FFFFFF", color: catFilter === c ? accent : "#4A8FA8", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, cursor: "pointer", letterSpacing: 0.4, transition: "all 0.2s ease" }}>{c} ))}
+{filteredRecipes.map(r => (
+setSelected(r)} style={{ background: "#FFFFFF", border: `1px solid ${r.color}22`, borderRadius: 14, padding: "12px 14px", cursor: "pointer", display: "flex", gap: 12, alignItems: "center" }}>
+{r.emoji}
+{r.name}
+{r.cat} Â· {r.time}
+{r.cal}kcal
+))}
+) : (
+setSelected(null)} style={{ background: "rgba(15,100,140,0.07)", border: "none", borderRadius: 8, padding: "6px 12px", color: "#1E7A8C", cursor: "pointer", fontSize: 11, marginBottom: 12, fontFamily: "'Outfit',sans-serif" }}>â† Back
+{selected.emoji}
+{selected.name}
+{[{ l: "Cal", v: selected.cal }, { l: "Pro", v: selected.pro + "g" }, { l: "Fat", v: selected.fat + "g" }, { l: "Carbs", v: selected.carbs + "g" }].map(m => (
+{m.v}
+{m.l}
+))}
+{selected.steps.map((s, i) => (
+{i + 1}
+{s}
+))}
+{ setLogged(l => [...l, selected]); setSelected(null); setTab(0); }} style={{ width: "100%", padding: "13px", borderRadius: 13, border: "none", background: selected.color, color: "#000", fontWeight: 800, cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 13 }}> + Log This Meal
+) )} {tab === 2 && (
+PharmD nutrition principles:
+{rxTips.map((tip, i) => (
+{tip.icon}
+{tip.t}
+{tip.b}
+))}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: SUPPLEMENTS // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenSupplements({ accent }) { const [tab, setTab] = useState(0); const [taken, setTaken] = useState(() => { const i = {}; supplements.forEach(s => { i[s.id] = s.taken; }); return i; }); const [detail, setDetail] = useState(null); const blocks = [ { time: "Morning", icon: "ðŸŒ…", ids: [1, 2, 5, 8] }, { time: "Pre-Workout", icon: "ðŸ’ª", ids: [4] }, { time: "Post-Workout", icon: "âš¡", ids: [6] }, { time: "Evening", icon: "ðŸŒ™", ids: [3, 7] }, ]; const rxGuide = [ { icon: "ðŸ”¬", t: "Form Matters", b: "Magnesium oxide has only 4% absorption. Glycinate, malate, or threonate forms absorb 40â€“80%. The cheapest supplement is worthless if it doesn't absorb." }, { icon: "â°", t: "Timing is Pharmacology", b: "Fat-soluble vitamins (A, D, E, K) require fat for absorption. Water-soluble (B, C) are best taken with food. Magnesium is most effective at night." }, { icon: "ðŸ”—", t: "Cofactor Pairs", b: "D3 needs K2. Zinc depletes copper. Iron competes with calcium. Iron absorption requires Vitamin C. Isolated supplementation misses these critical interactions." }, { icon: "ðŸ§¬", t: "Bioindividuality", b: "MTHFR gene variants (40% of population) cannot process folic acid. Methylated folate (5-MTHF) bypasses this. Bloodwork is the only way to know what YOU need." }, ]; return (
+{["Schedule", "Library", "Rx Guide"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "7px 0", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", background: tab === i ? accent : "rgba(15,100,140,0.08)", color: tab === i ? "#fff" : "#4A8FA8", transition: "all 0.2s ease" }}>{t} ))}
+{tab === 0 &&
+ðŸ’Š
+Order from Coach Kristi's Store
+Practitioner-grade Â· Fullscript
+Shop â†’ } {tab === 0 && blocks.map(block => (
+{block.icon} {block.time}
+{block.ids.map(id => { const s = supplements.find(x => x.id === id); return (
+setTaken(t => ({ ...t, [id]: !t[id] }))} style={{ background: taken[id] ? `${s.color}14` : "#FFFFFF", border: `1px solid ${taken[id] ? s.color + "38" : "rgba(15,100,140,0.08)"}`, borderRadius: 12, padding: "10px 13px", marginBottom: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 10, transition: "all 0.2s ease" }}>
+{s.icon}
+{s.name}
+{s.dose}
+{taken[id] && "âœ“"}
+); })}
+))} {tab === 1 && ( !detail ? (
+{supplements.map(s => (
+setDetail(s)} style={{ background: "#FFFFFF", border: `1px solid ${s.color}18`, borderRadius: 12, padding: "12px 14px", cursor: "pointer", display: "flex", gap: 10, alignItems: "center" }}>
+{s.icon}
+{s.name}
+{s.dose}
+â€º
+))}
+) : (
+setDetail(null)} style={{ background: "rgba(15,100,140,0.07)", border: "none", borderRadius: 8, padding: "6px 12px", color: "#1E7A8C", cursor: "pointer", fontSize: 11, marginBottom: 12, fontFamily: "'Outfit',sans-serif" }}>â† Back
+{detail.icon}
+{detail.name}
+{detail.dose}
+{detail.note}
+) )} {tab === 2 && (
+PharmD supplement science:
+{rxGuide.map((tip, i) => (
+{tip.icon}
+{tip.t}
+{tip.b}
+))}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: PROGRESS // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenProgress({ accent }) { const [tab, setTab] = useState(0); const [anim, setAnim] = useState(false); useEffect(() => { setTimeout(() => setAnim(true), 200); }, []); const metrics = [ { label: "Weight", current: "143.5 lbs", change: "-4.7 lbs", pct: 0.79, color: accent }, { label: "Body Fat", current: "20.6%", change: "-3.6%", pct: 0.75, color: "#F97316" }, { label: "Muscle Mass", current: "111.8 lbs", change: "+3.6 lbs", pct: 0.88, color: "#10B981" }, ]; const wellness = [ { label: "Nutrition", val: 92, color: "#10B981" }, { label: "Sleep", val: 85, color: "#8B5CF6" }, { label: "Hydration", val: 88, color: "#38BDF8" }, { label: "Movement", val: 95, color: accent }, ]; const biomarkers = [ { name: "Vitamin D3", val: "68", unit: "ng/mL", status: "Optimal", color: "#F59E0B" }, { name: "Omega-3 Index", val: "8.2", unit: "%", status: "Optimal", color: "#0EA5E9" }, { name: "Fasting Insulin", val: "4.8", unit: "ÂµIU/mL", status: "Excellent", color: "#10B981" }, { name: "hs-CRP", val: "0.4", unit: "mg/L", status: "Excellent", color: "#10B981" }, { name: "Free Testosterone", val: "18.2", unit: "pg/mL", status: "Good", color: accent }, { name: "TSH", val: "1.8", unit: "mIU/L", status: "Optimal", color: "#F59E0B" }, ]; return (
+{["Body", "Wellness", "Biomarkers"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "7px 0", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 0.4, textTransform: "uppercase", background: tab === i ? accent : "rgba(15,100,140,0.08)", color: tab === i ? "#fff" : "#4A8FA8", transition: "all 0.2s ease" }}>{t} ))}
+{tab === 0 && (
+12-Week Weight âˆ’4.7 lbs
+{metrics.map(m => (
+{m.label}
+{m.current}
+{m.change}
+
+))} {/* Journey milestone */}
+Journey â€” Day 57 of 84
+
+Start 68% complete Day 84
+)} {tab === 1 && (
+Wellness Rings
+{wellness.map(w => )}
+{wellness.map(w => (
+{w.label} {w.val}%
+
+))}
+)} {tab === 2 && (
+Bloodwork panel â€” last drawn 2/15:
+{biomarkers.map(b => (
+{b.name}
+{b.unit}
+{b.val}
+{b.status}
+))}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: TDEE + MACRO CALCULATOR // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function ScreenCalculator({ accent }) { const [tab, setTab] = useState(0); // â”€â”€ TDEE STATE â”€â”€ const [tdee, setTdee] = useState({ age: "", weight: "", height: "", sex: "female", activity: "moderate" }); const [tdeeResult, setTdeeResult] = useState(null); // â”€â”€ MACRO STATE â”€â”€ const [macro, setMacro] = useState({ calories: "", goal: "fat_loss", style: "animal_based" }); const [macroResult, setMacroResult] = useState(null); const activityLevels = [ { id: "sedentary", label: "Sedentary", sub: "Little/no exercise", mult: 1.2 }, { id: "light", label: "Lightly Active", sub: "1â€“3 days/week", mult: 1.375 }, { id: "moderate", label: "Moderately Active",sub: "3â€“5 days/week", mult: 1.55 }, { id: "active", label: "Very Active", sub: "6â€“7 days/week", mult: 1.725 }, { id: "extra", label: "Athlete", sub: "2x/day or physical job", mult: 1.9 }, ]; const goalOptions = [ { id: "fat_loss", label: "Fat Loss", sub: "Lose body fat, preserve muscle", icon: "ðŸ”¥", mod: -500 }, { id: "maintain", label: "Maintenance", sub: "Stay at current weight", icon: "âš–ï¸", mod: 0 }, { id: "muscle", label: "Build Muscle", sub: "Lean bulk, gain mass", icon: "ðŸ’ª", mod: 300 }, ]; const styleOptions = [ { id: "animal_based", label: "Animal-Based", sub: "High protein & fat, lower carbs", icon: "ðŸ¥©" }, { id: "balanced", label: "Balanced", sub: "Standard macro split", icon: "âš–ï¸" }, { id: "low_carb", label: "Low Carb", sub: "Keto-adjacent approach", icon: "ðŸ¥‘" }, ]; const calcTDEE = () => { const { age, weight, height, sex, activity } = tdee; if (!age || !weight || !height) return; const a = parseFloat(age), w = parseFloat(weight), h = parseFloat(height); const mult = activityLevels.find(x => x.id === activity)?.mult || 1.55; // Mifflin-St Jeor in lbs/inches const wKg = w * 0.453592, hCm = h * 2.54; const bmr = sex === "female" ? (10 * wKg) + (6.25 * hCm) - (5 * a) - 161 : (10 * wKg) + (6.25 * hCm) - (5 * a) + 5; const total = Math.round(bmr * mult); setTdeeResult({ bmr: Math.round(bmr), tdee: total, fat_loss: total - 500, mild_loss: total - 250, maintain: total, lean_gain: total + 300, }); }; const calcMacros = () => { const cals = parseFloat(macro.calories); if (!cals || cals < 800) return; const goal = goalOptions.find(g => g.id === macro.goal); const targetCals = cals + (goal?.mod || 0); let protein, fat, carbs; if (macro.style === "animal_based") { protein = Math.round((targetCals * 0.38) / 4); fat = Math.round((targetCals * 0.42) / 9); carbs = Math.round((targetCals * 0.20) / 4); } else if (macro.style === "low_carb") { protein = Math.round((targetCals * 0.35) / 4); fat = Math.round((targetCals * 0.55) / 9); carbs = Math.round((targetCals * 0.10) / 4); } else { protein = Math.round((targetCals * 0.30) / 4); fat = Math.round((targetCals * 0.30) / 9); carbs = Math.round((targetCals * 0.40) / 4); } setMacroResult({ targetCals: Math.round(targetCals), protein, fat, carbs, proteinOz: (protein / 30).toFixed(1) }); }; const inputStyle = { width: "100%", background: "#fff", border: "1.5px solid rgba(15,100,140,0.15)", borderRadius: 12, outline: "none", color: "#0F3D52", fontFamily: "'Outfit',sans-serif", fontSize: 15, fontWeight: 600, padding: "11px 14px", boxSizing: "border-box" }; const labelStyle = { fontSize: 10, fontWeight: 700, color: "#5B9BB5", textTransform: "uppercase", letterSpacing: 0.8, fontFamily: "'Outfit',sans-serif", marginBottom: 5, display: "block" }; const cardStyle = { background: "#fff", border: "1px solid rgba(15,100,140,0.1)", borderRadius: 14, padding: "14px 16px" }; return (
+{/* Tabs */}
+{["TDEE", "Macros", "Guide"].map((t, i) => ( setTab(i)} style={{ flex: 1, padding: "8px 0", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", background: tab === i ? accent : "rgba(15,100,140,0.07)", color: tab === i ? "#fff" : "#4A8FA8", transition: "all 0.2s ease" }}>{t} ))}
+{/* â”€â”€ TDEE TAB â”€â”€ */} {tab === 0 && (
+Total Daily Energy Expenditure
+TDEE is the total calories your body burns each day. Enter your stats below using the Mifflin-St Jeor formula â€” the most accurate for most people.
+{/* Sex selector */} Biological Sex
+{[{ id: "female", label: "Female", icon: "ðŸ‘©" }, { id: "male", label: "Male", icon: "ðŸ‘¨" }].map(s => (
+setTdee(t => ({ ...t, sex: s.id }))} style={{ flex: 1, padding: "10px", borderRadius: 12, border: `1.5px solid ${tdee.sex === s.id ? accent : "rgba(15,100,140,0.15)"}`, background: tdee.sex === s.id ? `${accent}14` : "#fff", cursor: "pointer", textAlign: "center", transition: "all 0.2s ease" }}>
+{s.icon}
+{s.label}
+))}
+{/* Inputs */}
+{[ { key: "age", label: "Age", placeholder: "yrs" }, { key: "weight", label: "Weight (lbs)", placeholder: "lbs" }, { key: "height", label: "Height (in)", placeholder: "in" }, ].map(f => (
+{f.label} {tdee[f.key]} setTdee(t => ({ ...t, [f.key]: e.target.value }))} placeholder={f.placeholder} type="number" style={{ ...inputStyle, fontSize: 13, padding: "9px 10px" }} />
+))}
+{/* Activity */} Activity Level
+{activityLevels.map(a => (
+setTdee(t => ({ ...t, activity: a.id }))} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 13px", borderRadius: 12, border: `1.5px solid ${tdee.activity === a.id ? accent : "rgba(15,100,140,0.12)"}`, background: tdee.activity === a.id ? `${accent}10` : "#fff", cursor: "pointer", transition: "all 0.2s ease" }}>
+{a.label}
+{a.sub}
+Ã—{a.mult}
+))}
+Calculate My TDEE ðŸ”¥
+{/* Results */} {tdeeResult && (
+Your Results âœ¦
+{/* BMR + TDEE hero */}
+{[ { label: "BMR", val: tdeeResult.bmr, sub: "Calories at rest", color: "#8B5CF6" }, { label: "TDEE", val: tdeeResult.tdee, sub: "Total daily burn", color: accent }, ].map(r => (
+{r.val}
+{r.label}
+{r.sub}
+))}
+{/* Calorie targets */}
+Calorie Targets
+{[ { label: "Aggressive Fat Loss", val: tdeeResult.fat_loss, color: "#EF4444", icon: "ðŸ”¥" }, { label: "Mild Fat Loss", val: tdeeResult.mild_loss, color: "#F97316", icon: "ðŸ“‰" }, { label: "Maintenance", val: tdeeResult.maintain, color: accent, icon: "âš–ï¸" }, { label: "Lean Muscle Gain", val: tdeeResult.lean_gain, color: "#10B981", icon: "ðŸ’ª" }, ].map(r => (
+{r.icon} {r.label}
+{r.val} cal
+))}
+ðŸ’¡ Coach Kristi's tip: Use your TDEE maintenance number in the Macro Calculator tab to build your personalized meal plan.
+)}
+)} {/* â”€â”€ MACRO TAB â”€â”€ */} {tab === 1 && (
+Personalized Macro Calculator
+Enter your TDEE (from the TDEE tab) and select your goal and nutrition style to get your custom macro targets.
+Your TDEE / Daily Calories {macro.calories} setMacro(m => ({ ...m, calories: e.target.value }))} placeholder="e.g. 1,850" type="number" style={{ ...inputStyle, marginBottom: 14 }} /> Your Goal
+{goalOptions.map(g => (
+setMacro(m => ({ ...m, goal: g.id }))} style={{ display: "flex", gap: 12, alignItems: "center", padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${macro.goal === g.id ? accent : "rgba(15,100,140,0.12)"}`, background: macro.goal === g.id ? `${accent}10` : "#fff", cursor: "pointer", transition: "all 0.2s ease" }}> {g.icon}
+{g.label}
+{g.sub}
+{g.mod > 0 ? `+${g.mod}` : g.mod === 0 ? "Â±0" : g.mod} cal
+))}
+Nutrition Style
+{styleOptions.map(s => (
+setMacro(m => ({ ...m, style: s.id }))} style={{ display: "flex", gap: 12, alignItems: "center", padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${macro.style === s.id ? "#10B981" : "rgba(15,100,140,0.12)"}`, background: macro.style === s.id ? "#10B98112" : "#fff", cursor: "pointer", transition: "all 0.2s ease" }}> {s.icon}
+{s.label}
+{s.sub}
+{macro.style === s.id &&
+âœ“
+}
+))}
+Calculate My Macros ðŸ¥©
+{/* Macro Results */} {macroResult && (
+Your Daily Macros âœ¦
+{/* Calorie target */}
+{macroResult.targetCals}
+Daily Calorie Target
+{/* Macro rings */}
+{[ { label: "Protein", val: macroResult.protein, unit: "g", cal: macroResult.protein * 4, color: "#EF4444", icon: "ðŸ¥©" }, { label: "Fat", val: macroResult.fat, unit: "g", cal: macroResult.fat * 9, color: "#F97316", icon: "ðŸ¥‘" }, { label: "Carbs", val: macroResult.carbs, unit: "g", cal: macroResult.carbs * 4, color: "#F59E0B", icon: "ðŸ " }, ].map(m => (
+{m.icon}
+{m.val}
+{m.label}
+{m.cal} cal
+))}
+{/* Protein in oz */}
+ðŸ¥©
+Protein in oz of meat
+~30g protein per 4oz serving
+{macroResult.proteinOz} oz
+{/* Macro % bar */}
+Calorie Split
+{[ { pct: Math.round((macroResult.protein * 4 / macroResult.targetCals) * 100), color: "#EF4444" }, { pct: Math.round((macroResult.fat * 9 / macroResult.targetCals) * 100), color: "#F97316" }, { pct: Math.round((macroResult.carbs * 4 / macroResult.targetCals) * 100), color: "#F59E0B" }, ].map((seg, i) => (
+))}
+{[ { label: "Protein", pct: Math.round((macroResult.protein * 4 / macroResult.targetCals) * 100), color: "#EF4444" }, { label: "Fat", pct: Math.round((macroResult.fat * 9 / macroResult.targetCals) * 100), color: "#F97316" }, { label: "Carbs", pct: Math.round((macroResult.carbs * 4 / macroResult.targetCals) * 100), color: "#F59E0B" }, ].map(s => (
+{s.pct}%
+{s.label}
+))}
+ðŸ’Š PharmD note: Protein needs are individual. Active women typically thrive on 0.7â€“1g per lb of bodyweight. Adjust based on your bloodwork, energy, and recovery.
+)}
+)} {/* â”€â”€ GUIDE TAB â”€â”€ */} {tab === 2 && (
+Understanding your numbers â€” from Coach Kristi:
+{[ { icon: "ðŸ”¬", t: "What is TDEE?", b: "Total Daily Energy Expenditure â€” the total calories your body burns in a day, including exercise, digestion, and basic organ function. It's your real-world calorie burn, not just your resting rate.", color: accent }, { icon: "ðŸ§®", t: "BMR vs TDEE", b: "BMR (Basal Metabolic Rate) is what you burn completely at rest â€” just to breathe and exist. TDEE multiplies your BMR by your activity level to estimate true daily burn.", color: "#8B5CF6" }, { icon: "ðŸ¥©", t: "Animal-Based Macros", b: "My preferred approach: 35â€“40% protein, 40â€“45% fat, 15â€“20% carbs. Prioritizes complete amino acids, satiety hormones, and fat-adapted energy. Most clients feel best here.", color: "#D97706" }, { icon: "ðŸ“‰", t: "Fat Loss Math", b: "1 lb of fat = ~3,500 calories. A 500 cal/day deficit = ~1 lb/week. Don't go below 1,200 cal for women â€” your metabolism, hormones, and thyroid will suffer.", color: "#EF4444" }, { icon: "ðŸ’ª", t: "Protein Priority", b: "Aim for 0.7â€“1g per lb of bodyweight. Protein has the highest thermic effect (burns 20â€“30% in digestion), builds muscle, and keeps you full longer than any other macro.", color: "#10B981" }, { icon: "âš–ï¸", t: "Adjust Over Time", b: "Your TDEE changes as you lose weight or gain muscle. Recalculate every 4â€“6 weeks or when progress stalls. Your body adapts â€” your targets should too.", color: "#F97316" }, ].map((tip, i) => (
+{tip.icon}
+{tip.t}
+{tip.b}
+))}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // SCREEN: GROCERY LIST // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• const groceryData = { proteins: { label: "Proteins", icon: "ðŸ¥©", color: "#DC2626", sub: "Animal-based Â· Prioritize grass-fed & wild-caught", items: [ { name: "Grass-Fed Ground Beef 80/20", note: "Best for burgers, bowls & skillets", star: true }, { name: "Grass-Fed Ground Beef 93/7", note: "Leaner option for fat loss phases", star: false }, { name: "Grass-Fed Ribeye Steak", note: "Highest nutrient density cut", star: true }, { name: "Grass-Fed Skirt / Flank Steak", note: "Great for quick meals & bowls", star: false }, { name: "Beef Liver (Grass-Fed)", note: "Nature's multivitamin â€” 2x/week", star: true }, { name: "Lamb Chops / Ground Lamb", note: "Rich in CLA & omega-3s", star: false }, { name: "Pasture-Raised Whole Eggs", note: "Complete amino acids + choline", star: true }, { name: "Wild Salmon (Fresh or Frozen)", note: "Best omega-3 to omega-6 ratio", star: true }, { name: "Wild Sardines (Canned in water)", note: "Bone broth in a can", star: true }, { name: "Wild-Caught Shrimp", note: "High protein, low calorie", star: false }, { name: "Oysters (Fresh or Canned)", note: "Best zinc source on the planet", star: true }, { name: "Pasture-Raised Chicken Thighs", note: "Dark meat = more nutrients & fat", star: false }, { name: "Pastured Bacon (No sugar)", note: "Read labels â€” avoid nitrates", star: false }, { name: "Italian Sausage (Pork, no fillers)", note: "Check for clean ingredients", star: false }, { name: "Bone Broth (Beef or Chicken)", note: "Collagen, minerals & gut support", star: true }, ] }, fats: { label: "Healthy Fats", icon: "ðŸ¥‘", color: "#D97706", sub: "Saturated & monounsaturated Â· Avoid seed oils", items: [ { name: "Grass-Fed Butter (Kerrygold)", note: "Best everyday cooking fat", star: true }, { name: "Beef Tallow", note: "Highest smoke point â€” best for searing", star: true }, { name: "Ghee (Clarified Butter)", note: "Dairy-free option, high smoke point", star: false }, { name: "Extra Virgin Olive Oil", note: "Cold use & light sautÃ©ing only", star: true }, { name: "Avocados", note: "Monounsaturated fat + potassium", star: true }, { name: "Coconut Oil (Virgin)", note: "Good for baking & medium-heat cooking", star: false }, { name: "Cottage Cheese 2% (Full-fat)", note: "High protein + healthy dairy fat", star: true }, { name: "Full-Fat Greek Yogurt (Plain)", note: "Probiotics + casein protein", star: false }, { name: "Heavy Cream (Grass-Fed)", note: "Coffee, sauces, fat bomb recipes", star: false }, { name: "Raw Cheddar / Gouda Cheese", note: "Choose aged, full-fat varieties", star: false }, ] }, carbs: { label: "Smart Carbs", icon: "ðŸ ", color: "#F59E0B", sub: "Whole food sources Â· Starchy carbs post-workout", items: [ { name: "Sweet Potatoes", note: "Best post-workout carb â€” vitamin A", star: true }, { name: "White Potatoes", note: "High potassium, resistant starch when cooled", star: false }, { name: "Raw Honey (Local if possible)", note: "Enzymes, propolis, antioxidants", star: true }, { name: "Ripe Bananas", note: "Quick energy + magnesium pre/post workout", star: true }, { name: "Blueberries (Wild Frozen)", note: "Highest antioxidant density of all berries", star: true }, { name: "Strawberries", note: "Low sugar, high vitamin C", star: false }, { name: "Medjool Dates", note: "Natural sweetener for recipes", star: false }, { name: "White Rice", note: "Easily digestible â€” best for athletes", star: false }, { name: "Plantains (Ripe)", note: "Resistant starch + gut-friendly", star: false }, ] }, vegetables: { label: "Non-Starchy Vegetables", icon: "ðŸ¥¦", color: "#10B981", sub: "Low carb Â· High fiber & micronutrients", items: [ { name: "Arugula", note: "Peppery base for any salad or bowl", star: true }, { name: "Microgreens", note: "Up to 40x more nutrients than mature greens", star: true }, { name: "Spinach (Baby)", note: "Iron, magnesium, folate â€” cook or raw", star: true }, { name: "Kale", note: "Best cooked with fat for fat-soluble vitamins", star: false }, { name: "Romaine Lettuce", note: "Electrolytes + crunch with zero effort", star: false }, { name: "Broccoli", note: "Sulforaphane â€” powerful anti-inflammatory", star: true }, { name: "Asparagus", note: "Prebiotic fiber + natural diuretic", star: false }, { name: "Zucchini", note: "Versatile â€” spiralize, sautÃ©, or grill", star: false }, { name: "Spaghetti Squash", note: "Great pasta substitute, almost zero carbs", star: true }, { name: "Brussels Sprouts", note: "Roast in tallow for incredible flavor", star: false }, { name: "Cucumbers", note: "Hydration + electrolytes", star: false }, { name: "Bell Peppers", note: "Highest vitamin C of any vegetable", star: false }, { name: "Celery", note: "Natural sodium + fiber for gut health", star: false }, { name: "Mushrooms (Cremini / Shiitake)", note: "Vitamin D2 + immune support", star: false }, { name: "Cauliflower", note: "Sub for rice, mash & pizza crust", star: false }, ] }, pantry: { label: "Pantry Staples", icon: "ðŸ§‚", color: "#8B5CF6", sub: "Clean ingredients Â· Read every label", items: [ { name: "Sea Salt / Himalayan Pink Salt", note: "Trace minerals â€” avoid iodized table salt", star: true }, { name: "Black Pepper (Fresh Ground)", note: "Enhances nutrient absorption", star: false }, { name: "Garlic (Fresh Bulbs)", note: "Antimicrobial + cardiovascular support", star: true }, { name: "Colostrum Powder", note: "Gut health + immune + growth factors", star: true }, { name: "Collagen Peptides", note: "Skin, joints, gut lining â€” pair with Vit C", star: true }, { name: "Cocoa Powder (Raw Cacao)", note: "For bone broth hot chocolate!", star: true }, { name: "Cinnamon (Ceylon)", note: "Blood sugar regulation â€” not cassia", star: false }, { name: "Apple Cider Vinegar", note: "Digestive aid + blood sugar management", star: false }, { name: "Dijon Mustard (Clean)", note: "Check for no added sugar or oils", star: false }, { name: "Coconut Aminos", note: "Soy sauce alternative â€” no gluten", star: false }, ] }, }; function ScreenGrocery({ accent }) { const [activeSection, setActiveSection] = useState("proteins"); const [checked, setChecked] = useState({}); const [search, setSearch] = useState(""); const sections = Object.keys(groceryData); const current = groceryData[activeSection]; const toggle = (key) => setChecked(c => ({ ...c, [key]: !c[key] })); const clearAll = () => setChecked({}); const allItems = sections.flatMap(sec => groceryData[sec].items.map((item, i) => ({ ...item, key: `${sec}-${i}`, section: sec, color: groceryData[sec].color })) ); const checkedCount = Object.values(checked).filter(Boolean).length; const filteredItems = search.trim() ? allItems.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) : current.items.map((item, i) => ({ ...item, key: `${activeSection}-${i}`, color: current.color })); return (
+{/* Search bar */}
+{search} setSearch(e.target.value)} placeholder="ðŸ” Search any item..." style={{ width: "100%", background: "#fff", border: "1.5px solid rgba(15,100,140,0.15)", borderRadius: 12, outline: "none", color: "#0F3D52", fontFamily: "'Outfit',sans-serif", fontSize: 13, fontWeight: 500, padding: "10px 14px", boxSizing: "border-box" }} /> {search && ( setSearch("")} style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "#5B9BB5" }}>âœ• )}
+{/* Cart counter + clear */} {checkedCount > 0 && (
+ðŸ›’ {checkedCount} item{checkedCount > 1 ? "s" : ""} in cart
+Clear All
+)} {/* Section tabs - scrollable */} {!search && (
+{sections.map(sec => { const d = groceryData[sec]; return ( setActiveSection(sec)} style={{ flexShrink: 0, display: "flex", gap: 5, alignItems: "center", padding: "6px 12px", borderRadius: 20, border: `1.5px solid ${activeSection === sec ? d.color : "rgba(15,100,140,0.12)"}`, background: activeSection === sec ? `${d.color}16` : "#fff", cursor: "pointer", transition: "all 0.2s ease" }}> {d.icon} {d.label} ); })}
+)} {/* Section header */} {!search && (
+{current.icon}
+{current.label}
+{current.sub}
+{current.items.length} items
+)} {/* Items list */}
+{search && (
+{filteredItems.length} result{filteredItems.length !== 1 ? "s" : ""} for "{search}"
+)} {filteredItems.length === 0 && (
+ðŸ”
+No items found
+)} {filteredItems.map((item) => { const isChecked = checked[item.key]; return (
+toggle(item.key)} style={{ display: "flex", gap: 12, alignItems: "center", padding: "11px 14px", borderRadius: 13, border: `1px solid ${isChecked ? item.color + "30" : "rgba(15,100,140,0.09)"}`, background: isChecked ? `${item.color}08` : "#fff", marginBottom: 7, cursor: "pointer", transition: "all 0.18s ease" }}> {/* Checkbox */}
+{isChecked && âœ“}
+{/* Content */}
+{item.name}
+{item.note}
+{/* Star badge */} {item.star && !isChecked && (
+â˜… Top Pick
+)}
+); })} {/* Coach tip at bottom */} {!search && (
+ðŸ’Š Coach Kristi's Tip
+{activeSection === "proteins" && "Always prioritize grass-fed and wild-caught â€” the fatty acid profile is dramatically better. If budget is tight, prioritize beef & eggs above all. Organ meats are the most nutrient-dense and usually the cheapest cut."} {activeSection === "fats" && "Avoid all refined seed oils (canola, soybean, sunflower, corn). Your cell membranes are made of fat â€” the quality of fat you eat becomes the quality of your cells. Stick to animal fats and olive/coconut oils."} {activeSection === "carbs" && "Eat your carbs around your workouts when possible â€” your muscles are most insulin sensitive post-training. Raw honey is my favorite natural sweetener. Whole fruit > fruit juice every single time."} {activeSection === "vegetables" && "Arugula and microgreens are my staples â€” they go on everything. Cook leafy greens in butter or tallow to absorb fat-soluble vitamins A, D, E and K. Raw spinach contains oxalates that block iron â€” light cooking removes them."} {activeSection === "pantry" && "Read every label. If you can't pronounce it, don't eat it. The best pantry staple is bone broth â€” keep it stocked. Sea salt over table salt always. And local raw honey whenever you can find it."}
+)}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // MAIN APP SHELL (with bottom nav) // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• function MainApp({ onCoach }) { const [screen, setScreen] = useState(0); const screens = [ { label: "Home", icon: "ðŸ ", accent: "#2DD4BF", bg: "#EAF5FA", Component: ScreenHome }, { label: "Move", icon: "ðŸ„", accent: "#F97316", bg: "#FEF6EE", Component: ScreenWorkout }, { label: "Nourish", icon: "ðŸ¥—", accent: "#10B981", bg: "#EDF7F2", Component: ScreenNutrition }, { label: "Rx", icon: "ðŸ’Š", accent: "#8B5CF6", bg: "#F2EEFF", Component: ScreenSupplements }, { label: "Calc", icon: "ðŸ§®", accent: "#0EA5E9", bg: "#EAF4FD", Component: ScreenCalculator }, { label: "Shop", icon: "ðŸ›’", accent: "#10B981", bg: "#EDF7F2", Component: ScreenGrocery }, { label: "Progress", icon: "ðŸ“ˆ", accent: "#2DD4BF", bg: "#EAF5FA", Component: ScreenProgress }, ]; const { accent, bg, Component } = screens[screen]; return ( <> {/* Top Bar */}
+Lamoncha Living
+{screens[screen].label} âœ¦
+
+{/* Screen Content */}
+
+{/* Bottom Nav */}
+{screens.map((s, i) => ( setScreen(i)} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 3, padding: "8px 4px", borderRadius: 16, border: "none", cursor: "pointer", background: screen === i ? `${s.accent}14` : "transparent", transition: "all 0.2s ease" }}> {s.icon} {s.label} ))}
+); } // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• // ROOT â€” VIEW ROUTER // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• export default function App() { const [view, setView] = useState("splash"); // splash | signup | coach | main return ( <>
+{/* Status Bar */}
+9:41
+â—â—â— ðŸ”‹
+{/* Routes */} {view === "splash" && } {view === "signup" && setView("splash")} onNext={setView} />} {view === "coach" && setView("splash")} onSignUp={() => setView("signup")} />} {view === "main" && setView("coach")} />}
+); }
